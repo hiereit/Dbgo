@@ -1,4 +1,4 @@
-package model.dto;
+package model.dto;//
 
 public class User {
 	private int u_id;
