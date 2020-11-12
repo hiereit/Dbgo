@@ -1,12 +1,12 @@
 package model.dao;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.dto.User;
 
@@ -128,7 +128,6 @@ public class UserDao {
 					conn.close(); 
 				} catch (SQLException ex) { ex.printStackTrace(); }
 		}
-    	
         return null;
     }
 }
