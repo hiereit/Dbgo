@@ -155,7 +155,7 @@ public class GroupDAO {
 		}
 	}
 	
-	public List<GroupInfo> updateGroup(String g_id, String g_name) {
+	public void updateGroup(String g_id, String g_name) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;		// PreparedStatment 참조 변수 생성
 		ResultSet rs = null;		
@@ -198,7 +198,6 @@ public class GroupDAO {
 					conn.close(); 
 				} catch (SQLException ex) { ex.printStackTrace(); }
 		}
-		return null;
 	}
 	
 	public void createGroup(String u_id, String g_name) {
