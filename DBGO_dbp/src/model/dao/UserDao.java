@@ -36,7 +36,7 @@ public class UserDao {
     	return conn;
     }
 	
-	public User findUserInfo(int u_id) {
+	public User findUserInfo(String u_id) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;		
 		ResultSet rs = null;
@@ -48,7 +48,7 @@ public class UserDao {
 		try {
     		conn = getConnection();
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();
 			
 			User user = null;
@@ -81,7 +81,7 @@ public class UserDao {
 	}
 	
 	
-	public List<User> findUsersInfo(int u_id) {
+	public List<User> findUsersInfo(String u_id) {
        
     	Connection conn = null;
 		PreparedStatement pStmt = null;		
@@ -94,7 +94,7 @@ public class UserDao {
 		try {
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();
 			
 			List<User> list = new ArrayList<User>();
@@ -130,4 +130,147 @@ public class UserDao {
 		}
         return null;
     }
+
+	
+	public void createUser (String u_id, String name, String email, String nickname, String password) {
+		Connection conn = null;
+		PreparedStatement pStmt = null;			// PreparedStatment 참조 변수 생성
+		int recordCount = 0;
+		
+//		String query = "INSERT INTO userinfo (u_id, name, email, nickname, password) "
+//				+ "VALUES (u_id, name, email, nickname, password) ";
+		
+		String query = "INSERT INTO userinfo (u_id, name, email, nickname, password) "
+				+ "VALUES (u_id_seq.NEXTVAL, name, email, nickname, password) ";
+		
+		try {
+			conn = getConnection();
+			
+			pStmt = conn.prepareStatement(query);
+			recordCount = pStmt.executeUpdate();	//1이 업데이트 되는지 체크해보고 끝내면 됨
+			if(recordCount == 0)
+				System.out.println("삽입된 회원이 없습니다.");
+			else
+				System.out.println(recordCount + "명의 회원이 삽입되었습니다.");
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {		// 자원 반납
+			if (pStmt != null) 
+				try { 
+					pStmt.close();
+				} catch (SQLException ex) { ex.printStackTrace(); }
+			if (conn != null) 
+				try { 
+					conn.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+		}
+	}
+
+
+	public void updateUser (String u_id, String password) {	//비밀번호만 바꿀수 있게?
+		Connection conn = null;
+		PreparedStatement pStmt = null;
+		int recordCount = 0;
+		
+		String query = "UPDATE userInfo "
+				+ "SET password = ? "
+				+ "WHERE u_id = ? ";
+	
+		try {
+			conn = getConnection();
+			
+			pStmt = conn.prepareStatement(query);
+			pStmt.setString(1, u_id);
+			pStmt.setString(2, password);
+			recordCount = pStmt.executeUpdate();
+			if(recordCount == 0)
+				System.out.println("비밀번호 UPDATE 실패");
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {		// 자원 반납
+			if (pStmt != null) 
+				try { 
+					pStmt.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+			if (conn != null) 
+				try { 
+					conn.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+		}
+	
+	}
+	
+
+	public void removeUser (String u_id) {
+		Connection conn = null;
+		PreparedStatement pStmt = null;
+		int recordCount = 0;
+		
+		String query = "DELETE FROM userInfo "
+					+ "WHERE u_id = ? ";
+		
+		try {
+			conn = getConnection();
+			
+			pStmt = conn.prepareStatement(query);
+			pStmt.setString(1, u_id);
+			recordCount = pStmt.executeUpdate();
+			if(recordCount == 0)
+				System.out.println("회원 삭제 실패");
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {		// 자원 반납
+			if (pStmt != null) 
+				try { 
+					pStmt.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+			if (conn != null) 
+				try { 
+					conn.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+		}
+	}
+
+
+	public boolean existingUser(String u_id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+
+		String query = "SELECT count(*) "
+				+ "FROM userInfo "
+				+ "WHERE u_id = ? ";      
+
+		try {
+			
+			conn = getConnection();
+			pStmt = conn.prepareStatement(query);
+			pStmt.setString(1, u_id);
+			rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {		// 자원 반납
+			if (rs != null) 
+				try { 
+					rs.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+			if (pStmt != null) 
+				try { 
+					pStmt.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+			if (conn != null) 
+				try { 
+					conn.close(); 
+				} catch (SQLException ex) { ex.printStackTrace(); }
+		}
+		return false;
+	}
 }

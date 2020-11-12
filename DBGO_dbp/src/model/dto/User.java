@@ -1,7 +1,7 @@
 package model.dto;
 
 public class User {
-	private int u_id;
+	private String u_id;
 	private String name = null;
 	private String email = null;
 	private String nickname = null;
@@ -11,7 +11,7 @@ public class User {
 		
 	}
 	
-	public User(int u_id, String name, String email, String nickname, String password) {
+	public User(String u_id, String name, String email, String nickname, String password) {
 		super();
 		this.u_id = u_id;
 		this.name = name;
@@ -21,11 +21,11 @@ public class User {
 	}
 
 	
-	public int getU_id() {
+	public String getU_id() {
 		return u_id;
 	}
 
-	public void setU_id(int u_id) {
+	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
 
