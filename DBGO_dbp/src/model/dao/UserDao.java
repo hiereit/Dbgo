@@ -36,7 +36,7 @@ public class UserDao {
     	return conn;
     }
 	
-	public User findUserInfo(int u_id) {
+	public User findUserInfo(String u_id) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;		
 		ResultSet rs = null;
@@ -48,7 +48,7 @@ public class UserDao {
 		try {
     		conn = getConnection();
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();
 			
 			User user = null;
@@ -81,7 +81,7 @@ public class UserDao {
 	}
 	
 	
-	public List<User> findUsersInfo(int u_id) {
+	public List<User> findUsersInfo(String u_id) {
        
     	Connection conn = null;
 		PreparedStatement pStmt = null;		
@@ -94,7 +94,7 @@ public class UserDao {
 		try {
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();
 			
 			List<User> list = new ArrayList<User>();
@@ -132,13 +132,16 @@ public class UserDao {
     }
 
 	
-	public void createUser (int u_id, String name, String email, String nickname, String password) {
+	public void createUser (String u_id, String name, String email, String nickname, String password) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;			// PreparedStatment 참조 변수 생성
 		int recordCount = 0;
 		
+//		String query = "INSERT INTO userinfo (u_id, name, email, nickname, password) "
+//				+ "VALUES (u_id, name, email, nickname, password) ";
+		
 		String query = "INSERT INTO userinfo (u_id, name, email, nickname, password) "
-				+ "VALUES (u_id, name, email, nickname, password) ";
+				+ "VALUES (u_id_seq.NEXTVAL, name, email, nickname, password) ";
 		
 		try {
 			conn = getConnection();
@@ -165,7 +168,7 @@ public class UserDao {
 	}
 
 
-	public void updateUser (int u_id, String password) {	//비밀번호만 바꿀수 있게?
+	public void updateUser (String u_id, String password) {	//비밀번호만 바꿀수 있게?
 		Connection conn = null;
 		PreparedStatement pStmt = null;
 		int recordCount = 0;
@@ -178,7 +181,7 @@ public class UserDao {
 			conn = getConnection();
 			
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			pStmt.setString(2, password);
 			recordCount = pStmt.executeUpdate();
 			if(recordCount == 0)
@@ -200,7 +203,7 @@ public class UserDao {
 	}
 	
 
-	public void removeUser (int u_id) {
+	public void removeUser (String u_id) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;
 		int recordCount = 0;
@@ -212,7 +215,7 @@ public class UserDao {
 			conn = getConnection();
 			
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			recordCount = pStmt.executeUpdate();
 			if(recordCount == 0)
 				System.out.println("회원 삭제 실패");
@@ -232,7 +235,7 @@ public class UserDao {
 	}
 
 
-	public boolean existingUser(int u_id) throws SQLException {
+	public boolean existingUser(String u_id) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
@@ -245,7 +248,7 @@ public class UserDao {
 			
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, u_id);
+			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();
 			
 			if (rs.next()) {
