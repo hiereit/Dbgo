@@ -17,7 +17,7 @@ public class RequestMapping {
     public void initMapping() {
     	// �� uri�� �����Ǵ� controller ��ü�� ���� �� ����
     	mappings.put("/", new ForwardController("index.jsp"));
-    	mappings.put("/schedule/monthly", new ForwardController("monthly.jsp"));
+    	mappings.put("/schedule/monthly", new ForwardController("/schedule/monthly.jsp"));
     	/*
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
