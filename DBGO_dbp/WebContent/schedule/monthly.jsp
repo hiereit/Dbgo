@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@
 	href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css'
 	rel='stylesheet'>
 <script src="../static/vendor/jquery/jquery.min.js"></script>
-<link href='../css/main.css' rel='stylesheet' />
-<script src='../js/main.js'></script>
+<link href="<c:url value='/css/fullcalenar.css' />" rel='stylesheet' />
+<script src="<c:url value='/js/fullcalenar.js' />"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
