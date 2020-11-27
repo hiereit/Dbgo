@@ -1,10 +1,22 @@
-<!DOCTYPE html>
+<!DOCTYPE  html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+ <link  rel='stylesheet'  href='css/fullcalendar.css'  />
+ <script  src='lib/jquery.min.js'></script>
+ <script  src='lib/moment.min.js'></script>
+ <script  src='js/fullcalendar.js'></script>
+ <script>
+  $(function () {
+   // page is now ready, initialize the calendar...
+   $('#calendar').fullCalendar({
+    // put your options and callbacks here
+   })
+  });
+ </script>
 </head>
-<body>
 
+<body>
+ <div  id="calendar">
+ </div>
 </body>
 </html>
