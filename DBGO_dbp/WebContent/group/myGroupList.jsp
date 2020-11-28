@@ -30,7 +30,7 @@
       button {
       	padding-top: 5px;
       	float: right;
-        border-radius: 40px!important;
+        border-radius: 10px!important;
         text-align: left;
         font: normal normal bold 16px JSDongkang-Regular!important;
         color: #000000;
