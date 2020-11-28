@@ -1,14 +1,14 @@
 package model.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
+@SuppressWarnings("serial")
 public class GroupInfo implements Serializable {
 	private String g_id;
 	private String g_name;
 	private int numOfMembers;
 	
-	public GroupInfo() {super();}
+	public GroupInfo() {}
 
 	public GroupInfo(String g_id, String g_name, int numOfMembers) {
 		super();

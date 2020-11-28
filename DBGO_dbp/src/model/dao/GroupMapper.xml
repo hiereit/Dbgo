@@ -26,7 +26,7 @@
  <select id="selectGroupListByUserId" parameterType="string" resultType="GroupInfo">
  	SELECT g.g_id, g.g_name, count(g.g_id) AS numOfMembers
 	FROM ADMISSION a JOIN GROUPINFO g ON a.g_id = g.g_id
-	WHERE g.g_id = ( SELECT g_id
+	WHERE g.g_id in ( SELECT g_id
 	                FROM ADMISSION
 	                WHERE u_id = #{id})
 	GROUP BY g.g_id, g.g_name
