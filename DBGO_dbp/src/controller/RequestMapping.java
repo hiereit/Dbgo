@@ -31,6 +31,11 @@ public class RequestMapping {
         mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
         mappings.put("/user/register", new RegisterUserController());
         
+        mappings.put("/user/update/form", new UpdateUserFormController());
+        mappings.put("/user/update/form", new UpdateUserController());
+        mappings.put("/user/update", new UpdateUserController());
+        mappings.put("/user/delete", new DeleteUserController());
+        
     	/*
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());

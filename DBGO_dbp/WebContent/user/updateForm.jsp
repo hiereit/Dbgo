@@ -16,21 +16,21 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-<title>사용자 정보 수정</title>
+<title>회원 정보 수정</title>
 <script>
-function userModify() {
-	if (form.password.value == "") {
-		alert("비밀번호를 입력하십시오.");
-		form.password.focus();
-		return false;
+	function userModify() {
+		if (form.password.value == "") {
+			alert("비밀번호를 입력하십시오.");
+			form.password.focus();
+			return false;
+		}
+		if (form.password.value != form.password2.value) {
+			alert("비밀번호가 일치하지 않습니다.");
+			form.name.focus();
+			return false;
+		}
+		form.submit();
 	}
-	if (form.password.value != form.password2.value) {
-		alert("비밀번호가 일치하지 않습니다.");
-		form.name.focus();
-		return false;
-	}
-	form.submit();
-}
 </script>
 
 <style>
@@ -65,57 +65,65 @@ td {
 	text-align: center;
 	margin-top: 3em;
 }
+
 </style>
 </head>
 <body style="overflow: scroll">
 	<%@include file="/navbar.jsp"%>
+
 	<form name="form" method="POST" action="<c:url value='/user/update' />">
-		<input type="hidden" name="userId" value="${user.userId}" />
-		<div class="form-group row">
-			<label class="col-lg-2 col-form-label">사용자 ID</label>
-			<div class="col-lg-10">
-				<p class="form-control-static">${user.userId}</p>
+		<div class="centerElement">
+			<div class="signUp">
+				<h1 class="text-primary">회원정보 수정</h1>
+				<br> <br>
+				<table>
+					<input type="hidden" name="u_id" value="${user.u_id}" />
+					<tr>
+						<th><label>ID</label></th>
+						<td>
+							<p class="form-control-static">${user.u_id}</p>
+						</td>
+					</tr>
+
+					<tr>
+						<th><label for="name">이름</label></th>
+						<td>
+							<input type="text" name="name" class="form-control" value="${user.name}"
+							style="width: 300px; height: 40px; margin-bottom: 10px;">
+						</td>
+					</tr>
+
+					<tr>
+						<th><label for="email">이메일</label></th>
+						<td>
+							<input type="text" name="email" class="form-control" value="${user.email}"
+							style="width: 300px; height: 40px; margin-bottom: 10px;">
+						</td>
+					</tr>
+
+					<tr>
+						<th><label for="password">비밀번호</label></th>
+						<td>
+							<input type="password" name="password" class="form-control" value="${user.password}"
+							style="width: 300px; height: 40px; margin-bottom: 10px;">
+						</td>
+					</tr>
+
+					<tr>
+						<th><label for="passwordConfirm">비밀번호 확인</label></th>
+						<td>
+							<input type="password" name="passwordConfirm" class="form-control" value="${user.password}"
+							style="width: 300px; height: 40px; margin-bottom: 10px;">
+						</td>
+					</tr>
+				</table>
+				<br>
+				<div class="form-group">
+					<input type="button" class="btn btn-primary" value="수정" onClick="userModify()" 
+					style="margin-bottom: 15px; height: 40px;">
+				</div>
 			</div>
-		</div>
-		<div class="form-group row">
-			<label for="password" class="col-lg-2 col-form-label">비밀번호</label>
-			<div class="col-lg-10">
-				<input type="password" name="password" class="form-control"
-					value="${user.password}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="password2" class="col-lg-2 col-form-label">비밀번호
-				확인</label>
-			<div class="col-lg-10">
-				<input type="password" name="password2" class="form-control"
-					value="${user.password}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="name" class="col-lg-2 col-form-label">이름</label>
-			<div class="col-lg-10">
-				<input type="text" name="name" class="form-control"
-					value="${user.name}">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label for="email" class="col-lg-2 col-form-label">이메일 주소</label>
-			<div class="col-lg-10">
-				<input type="text" name="email" class="form-control"
-					value="${user.email}">
-			</div>
-		</div>
-		
-		<br>
-		<div class="form-group">
-			<input type="button" class="btn btn-primary" value="수정"
-				onClick="userModify()"> <a
-				href="<c:url value='/user/list' />" class="btn btn-link">사용자 목록
-			</a>
 		</div>
 	</form>
-</body>
-</html>
 </body>
 </html>

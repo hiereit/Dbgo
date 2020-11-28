@@ -8,7 +8,7 @@ import controller.Controller;
 import model.service.UserManager;
 import model.dto.User;
 
-public class UpdateUserController implements Controller {//
+public class UpdateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
 
     @Override
@@ -23,6 +23,6 @@ public class UpdateUserController implements Controller {//
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateUser);			
-        return "redirect:/user/list";			
+        return "redirect:/user/login/form";			
     }
 }
