@@ -26,6 +26,14 @@
 		});
 		calendar.render();
 	});
+	function clickAdd(){
+		var url = "./scheduleFormPopup.jsp";
+		var name = "formPopup";
+		var option ="width=800, height = 600, left = 100, top = 100, location = no, fullscreen =yes, scrollbars = 1";
+		
+		window.open(url, name, option);
+	}
+
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>

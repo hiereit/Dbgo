@@ -4,18 +4,18 @@ import java.util.Date;
 public class Schedule {
 	private String memo, title, category;
 	private int achievement, u_id, schId;
-	private Date schDate;
+	private Date schStartDate, schEndDate;
 	
 	//Constructor (default/ ...)
-	public Schedule() { //default »ý¼ºÀÚ
+	public Schedule() { //default ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		super();
 	}
 	
-	public Schedule(int sch_id, Date schDate, String memo, 
-			String title, String category, int u_id,	int achievement) {
+	public Schedule(int sch_id, Date schStartDate, Date schEndDate, String memo, 
+			String title, String category, int u_id, int achievement) {
 		super();
 		this.schId = sch_id;
-		this.schDate = schDate;
+		this.schStartDate = schStartDate;
 		this.memo = memo;
 		this.title = title;
 		this.category = category;
@@ -23,11 +23,13 @@ public class Schedule {
 		this.achievement = achievement;
 	}	
 	
-	//setter & getter ¼±¾ð
+	//setter & getter ï¿½ï¿½ï¿½ï¿½
 	public int getSchId() {		return schId;	}
-	public void setSchId(String string) {		this.schId = schId;	}
-	public Date getSchDate() {		return schDate;	}
-	public void setSchDate(Date schDate) {		this.schDate = schDate;	}
+	public void setSchId(int schId) {		this.schId = schId;	}
+	public Date getSchStartDate() {		return schStartDate;	}
+	public void setSschStartDate(Date schStartDate) {		this.schStartDate = schStartDate;	}
+	public Date getSchEndDate() {	return schEndDate;}
+	public void setSchEndDate(Date schEndDate) {		this.schEndDate = schEndDate;	}
 	public String getMemo() {		return memo;	}
 	public void setMemo(String memo) {		this.memo = memo;	}
 	public String getTitle() {		return title;	}
@@ -43,10 +45,6 @@ public class Schedule {
 		return "";
 	}
 
-	public void setSchDate(java.sql.Date date) {
-		// TODO Auto-generated method stub
-		this.schDate = schDate;
-	}
 
 
 }
