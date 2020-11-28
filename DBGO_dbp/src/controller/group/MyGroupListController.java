@@ -17,6 +17,6 @@ public class MyGroupListController implements Controller {
 		List<GroupInfo> mGroupList = manager.findMyGroupList("jimin");
 		
 		request.setAttribute("mGroupList", mGroupList);
-		return "/group/list.jsp";
+		return "/group/myGroupList.jsp";
 	}
 }

@@ -4,11 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="model.dto.groupinfo" alias="GroupInfo" />
-		<typeAlias type="model.dto.diary" alias="Diary" />
-		<typeAlias type="model.dto.groupschedule" alias="GroupSchedule" />
-		<typeAlias type="model.dto.user" alias="User" />
-		<typeAlias type="model.dto.schedule" alias="Schedule" />
+		<typeAlias type="model.dto.GroupInfo" alias="GroupInfo" />
+		<typeAlias type="model.dto.Diary" alias="Diary" />
+		<typeAlias type="model.dto.GroupSchedule" alias="GroupSchedule" />
+		<typeAlias type="model.dto.User" alias="User" />
+		<typeAlias type="model.dto.Schedule" alias="Schedule" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
