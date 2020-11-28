@@ -70,25 +70,7 @@
 </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">DBGO!</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <a class="nav-link active" href="#">&nbsp;&nbsp;&nbsp;빠른 일정 추가</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"></a>
-          </li>
-        </ul>
-        <button class="btn"><i class="fa fa-bell fa-2x" aria-hidden="true" style="color:white;"></i></button>
-        <button class="btn"><i class="fa fa-address-book fa-2x" aria-hidden="true" style="color:white;"></i></button>
-        <button class="btn"><i class="fa fa-sign-out fa-2x" aria-hidden="true" style="color:white;"></i></button>
-      </div>
-    </nav>
+  	<%@include file="/navbar.jsp" %>
     <div id='calendar'></div>
 </body>
 </html>
