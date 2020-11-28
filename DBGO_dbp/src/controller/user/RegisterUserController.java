@@ -15,6 +15,7 @@ public class RegisterUserController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	System.out.println("RegisterUserController");
 		User user = new User(
 			request.getParameter("u_id"),
 			request.getParameter("name"),

@@ -20,6 +20,7 @@
 
 <script>
 function userCreate() {
+	
 	if (form.u_id.value == "") {
 		alert("사용자 ID를 입력하십시오.");
 		form.u_id.focus();
@@ -79,6 +80,10 @@ td {
 	width: 83%;
 	padding-left: 50px;
 }
+.failMessage{
+	text-align: center;
+	margin-top: 3em;
+}
 </style>
 </head>
 
@@ -86,13 +91,13 @@ td {
 	<%@include file="/navbar.jsp"%>
 
 	<!-- 회원가입이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-	<div class="row col-lg-12">
+	<div class="failMessage">
 		<c:if test="${registerFailed}">
 			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
 		</c:if>
 	</div>	  
 
-	<form name="form" method="POST" action="<c:url value='user/register'/>">
+	<form name="form" method="POST" action="<c:url value='/user/register' />">
 		<div class="centerElement">
 			<div class="signUp">
 				<h1 class="text-primary">Sign up</h1>
