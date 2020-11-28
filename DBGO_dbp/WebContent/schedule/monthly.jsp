@@ -15,8 +15,8 @@
 	href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css'
 	rel='stylesheet'>
 <script src="../static/vendor/jquery/jquery.min.js"></script>
-<link href="<c:url value='/css/fullcalenar.css' />" rel='stylesheet' />
-<script src="<c:url value='/js/fullcalenar.js' />"></script>
+<link href="<c:url value='/css/fullcalendar.css' />" rel='stylesheet' />
+<script src="<c:url value='/js/fullcalendar.js' />"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
@@ -64,7 +64,7 @@
         </ul>
         <button class="btn"><i class="fa fa-bell fa-2x" aria-hidden="true" style="color:white;"></i></button>
         <button class="btn"><i class="fa fa-address-book fa-2x" aria-hidden="true" style="color:white;"></i></button>
-        <button class="btn"><i class="fa fa-sign-out fa-2x" aria-hidden="true" style="color:white;"></i></button>&nbsp;&nbsp;
+        <button class="btn"><i class="fa fa-sign-out fa-2x" aria-hidden="true" style="color:white;"></i></button>
       </div>
     </nav>
     <div id='calendar'></div>
