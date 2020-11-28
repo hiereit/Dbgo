@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -21,35 +20,16 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			header:{ left: "prev", center: "title", right: "next"},
-			initialView : 'dayGridMonth',
-			themeSystem : 'bootstrap',
-			
-			dateClick: function(info) {
-				   alert('Date: ' + info.dateStr);
-				   alert('Resource ID: ' + info.resource.id);
-			}
-			/*dateClick: function( selectionInfo ){
-				alert('Date: ' + info.dateStr);
-			} */
+			initialView : 'dayGridWeek',
+			themeSystem : 'bootstrap'
 		});
-		
 		calendar.render();
 	});
-	function clickAdd(){
-		var url = "./scheduleFormPopup.jsp";
-		var name = "formPopup";
-		var option ="width=800, height = 600, left = 100, top = 100, location = no, fullscreen =yes, scrollbars = 1";
-		
-		window.open(url, name, option);
-	}
-	
-
 </script>
 <meta charset="UTF-8">
-<title>Monthly Calendar</title>
+<title>Daily Calendar</title>
 <style>
-.navbar-brand {
+	.navbar-brand {
             text-align: left;
             font: normal normal bold 30px/60px Binggrae;
             letter-spacing: 0px;
@@ -66,11 +46,11 @@
       padding-top : 10px;
       padding-bottom: 40px;
     }
-
+    
 </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="#">DBGO!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -89,6 +69,6 @@
         <button class="btn"><i class="fa fa-sign-out fa-2x" aria-hidden="true" style="color:white;"></i></button>
       </div>
     </nav>
-    <div id='calendar'></div>
+    <div id='calendar' align="center"></div>
 </body>
 </html>
