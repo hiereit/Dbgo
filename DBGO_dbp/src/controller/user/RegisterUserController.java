@@ -10,7 +10,7 @@ import model.dto.User;
 import model.service.ExistingUserException;
 import model.service.UserManager;
 
-public class RegisterUserController implements Controller {//
+public class RegisterUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
 
     @Override
@@ -25,7 +25,7 @@ public class RegisterUserController implements Controller {//
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(user);
-	        return "redirect:/user/list";		// 성공 시 사용자 리스트 화면으로 redirect
+	        return "redirect:/user/login";		// 성공 시 로그인 화면으로 redirect (추후 수정?)
 	        
 		} catch (ExistingUserException e) {		// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);

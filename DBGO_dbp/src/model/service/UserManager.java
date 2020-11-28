@@ -33,10 +33,12 @@ public class UserManager {//
 		}
 		return userDAO.createUser(user.getU_id(), user.getName(), user.getEmail(), user.getPassword());
 	}
+	
 
 	public int update(User user) throws SQLException {
 		return userDAO.updateUser(user.getU_id(), user.getPassword());
 	}	
+	
 	
 	public int remove(String userId) throws SQLException {
 		return userDAO.removeUser(userId);

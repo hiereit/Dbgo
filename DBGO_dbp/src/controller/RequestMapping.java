@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.group.*;
 
-//import controller.user.*;
+import controller.user.*;
 //import controller.comm.*;
 
 public class RequestMapping {
@@ -23,6 +23,14 @@ public class RequestMapping {
     	
     	mappings.put("/group/view", new ForwardController("/group/view.jsp"));
     	mappings.put("/group/list", new MyGroupListController());
+    	
+    	mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
+        mappings.put("/user/login", new LoginController());
+        mappings.put("/user/logout", new LogoutController());
+    	
+        mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
+        mappings.put("/user/register", new RegisterUserController());
+        
     	/*
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());

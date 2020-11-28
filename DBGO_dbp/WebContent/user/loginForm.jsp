@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,24 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-    
 
 <title>로그인</title>
+<script>
+function login() {
+	if (form.u_id.value == "") {
+		alert("사용자 ID를 입력하십시오.");
+		form.userId.focus();
+		return false;
+	} 
+	if (form.password.value == "") {
+		alert("비밀번호를 입력하십시오.");
+		form.password.focus();
+		return false;
+	}		
+	form.submit();
+}
+</script>
+
 <style>
 .signIn {
 	font: normal normal bold 15px/15px Binggrae !important;
@@ -46,21 +62,28 @@
 <body>
 	 <%@include file="/navbar.jsp" %>
 	
-	<form>
+	<!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
+	<div>
+		<c:if test="${loginFailed}">
+			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
+		</c:if>
+	</div>	  
+	
+	<form name="form" method="POST" action="<c:url value='/user/login' />">
 		<div class="centerElement">
 			<div class="signIn">
 				<br> <br>
 				<h1 class="text-primary">Sign up</h1>
 				<br>
 				<div class="centerInput">
-				<input type="email" class="form-control" id="InputEmail" placeholder="id" style="width: 300px; height: 50px; margin-bottom: 5px;"> 
-				<input type="password" class="form-control" id="InputPassword" placeholder="Password" style="width: 300px; height: 50px;">
+				<input type="text" class="form-control" name="u_id" placeholder="id" style="width: 300px; height: 50px; margin-bottom: 5px;"> 
+				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 300px; height: 50px;">
 				</div>
 				<br><br><br>
-				<button type="submit" class="btn btn-primary" style="width: 150px;">로그인</button>
+				<input type="button" class="btn btn-primary" value="로그인" onClick="login()" style="width: 150px;">
 				<br>
 				<br><br><br>
-				<button type="button" class="btn btn-link">회원가입</button>
+				<a href="<c:url value='/user/register/form' />"><button type="button" class="btn btn-link">회원가입</button></a>
 				&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-link">비밀번호 찾기</button>
 			</div>
