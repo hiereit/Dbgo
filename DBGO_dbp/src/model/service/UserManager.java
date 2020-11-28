@@ -81,6 +81,10 @@ public class UserManager {//
 		return groupDAO.create(group);		
 	}
 	
+	public int addMember(String g_id, String u_id) throws SQLException {
+		return groupDAO.addMembers(g_id, u_id);
+	}
+	
 	public List<GroupInfo> findMyGroupList(String u_id) throws SQLException {
 		return groupDAO.findMyGroupList(u_id);
 	}
