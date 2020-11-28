@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.service.UserManager;
 
-public class LoginController implements Controller {//
+public class LoginController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String userId = request.getParameter("u_id");
@@ -22,7 +22,7 @@ public class LoginController implements Controller {//
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
             
-            return "redirect:/";		//메인 만들어지면 수정		
+            return "redirect:/schedule/monthly";		//메인 만들어지면 수정		
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시
 			 * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력

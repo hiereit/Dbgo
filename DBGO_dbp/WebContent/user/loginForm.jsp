@@ -36,34 +36,39 @@ function login() {
 <style>
 .signIn {
 	font: normal normal bold 15px/15px Binggrae !important;
-	position: absolute;
-	top: 50%;
+	top: 15%;
 	left: 50%;
 	background: #EFFBEF;
 	border-radius: 25px;
 	width: 400px;
 	height: 400px;
-	margin-left: -240px;
-	margin-top: -230px;
+
+	margin-bottom: 5em;
+	margin-left: 35em;
+	margin-right: 20em;
+	padding: 30px;;
 }
 
 .centerElement {
        text-align: center;
-       
+       padding: 30px
 }
 
 .centerInput{
-	padding-left:50px;
+	padding-left:20px;
 	padding-right:50px;
+}
+.failMessage{
+	text-align: center;
+	margin-top: 3em;
 }
 </style>
 </head>
 
 <body>
 	 <%@include file="/navbar.jsp" %>
-	
 	<!-- 로그인이 실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
-	<div>
+	<div class="failMessage">
 		<c:if test="${loginFailed}">
 			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
 		</c:if>

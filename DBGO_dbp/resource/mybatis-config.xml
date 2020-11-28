@@ -23,5 +23,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="model/dao/GroupMapper.xml" />
+		<mapper resource="model/dao/UserMapper.xml" />
 	</mappers>
 </configuration>

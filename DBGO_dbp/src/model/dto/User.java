@@ -1,6 +1,8 @@
 package model.dto;
+import java.io.Serializable;
 
-public class User {
+@SuppressWarnings("serial")
+public class User implements Serializable{
 	private String u_id;
 	private String name = null;
 	private String email = null;

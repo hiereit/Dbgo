@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.UserMapper">
+<cache />
+
+<!-- public User findUserInfo(String u_id) -->
+<select id="selectUserByUserId" parameterType="string" resultType="User">
+	SELECT u_id, name, email, password
+	FROM userInfo
+	WHERE u_id = #{u_id}
+</select>
+
+<!-- public List<User> findUserList() -->
+<select id="selectAllUsers" resultType="User">
+	SELECT u_id, name, email, password
+	FROM userInfo
+</select>
+
+<!-- public int createUser (String u_id, String name, String email, String password) -->
+<insert id="insertUser" parameterType="string">
+	INSERT INTO userInfo (u_id, name, email, password)
+	VALUES (#{u_id}, #{name}, #{email}, #{password})
+</insert>
+
+<!-- public int updateUser (String u_id, String password) -->
+<update id="updateUser" parameterType="string">
+	UPDATE userInfo
+	SET password = #{password}
+	WHERE u_id = #{u_id}
+</update>
+
+<!-- public int removeUser (String u_id) -->
+<delete id="deleteUser" parameterType="string">
+	DELETE FROM userInfo
+	WHERE u_id = ?
+</delete>
+
+<!-- public boolean existingUser(String u_id) -->
+<select id="selectExistingUser" parameterType="string" resultType="int">
+	SELECT COUNT(*)
+	FROM userInfo
+	WHERE u_id = #{u_id}
+</select>
+
+</mapper>
