@@ -70,8 +70,7 @@ table {
 		<br>
 		<div class="centerElement">
 			<a class="btn btn-primary"
-				href="<c:url value='/user/update/form' >
-     		     <c:param name='u_id' value='${user.u_id}'/></c:url>">수정</a>
+				href="<c:url value='/user/update/form' />">수정</a>
 
 			<a class="btn btn-warning"
 				href="<c:url value='/user/delete'> <c:param name='u_id' value='${user.u_id}'/></c:url>"

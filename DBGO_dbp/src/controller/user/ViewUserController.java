@@ -1,11 +1,14 @@
 package controller.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.service.UserManager;
 import model.service.UserNotFoundException;
+import model.dto.GroupInfo;
 import model.dto.User;
 
 public class ViewUserController implements Controller {//
@@ -17,7 +20,10 @@ public class ViewUserController implements Controller {//
         }
     	
 		UserManager manager = UserManager.getInstance();
-		String userId = request.getParameter("userId");
+		String userId = UserSessionUtils.getLoginUserId(request.getSession());
+		List<GroupInfo> mGroupList = manager.findMyGroupList(UserSessionUtils.getLoginUserId(request.getSession()));
+
+		request.setAttribute("mGroupList", mGroupList);
 		
     	User user = null;
 		try {
