@@ -27,6 +27,7 @@
       	padding-left: 5px;
         font: normal normal normal 40px JSDongkang-Regular;
       }
+      a { float: right; }
       button {
       	padding-top: 5px;
       	float: right;
@@ -37,13 +38,18 @@
       }
       .title button, .title h2 { display: inline; }
     </style>
+    <script>
+    
+    </script>
   </head>
   <body>
   <%@include file="/navbar.jsp" %>
     <div class="list">
     	<div class="title">
 	    	<h2>나의 그룹</h2>
-	      	<button type="button" class="btn btn-warning">그룹 추가</button>
+	    	<a href="<c:url value='/group/create/form'/>" class="btn btn-link"><button type="button" class="btn btn-warning">그룹 추가</button></a>
+	    	
+	      	
     	</div>
       <ul class="list-group" style=" padding-top: 30px;">
     	<c:forEach var="group" items='${mGroupList}'>
