@@ -26,7 +26,7 @@ public class GroupDAO {
 		String username = "dbprog0208";
 		String password = "qkrprh5";
 
-		// DBMS¿ÍÀÇ ¿¬°á È¹µæ
+		// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, username, password);
@@ -38,25 +38,25 @@ public class GroupDAO {
 	
 	public List<GroupInfo> getGroupList() {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
 		String query = "SELECT * " 
 					 + "FROM GROUPINFO";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			rs = pStmt.executeQuery();	
 			
 			List<GroupInfo> groupList = new ArrayList<GroupInfo>();
-			while (rs.next()) {		// Ä¿¼­¸¦ ÅëÇØ ÇÑ Çà¾¿ fetch
+			while (rs.next()) {		// Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½à¾¿ fetch
 				GroupInfo g = new GroupInfo(rs.getString("g_id"), rs.getString("g_name"));
 				groupList.add(g);
 			}
 			return groupList;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -75,27 +75,27 @@ public class GroupDAO {
 	
 	public List<GroupInfo> getMyGroupList(String u_id) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
-		String query = "SELECT g.g_id, g.g_name " 
+		String query = "SELECT g.g_id, g.g_name, count(g.g_id) AS numberOfMember" 
 					 + "FROM ADMISSION a JOIN GROUP g USING (g_id) "
 					 + "WHERE a.u_id = ?";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();	
 			
 			List<GroupInfo> groupList = new ArrayList<GroupInfo>();
-			while (rs.next()) {		// Ä¿¼­¸¦ ÅëÇØ ÇÑ Çà¾¿ fetch
+			while (rs.next()) {		// Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½à¾¿ fetch
 				GroupInfo g = new GroupInfo(rs.getString("g_id"), rs.getString("g_name"));
 				groupList.add(g);
 			}
 			return groupList;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -114,14 +114,14 @@ public class GroupDAO {
 	
 	public void removeGroup(String g_id) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;
 		String query = "DELETE FROM group "
 					 + "WHERE g_id = ?";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pStmt.setString(1, g_id);
 			int result = pStmt.executeUpdate();
 			
@@ -139,7 +139,7 @@ public class GroupDAO {
 				e.printStackTrace();
 			}
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -157,15 +157,15 @@ public class GroupDAO {
 	
 	public void updateGroup(String g_id, String g_name) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
 		String query = "UPDATE group " 
 					 + "SET g_name = ? "
 					 + "WHERE g_id = ?";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pStmt.setString(1, g_name);
 			pStmt.setString(2, g_id);
 			int result1 = pStmt.executeUpdate();
@@ -184,7 +184,7 @@ public class GroupDAO {
 				e.printStackTrace();
 			}
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -202,17 +202,17 @@ public class GroupDAO {
 	
 	public void createGroup(String u_id, String g_name) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
 		String query1 = "INSERT INTO ADMISSION (u_id) VALUES (?)";
 		String query2 = "INSERT INTO GROUP (g_name) VALUES (?)";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query1);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query1);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pStmt.setString(1, u_id);
 			int result1 = pStmt.executeUpdate();
-			pStmt.close();						// pStmt°¡ °¡¸®Å°´Â °´Ã¼ close!
+			pStmt.close();						// pStmtï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½Ã¼ close!
 
 			pStmt = conn.prepareStatement(query2);	
 			pStmt.setString(1, g_name);
@@ -232,7 +232,7 @@ public class GroupDAO {
 				e.printStackTrace();
 			}
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
