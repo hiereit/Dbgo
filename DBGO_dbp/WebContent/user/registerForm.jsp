@@ -19,7 +19,7 @@
 <title>회원가입</title>
 
 <script>
-function userCreate() {
+function userCreate() {//주석
 	if (form.u_id.value == "") {
 		alert("사용자 ID를 입력하십시오.");
 		form.u_id.focus();
