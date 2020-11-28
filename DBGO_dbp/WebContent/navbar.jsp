@@ -59,7 +59,7 @@ function logoutMethod()
 			<i class="fa fa-address-book fa-2x" aria-hidden="true"
 				style="color: white;"></i>
 		</button>
-		<button class="btn" onClick="logoutMethod()">
+		<button class="btn" onClick="logoutMethod()">	//이거 아직 안됨
 			<i class="fas fa-sign-out-alt fa-2x" aria-hidden="true"
 				style="color: white;"></i>
 		</button>
