@@ -116,30 +116,47 @@
         }
 </style>
 <script>
+	var isSubSch = false;
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			header:{ left: "prev", center: "title", right: "next"},
 			initialView : 'dayGridMonth',
 			themeSystem : 'bootstrap',
 			
 			dateClick: function(info) {
 				   //alert('Date: ' + info.dateStr);
 				   //alert('Resource ID: ' + info.resource.id);
-				   $('#myModal').show();
-					 
-					        //팝업 Close 기능
-					 
-
+				    $('#inputScheduleDate').val(info.dateStr);
+				   $('#myModal').show(); 
 			}
+			
 		});
 		
 		calendar.render();
+		
+		document.getElementById('subBtn').addEventListener('click', function() {
+			if (form.title.value == "") {
+				alert("일정 제목을 입력하십시오.");
+				form.title.focus();
+				return false;
+			}
+			 if (form.date.value == "") {
+					alert("날짜를 입력하십시오.");
+					form.date.focus();
+					return false;
+			}
+			 calendar.addEvent({
+	             title: 'dynamic event',
+	             start: '2020-11-11'
+	             
+	           });
+			 $('#myModal').hide();
+		  });
 	});
 	function close_pop() {
 	     $('#myModal').hide();
 	 };
-	
+	 
 </script>
 </head>
 <body>
@@ -150,12 +167,12 @@
  
       <!-- Modal content -->
       <div class="modal-content">
-		<form>
+		<form name="form">
         <fieldset>
-          <button type="submit" class="btn btn-warning btn-rounded">등록</button>
-          <button type="button" data-dismiss="modal" class="btn btn-warning btn-rounded" onClick="close_pop();">취소</button>
+          <button id="subBtn" class="btn btn-warning btn-rounded" >등록</button>
+          <button data-dismiss="modal" class="btn btn-warning btn-rounded" onClick="close_pop();">취소</button>
           <div class="form-group row" >
-            <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder fa-2x" aria-hidden="true"></i></label>
+            <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder" aria-hidden="true"></i></label>
         
               <select class="selectCategory">
                 <option selected>카테고리</option>
@@ -166,14 +183,14 @@
           
           </div>
           <div class="form-group">
-            <input type="text" class="form-control-plaintext" id="inputScheduleTitle" placeholder="일정 제목">
+            <input type="text" class="form-control-plaintext" id="inputScheduleTitle" placeholder="일정 제목" name="title">
           </div>
           <hr>
           <div class="inputContent">
             <div class="form-group row">
               <label for="inputScheduleDate" class="col-md-1 col-form-label"><i class="far fa-calendar"></i></label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="날짜">
+                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="날짜" name="date">
               </div>
             </div>
         <!--     <div class="form-group row">
@@ -185,13 +202,13 @@
             <div class="form-group row">
               <label for="inputUsers" class="col-md-1 col-form-label"><i class="fa fa-users"></i></label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputUsers" placeholder="참석자">
+                <input type="text" class="form-control-plaintext" id="inputAttens" placeholder="참석자" name="atten">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputMemo" class="col-md-1 col-form-label"><i class="fa fa-sticky-note"></i></label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputMemo" placeholder="메모">
+                <input type="text" class="form-control-plaintext" id="inputMemo" placeholder="메모" name="memo">
               </div>
             </div>
           </div>
