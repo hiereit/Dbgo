@@ -2,11 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="controller.user.UserSessionUtils"%>
-<head>
-
-</head>
-
-
+<% boolean isLogined = UserSessionUtils.hasLogined(request.getSession());
+	request.setAttribute("isLogined", isLogined); %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<a class="navbar-brand" href="<c:url value='/main' />">DBGO!</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -49,11 +46,23 @@
 				style="color: white;"></i>
 		</button>
 		</a>
-		<a href="<c:url value='/user/logout' />">
-		<button class="btn">
-			<i class="fas fa-sign-in-alt fa-2x" aria-hidden="true"
-				style="color: white;"></i>
-		</button>
-		</a>
+		 <c:choose>
+		<c:when test="${isLogined==true}">
+			<a href="<c:url value='/user/logout' />">
+			<button class="btn">
+				<i class="fas fa-sign-out-alt fa-2x" aria-hidden="true"
+					style="color: white;"></i>
+			</button>
+			</a>
+		</c:when>
+		<c:otherwise>
+			<a href="<c:url value='/user/login/form' />">
+			<button class="btn">
+				<i class="fas fa-sign-in-alt fa-2x" aria-hidden="true"
+					style="color: white;"></i>
+			</button>
+			</a>
+		</c:otherwise>
+		</c:choose> 
 	</div>
 </nav>
