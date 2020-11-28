@@ -10,9 +10,9 @@ import java.util.List;
 
 import model.dto.User;
 
-public class UserDao {
+public class UserDAO {	//UserDaoíŒŒì¼ ì§€ìš°ê³  UserDAOì´ë¦„ìœ¼ë¡œ ë‹¤ì‹œ íŒŒì¼ ë§Œë“¦
 	
-	public UserDao() {
+	public UserDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");	
 		} catch (ClassNotFoundException ex) {
@@ -21,7 +21,7 @@ public class UserDao {
 	}
 	
 	private Connection getConnection() {
-        // DBMS¿ÍÀÇ ¿¬°á È¹µæ ...
+      
     	String url = // "jdbc:oracle:thin:@localhost:1521:xe";
 				"jdbc:oracle:thin:@202.20.119.117:1521:orcl";	
     	String user = "scott";
@@ -57,13 +57,12 @@ public class UserDao {
 				user.setU_id(u_id);
 				user.setName(rs.getString("name"));
 				user.setEmail(rs.getString("email"));
-				user.setNickname(rs.getString("nickname"));
 				user.setPassword( rs.getString("password"));	
 			}
 			return user;
     	} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹İ³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½İ³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -80,41 +79,37 @@ public class UserDao {
         return null;
 	}
 	
-	
-	public List<User> findUsersInfo(String u_id) {
-       
+
+	public List<User> findUserList() {
+	       
     	Connection conn = null;
 		PreparedStatement pStmt = null;		
 		ResultSet rs = null;
 		
-		String query = "SELECT u_id, name, email, nickname, password "
+		String query = "SELECT u_id, name, email, password "
 				+ "FROM userinfo "
-				+ "WHERE u_id = ? ";
+				+ "ORDER BY u_id";
 		
 		try {
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
-			pStmt.setString(1, u_id);
 			rs = pStmt.executeQuery();
 			
 			List<User> list = new ArrayList<User>();
 			
 			while(rs.next()) {
-				User dto = new User();
-				
-				dto.setU_id(u_id);
-				dto.setName(rs.getString("ename"));
-				dto.setEmail(rs.getString("email"));
-				dto.setEmail(rs.getString("nickname"));
-				dto.setNickname(rs.getString("nickname"));
-				dto.setPassword(rs.getString("password"));
+				User dto = new User(
+				rs.getString("u_id"),
+				rs.getString("name"),
+				rs.getString("email"),
+				rs.getString("password"));
 				
 				list.add(dto);
 			}
 			return list;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹İ³³
+		} finally {	
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -130,11 +125,11 @@ public class UserDao {
 		}
         return null;
     }
-
 	
-	public void createUser (String u_id, String name, String email, String nickname, String password) {
+	
+	public int createUser (String u_id, String name, String email, String password) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;			// PreparedStatment ÂüÁ¶ º¯¼ö »ı¼º
+		PreparedStatement pStmt = null;	
 		int recordCount = 0;
 		
 //		String query = "INSERT INTO userinfo (u_id, name, email, nickname, password) "
@@ -147,15 +142,17 @@ public class UserDao {
 			conn = getConnection();
 			
 			pStmt = conn.prepareStatement(query);
-			recordCount = pStmt.executeUpdate();	//1ÀÌ ¾÷µ¥ÀÌÆ® µÇ´ÂÁö Ã¼Å©ÇØº¸°í ³¡³»¸é µÊ
-			if(recordCount == 0)
-				System.out.println("»ğÀÔµÈ È¸¿øÀÌ ¾ø½À´Ï´Ù.");
-			else
-				System.out.println(recordCount + "¸íÀÇ È¸¿øÀÌ »ğÀÔµÇ¾ú½À´Ï´Ù.");
+			recordCount = pStmt.executeUpdate();
 			
+			if(recordCount == 0)
+				System.out.println("ï¿½ï¿½ï¿½Ôµï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+			else
+				System.out.println(recordCount + "ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+			
+			return recordCount;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹İ³³
+		} finally {	
 			if (pStmt != null) 
 				try { 
 					pStmt.close();
@@ -165,10 +162,11 @@ public class UserDao {
 					conn.close(); 
 				} catch (SQLException ex) { ex.printStackTrace(); }
 		}
+		return 0;
 	}
+	
 
-
-	public void updateUser (String u_id, String password) {	//ºñ¹Ğ¹øÈ£¸¸ ¹Ù²Ü¼ö ÀÖ°Ô?
+	public int updateUser (String u_id, String password) {	
 		Connection conn = null;
 		PreparedStatement pStmt = null;
 		int recordCount = 0;
@@ -185,11 +183,12 @@ public class UserDao {
 			pStmt.setString(2, password);
 			recordCount = pStmt.executeUpdate();
 			if(recordCount == 0)
-				System.out.println("ºñ¹Ğ¹øÈ£ UPDATE ½ÇÆĞ");
+				System.out.println("ï¿½ï¿½Ğ¹ï¿½È£ UPDATE ï¿½ï¿½ï¿½ï¿½");
 			
+			return recordCount;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹İ³³
+		} finally {	
 			if (pStmt != null) 
 				try { 
 					pStmt.close(); 
@@ -199,11 +198,11 @@ public class UserDao {
 					conn.close(); 
 				} catch (SQLException ex) { ex.printStackTrace(); }
 		}
-	
+		return 0;
 	}
 	
 
-	public void removeUser (String u_id) {
+	public int removeUser (String u_id) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;
 		int recordCount = 0;
@@ -218,11 +217,12 @@ public class UserDao {
 			pStmt.setString(1, u_id);
 			recordCount = pStmt.executeUpdate();
 			if(recordCount == 0)
-				System.out.println("È¸¿ø »èÁ¦ ½ÇÆĞ");
+				System.out.println("È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			
+			return recordCount;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹İ³³
+		} finally {	
 			if (pStmt != null) 
 				try { 
 					pStmt.close(); 
@@ -232,6 +232,7 @@ public class UserDao {
 					conn.close(); 
 				} catch (SQLException ex) { ex.printStackTrace(); }
 		}
+		return 0;
 	}
 
 
@@ -257,7 +258,7 @@ public class UserDao {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹İ³³
+		} finally {	
 			if (rs != null) 
 				try { 
 					rs.close(); 
