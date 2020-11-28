@@ -12,7 +12,7 @@
     <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
     <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
     
-<title>Schedule Form</title>
+<title>Update Schedule Form</title>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>  
@@ -115,12 +115,11 @@
 <body>
 	<%@include file="/navbar.jsp" %>
 	<div id="form-div" align="center">
-      <form>
+      <form action="<c:url value='/schedule/update'/>">
         <fieldset>
-          <button type="submit" class="btn btn-warning btn-rounded">등록</button>
+          <button type="submit" class="btn btn-warning btn-rounded">수정</button>
           <div class="form-group row" >
             <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder fa-2x" aria-hidden="true"></i></label>
-            
             <div>
               <select class="selectCategory">
                 <option selected>카테고리</option>
@@ -128,8 +127,9 @@
                 <option value="2">학교</option>
                 <option value="3">친구</option>
               </select>
-            </div>
-          </div>
+            </div> <!-- selectCategoty End -->
+          </div> <!-- category End-->
+          
           <div class="form-group">
             <input type="text" class="form-control-plaintext" id="inputScheduleTitle" placeholder="일정 제목">
           </div>
@@ -139,14 +139,15 @@
               <label for="inputScheduleDate" class="col-md-1 col-form-label"><i class="fa fa-calendar-o fa-2x" aria-hidden="true"></i></label>
               <div class="col-md-11">
                 <input type="date" class="form-control-plaintext" id="inputScheduleDate" placeholder="날짜">
-              </div>
-            </div>
+              </div> 
+            </div> <!-- date End -->
+            
             <div class="form-group row">
               <label for="inputAlarm" class="col-md-1 col-form-label"><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i></label>
               <div class="col-md-11">
                 <input type="text" class="form-control-plaintext" id="inputAlarm" placeholder="알람 설정">
               </div>
-            </div>
+            </div> <!-- clock 알람 설정 -->
             <!-- <div class="form-group row">
               <label for="inputFile" class="col-md-1 col-form-label"><i class="fa fa-paperclip fa-2x" aria-hidden="true"></i></label>
               <div class="col-md-11">
@@ -158,13 +159,13 @@
               <div class="col-md-11">
                 <input type="text" class="form-control-plaintext" id="inputUsers" placeholder="참석자">
               </div>
-            </div>
+            </div> <!-- 사용자 추가 -->
             <div class="form-group row">
               <label for="inputMemo" class="col-md-1 col-form-label"><i class="fa fa-sticky-note fa-2x" aria-hidden="true"></i></label>
               <div class="col-md-11">
                 <input type="text" class="form-control-plaintext" id="inputMemo" placeholder="메모">
               </div>
-            </div>
+            </div> <!-- 메모 End -->
           </div>
         </fieldset>
       </form>
