@@ -7,7 +7,7 @@ public class Schedule {
 	private Date schDate;
 	
 	//Constructor (default/ ...)
-	public Schedule() { //default »ý¼ºÀÚ
+	public Schedule() { //default ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		super();
 	}
 	
@@ -23,9 +23,9 @@ public class Schedule {
 		this.achievement = achievement;
 	}	
 	
-	//setter & getter ¼±¾ð
+	//setter & getter ï¿½ï¿½ï¿½ï¿½
 	public int getSchId() {		return schId;	}
-	public void setSchId(String string) {		this.schId = schId;	}
+	public void setSchId(int schId) {		this.schId = schId;	}
 	public Date getSchDate() {		return schDate;	}
 	public void setSchDate(Date schDate) {		this.schDate = schDate;	}
 	public String getMemo() {		return memo;	}

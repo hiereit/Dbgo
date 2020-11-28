@@ -3,19 +3,19 @@ package model.dto;
 import java.util.Date;
 
 public class GroupSchedule {
-	private String homework = null;
-	private String g_id = null;
-	private String groupsch_id = null;
-	private Date groupsch_date = null;
-	private String memo = null;
-	private String title = null;
+	private String homework;
+	private int g_id;
+	private int groupsch_id;
+	private Date groupsch_date;
+	private String memo;
+	private String title;
 	//private String category = null;
 	//ī�װ� ����
 	
 	public GroupSchedule() {super();}
 	
-	public GroupSchedule(String homework, String g_id, String groupsch_id, Date groupsch_date, String memo,
-			String title) {
+	public GroupSchedule( int g_id, int groupsch_id, Date groupsch_date, 
+			String memo,String homework,String title) {
 		super();
 		this.homework = homework;
 		this.g_id = g_id;
@@ -30,16 +30,16 @@ public class GroupSchedule {
 	public void setHomework(String homework) {
 		this.homework = homework;
 	}
-	public String getG_id() {
+	public int getG_id() {
 		return g_id;
 	}
-	public void setG_id(String g_id) {
+	public void setG_id(int g_id) {
 		this.g_id = g_id;
 	}
-	public String getGroupsch_id() {
+	public int getGroupsch_id() {
 		return groupsch_id;
 	}
-	public void setGroupsch_id(String groupsch_id) {
+	public void setGroupsch_id(int groupsch_id) {
 		this.groupsch_id = groupsch_id;
 	}
 	public Date getGroupsch_date() {

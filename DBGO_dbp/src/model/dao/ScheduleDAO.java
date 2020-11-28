@@ -16,8 +16,8 @@ public class ScheduleDAO {
 	PreparedStatement pStmt = null;
 	ResultSet rs = null;	
 	
-	public ScheduleDAO() { // »ý¼ºÀÚ 
-        // JDBC driver ·Îµù ¹× µî·Ï ... 
+	public ScheduleDAO() { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+        // JDBC driver ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ... 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");	
 		} catch (ClassNotFoundException ex) {
@@ -31,7 +31,7 @@ public class ScheduleDAO {
 		String user = "dbprog0208";
 		String passwd = "qkrprh5";
 
-	    // DBMS¿ÍÀÇ ¿¬°á È¹µæ ...
+	    // DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ ...
 		try {
 			conn = DriverManager.getConnection(url, user, passwd);
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class ScheduleDAO {
 		}	 
 		return conn;
     }
-	public void insertSchedule(int sch_id, String sch_date,
+	public void insertSchedule(int sch_id, Date sch_date,
 			String memo, String title, String category, int u_id, int acv) {
 		String query = "INSERT INTO SCHEDULE "
 					 + "VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -47,7 +47,7 @@ public class ScheduleDAO {
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
 			pStmt.setInt(1, sch_id);
-			pStmt.setString(2, sch_date);
+			pStmt.setDate(2, (java.sql.Date)sch_date);
 			pStmt.setString(3, memo);
 			pStmt.setString(4, title);
 			pStmt.setString(5, category);
@@ -55,7 +55,7 @@ public class ScheduleDAO {
 			pStmt.setInt(7, acv);			
 			
 			pStmt.executeUpdate();
-			//System.out.println("»ç¿ø ¹øÈ£\t»ç¿øÀÌ¸§\tÁ÷¹«\t¿ù±Þ\t¼ö´ç");
+			//System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½È£\tï¿½ï¿½ï¿½ï¿½Ì¸ï¿½\tï¿½ï¿½ï¿½ï¿½\tï¿½ï¿½ï¿½ï¿½\tï¿½ï¿½ï¿½ï¿½");
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
@@ -110,7 +110,7 @@ public class ScheduleDAO {
 			pStmt.setString(1, schTitle);
 			
 			rs = pStmt.executeQuery();
-			//System.out.println("»ç¿ø ¹øÈ£\t»ç¿øÀÌ¸§\tÁ÷¹«\t¿ù±Þ\t¼ö´ç");
+			//System.out.println("ï¿½ï¿½ï¿½ ï¿½ï¿½È£\tï¿½ï¿½ï¿½ï¿½Ì¸ï¿½\tï¿½ï¿½ï¿½ï¿½\tï¿½ï¿½ï¿½ï¿½\tï¿½ï¿½ï¿½ï¿½");
 			if(rs.next()) {
 				
 				int sch_id = rs.getInt("sch_id");
@@ -136,7 +136,7 @@ public class ScheduleDAO {
 	}
 	 public List<Schedule> findSchedulesInDept(String userId) {
 
-	        // printEmployeesInDept()¸¦ º¯Çü ...
+	        // printEmployeesInDept()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ...
 	    	String query =  "SELECT * "
 			  		+ "FROM schedule "
 			  		+ "WHERE userId = ?";
@@ -146,13 +146,13 @@ public class ScheduleDAO {
 		    	pStmt.setString(1, userId);
 				rs = pStmt.executeQuery();    	
 		        
-		    	// ArrayList<Employee> °´Ã¼¸¦ »ý¼ºÇÏ°í, °Ë»öµÈ °¢ »ç¿ø Á¤º¸¿¡ ´ëÇØ Employee °´Ã¼¸¦ »ý¼º ¹× ÀúÀåÇÏ°í, ±× °´Ã¼¸¦ ArrayList¿¡ Ãß°¡ÇÔ
+		    	// ArrayList<Employee> ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Employee ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ArrayListï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½
 		    	List<Schedule> schList = new ArrayList<Schedule>();
 		    	
 		    	Schedule sch = new Schedule();
 		    	
 		    	while(rs.next()) {	    
-		    		sch.setSchId(rs.getString("sch_id"));
+		    		sch.setSchId(rs.getInt("sch_id"));
 		    		sch.setSchDate(rs.getDate("sch_date"));
 					sch.setMemo(rs.getString("memo"));
 					sch.setTitle(rs.getString("title"));
@@ -173,7 +173,7 @@ public class ScheduleDAO {
 	
 	
 	
-	public void close() { //ÀÚ¿ø¹Ý³³
+	public void close() { //ï¿½Ú¿ï¿½ï¿½Ý³ï¿½
     	if (rs != null) 
 			try { 
 				rs.close(); 
