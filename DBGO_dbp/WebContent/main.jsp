@@ -52,7 +52,7 @@
 		<div class="center">
 			<a href="<c:url value='/user/login/form' />"> <span class="menu" style="background-color: #FDB3B1;">개인 일정</span></a>
 			<a href="<c:url value='' />"><span class="menu" style="background-color: #FED88C">실시간 랭킹</span></a>
-			<a href="<c:url value='' />"><span class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
+			<a href="<c:url value='/group/list' />"><span class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
 		</div>
 	</div>
 </body>

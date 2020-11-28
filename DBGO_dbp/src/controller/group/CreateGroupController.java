@@ -3,6 +3,7 @@ package controller.group;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
+import controller.user.UserSessionUtils;
 import model.dto.GroupInfo;
 import model.service.UserManager;
 import org.slf4j.Logger;
@@ -13,6 +14,9 @@ public class CreateGroupController implements Controller{
 	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if (!UserSessionUtils.hasLogined(request.getSession())) {
+            return "redirect:/user/login/form";
+        }
 		GroupInfo group = new GroupInfo(null, request.getParameter("name"));
 		String[] membersParam = request.getParameterValues("members");
 		if (membersParam != null) {
@@ -20,7 +24,7 @@ public class CreateGroupController implements Controller{
 				group.getMembers().add(member);
 			}
 		}
-		group.getMembers().add("jimin");
+		group.getMembers().add(UserSessionUtils.getLoginUserId(request.getSession()));
 	
 			try {
 				UserManager manager = UserManager.getInstance();
