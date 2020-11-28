@@ -52,8 +52,8 @@ public class GroupScheduleDAO {
 			
 			List<GroupSchedule> groupScheduleList = new ArrayList<GroupSchedule>();
 			while (rs.next()) {		// Ŀ���� ���� �� �྿ fetch
-				GroupSchedule gsch = new GroupSchedule(rs.getString("homework"), rs.getString("g_id"),
-						rs.getString("groupsch_id"), rs.getDate("groupsch_date"), rs.getString("memo"), rs.getString("title"));
+				GroupSchedule gsch = new GroupSchedule(rs.getInt("g_id"),rs.getInt("groupsch_id"), rs.getDate("start_date"),
+						rs.getDate("end_date"), rs.getString("memo"),rs.getString("homework"), rs.getString("title"));
 				groupScheduleList.add(gsch);
 			}
 			return groupScheduleList;
@@ -164,22 +164,23 @@ public class GroupScheduleDAO {
 		}
 	}
 	
-	public void createGroup(GroupSchedule g_sch) {
+	public void createGroupSchedule(GroupSchedule g_sch) {
 		Connection conn = null;
 		PreparedStatement pStmt = null;		// PreparedStatment ���� ���� ����
 		ResultSet rs = null;		
-		String query = "INSERT INTO GROUP_SCHEDULE (g_id, title, groupsch_id, groupsch_date, memo, title, category, hw) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO GROUP_SCHEDULE (g_id, title, groupsch_id, start_date, end_date, memo, title, category, hw) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			conn = getConnection();	// DBMS���� ���� ȹ�� 
 			pStmt = conn.prepareStatement(query);	// Connection���� PreparedStatement ��ü ����
-			pStmt.setString(1, g_sch.getG_id());
+			pStmt.setInt(1, g_sch.getG_id());
 			pStmt.setString(2, g_sch.getTitle());
-			pStmt.setString(3, g_sch.getGroupsch_id());
-			pStmt.setDate(4, (Date) g_sch.getGroupsch_date());
-			pStmt.setString(5, g_sch.getTitle());
+			pStmt.setInt(3, g_sch.getGroupsch_id());
+			pStmt.setDate(4, (Date) g_sch.getgSchStartDate());
+			pStmt.setDate(5, (Date) g_sch.getgSchEndDate());			
 			pStmt.setString(6, g_sch.getTitle());
+			pStmt.setString(7, g_sch.getTitle());
 			
 			int result1 = pStmt.executeUpdate();
 			pStmt.close();						
