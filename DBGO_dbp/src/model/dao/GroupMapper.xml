@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	<!-- <mapper namespace="model.dao.GroupMapper"> -->
+<mapper namespace="model.dao.GroupMapper">
+<cache />
+
+ <insert id="insertGroupInfo" parameterType="GroupInfo">
+	<selectKey keyProperty="id" resultType="string" order="BEFORE">
+		SELECT seq_gid.nextval AS id FROM DUAL
+	</selectKey>
+				
+	INSERT INTO GroupInfo
+	VALUES (#{id}, #{g_name})
+ </insert>
+
+ <insert id="insertAdmission" parameterType="string">
+ 	INSERT INTO Admission
+ 	VALUES (#{g_id}, #{u_id})
+ </insert>
+
+ <delete id="deleteGroupInfo" parameterType="string">
+ 	DELETE FROM GroupInfo
+ 	WHERE g_id = #{id}
+ </delete>
+
+ <select id="selectGroupListByUserId" parameterType="string" resultType="GroupInfo">
+ 	SELECT g.g_id, g.g_name, count(g.g_id) AS numberOfMembers
+	FROM ADMISSION a JOIN GROUPINFO g ON a.g_id = g.g_id
+	WHERE g.g_id = ( SELECT g_id
+	                FROM admission
+	                WHERE u_id = #{id})
+	GROUP BY g.g_id, g.g_name;
+ </select>
+
+ <select id="selectAllGroups" resultType="GroupInfo">
+ 	SELECT *
+ 	FROM GroupInfo
+ </select>
+</mapper>

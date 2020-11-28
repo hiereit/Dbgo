@@ -1,250 +1,87 @@
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.dto.GroupInfo;
 
 public class GroupDAO {
+	private SqlSessionFactory sqlSessionFactory;
 	
 	public GroupDAO() {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");	
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}	
-	}
-	
-	private Connection getConnection() {
-		String url = //"jdbc:oracle:thin:@localhost:1521:xe";
-					"jdbc:oracle:thin:@202.20.119.117:1521:orcl";			
-		String username = "dbprog0208";
-		String password = "qkrprh5";
-
-		// DBMS���� ���� ȹ��
-		Connection conn = null;
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	 
-		return conn;
-	}
-	
-	public List<GroupInfo> getGroupList() {
-		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ���� ���� ����
-		ResultSet rs = null;		
-		String query = "SELECT * " 
-					 + "FROM GROUPINFO";
-		
-		try {
-			conn = getConnection();	// DBMS���� ���� ȹ�� 
-			pStmt = conn.prepareStatement(query);	// Connection���� PreparedStatement ��ü ����
-			rs = pStmt.executeQuery();	
-			
-			List<GroupInfo> groupList = new ArrayList<GroupInfo>();
-			while (rs.next()) {		// Ŀ���� ���� �� �྿ fetch
-				GroupInfo g = new GroupInfo(rs.getString("g_id"), rs.getString("g_name"));
-				groupList.add(g);
-			}
-			return groupList;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
 		}
-		return null;
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public List<GroupInfo> getMyGroupList(String u_id) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ���� ���� ����
-		ResultSet rs = null;		
-		String query = "SELECT g.g_id, g.g_name, count(g.g_id) AS numberOfMember" 
-					 + "FROM ADMISSION a JOIN GROUP g USING (g_id) "
-					 + "WHERE a.u_id = ?";
-		
+	public GroupInfo create(GroupInfo group) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			conn = getConnection();	// DBMS���� ���� ȹ�� 
-			pStmt = conn.prepareStatement(query);	// Connection���� PreparedStatement ��ü ����
-			pStmt.setString(1, u_id);
-			rs = pStmt.executeQuery();	
-			
-			List<GroupInfo> groupList = new ArrayList<GroupInfo>();
-			while (rs.next()) {		// Ŀ���� ���� �� �྿ fetch
-				GroupInfo g = new GroupInfo(rs.getString("g_id"), rs.getString("g_name"));
-				groupList.add(g);
+			int result = sqlSession.getMapper(GroupMapper.class).insertGroupInfo(group);
+			if (result > 0) {
+				sqlSession.commit();
 			}
-			return groupList;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-		}
-		return null;
-	}
-	
-	public void removeGroup(String g_id) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ���� ���� ����
-		ResultSet rs = null;
-		String query = "DELETE FROM group "
-					 + "WHERE g_id = ?";
-		
-		try {
-			conn = getConnection();	// DBMS���� ���� ȹ�� 
-			pStmt = conn.prepareStatement(query);	// Connection���� PreparedStatement ��ü ����
-			pStmt.setString(1, g_id);
-			int result = pStmt.executeUpdate();
-			
-			if (result != 1) {
-				conn.rollback();
-			}
-			else {
-				conn.commit();
-			}
-		} catch (SQLException ex) {
-			try {
-				conn.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+			return group;
+		} finally {
+			sqlSession.close();
 		}
 	}
 	
-	public void updateGroup(String g_id, String g_name) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ���� ���� ����
-		ResultSet rs = null;		
-		String query = "UPDATE group " 
-					 + "SET g_name = ? "
-					 + "WHERE g_id = ?";
-		
+	public int addMembers(String g_id, String u_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			conn = getConnection();	// DBMS���� ���� ȹ�� 
-			pStmt = conn.prepareStatement(query);	// Connection���� PreparedStatement ��ü ����
-			pStmt.setString(1, g_name);
-			pStmt.setString(2, g_id);
-			int result1 = pStmt.executeUpdate();
-			
-			if (result1 != 1) {
-				conn.rollback();
-			}
-			else {
-				conn.commit();
-			}
-		} catch (SQLException ex) {
-			try {
-				conn.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+			int result = sqlSession.getMapper(GroupMapper.class).insertAdmission(g_id, u_id);
+			if (result > 0) {
+				sqlSession.commit();
+			} 
+			return result;
+		} finally {
+			sqlSession.close();
 		}
 	}
 	
-	public void createGroup(String u_id, String g_name) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ���� ���� ����
-		ResultSet rs = null;		
-		String query1 = "INSERT INTO ADMISSION (u_id) VALUES (?)";
-		String query2 = "INSERT INTO GROUP (g_name) VALUES (?)";
-		
+	public int removeGroup(String g_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			conn = getConnection();	// DBMS���� ���� ȹ�� 
-			pStmt = conn.prepareStatement(query1);	// Connection���� PreparedStatement ��ü ����
-			pStmt.setString(1, u_id);
-			int result1 = pStmt.executeUpdate();
-			pStmt.close();						// pStmt�� ����Ű�� ��ü close!
-
-			pStmt = conn.prepareStatement(query2);	
-			pStmt.setString(1, g_name);
-			int result2 = pStmt.executeUpdate();
-			
-			if (result1 != 1 || result2 != 1) {
-				conn.rollback();
-			}
-			else {
-				conn.commit();
-			}
-		} catch (SQLException ex) {
-			try {
-				conn.rollback();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+			int result = sqlSession.getMapper(GroupMapper.class).deleteGroupInfo(g_id);
+			if (result > 0) {
+				sqlSession.commit();
+			} 
+			return result;	
+		} finally {
+			sqlSession.close();
 		}
 	}
+	
+	public List<GroupInfo> findGroupList() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(GroupMapper.class).selectAllGroups();			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public List<GroupInfo> findMyGroupList(String u_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(GroupMapper.class).selectGroupListByUserId(u_id);			
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	
+	
 }

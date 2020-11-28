@@ -5,6 +5,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import controller.group.*;
+
 //import controller.user.*;
 //import controller.comm.*;
 
@@ -18,6 +20,9 @@ public class RequestMapping {
     	// �� uri�� �����Ǵ� controller ��ü�� ���� �� ����
     	mappings.put("/", new ForwardController("index.jsp"));
     	mappings.put("/schedule/monthly", new ForwardController("/schedule/monthly.jsp"));
+    	
+    	mappings.put("/group/view", new ForwardController("/group/view.jsp"));
+    	mappings.put("/group/list", new MyGroupListController());
     	/*
         mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
