@@ -1,11 +1,13 @@
-<!-- 지우세욥 -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="controller.user.UserSessionUtils"%>
 <% boolean isLogined = UserSessionUtils.hasLogined(request.getSession());
 	request.setAttribute("isLogined", isLogined); %>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<a class="navbar-brand" href="<c:url value='/main' />">DBGO!</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -52,19 +54,20 @@
 		<c:when test="${isLogined==true}">
 			<a href="<c:url value='/user/logout' />">
 			<button class="btn">
-				<i class="fa fa-sign-out" style="font-size:36px" aria-hidden="true"
-					style="color: white;"></i>
+				<i class="fa fa-sign-out"
+					style="font-size:36px; color: white;"></i>
 			</button>
 			</a>
 		</c:when>
 		<c:otherwise>
 			<a href="<c:url value='/user/login/form' />">
 			<button class="btn">
-				<i class="fa fa-sign-in" style="font-size:36px" aria-hidden="true"
-					style="color: white;"></i>
+				<i class="fa fa-sign-in" 
+					style="font-size:36px; color: white;"></i>
 			</button>
 			</a>
 		</c:otherwise>
 		</c:choose> 
 	</div>
 </nav>
+</body>
