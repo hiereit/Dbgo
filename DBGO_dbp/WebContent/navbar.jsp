@@ -18,26 +18,26 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="<c:url value='/schedule/monthly'/>" id="navbardrop"
-				data-toggle="dropdown">ê°ì¸ì¼ì </a>
+				data-toggle="dropdown">개인일정</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="<c:url value='/schedule/monthly'/>">ì¼ì  íì¸</a> <a
-						class="dropdown-item" href="#">ì¼ì  ì¶ê°</a>
+					<a class="dropdown-item" href="<c:url value='/schedule/monthly'/>">일정 확인</a> <a
+						class="dropdown-item" href="#">일정 추가</a>
 				</div></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="<c:url value='/group/list'/>" id="navbardrop"
-				data-toggle="dropdown">ê·¸ë£¹ì¼ì </a>
+				data-toggle="dropdown">그룹일정</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="<c:url value='/group/list'/>">ì¼ì  íì¸</a> <a
-						class="dropdown-item" href="#">ì¼ì  ì¶ê°</a>
+					<a class="dropdown-item" href="<c:url value='/group/list'/>">일정 확인</a> <a
+						class="dropdown-item" href="#">일정 추가</a>
 				</div></li>
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" href="#" id="navbardrop"
-				data-toggle="dropdown">ì¼ê¸°</a>
+				data-toggle="dropdown">일기</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">ì¼ê¸° íì¸</a> <a
-						class="dropdown-item" href="#">ì¼ê¸° ì°ê¸°</a>
+					<a class="dropdown-item" href="#">일기 확인</a> <a
+						class="dropdown-item" href="#">일기 쓰기</a>
 				</div></li>
-			<li class="nav-item"><a class="nav-link" href="#">ë­í¹ë³´ê¸°</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">랭킹보기</a></li>
 		</ul>
 		<button class="btn">
 			<i class="fa fa-bell fa-2x" aria-hidden="true" style="color: white;"></i>
