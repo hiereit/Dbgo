@@ -24,9 +24,12 @@
  </delete>
 
  <select id="selectGroupListByUserId" parameterType="string" resultType="GroupInfo">
- 	SELECT g.g_id, g.g_name, count(g.g_id) AS numberOfMember
- 	FROM ADMISSION a JOIN GROUP g USING (g_id)
- 	WHERE a.u_id = #{id}
+ 	SELECT g.g_id, g.g_name, count(g.g_id) AS numberOfMembers
+	FROM ADMISSION a JOIN GROUPINFO g ON a.g_id = g.g_id
+	WHERE g.g_id = ( SELECT g_id
+	                FROM admission
+	                WHERE u_id = #{id})
+	GROUP BY g.g_id, g.g_name;
  </select>
 
  <select id="selectAllGroups" resultType="GroupInfo">

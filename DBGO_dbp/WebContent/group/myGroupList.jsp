@@ -45,26 +45,15 @@
 	    	<h2>나의 그룹</h2>
 	      	<button type="button" class="btn btn-warning">그룹 추가</button>
     	</div>
-    	<ul class="list-group" style=" padding-top: 30px;">
+      <ul class="list-group" style=" padding-top: 30px;">
     	<c:forEach var="group" items='${mGroupList}'>
-    	<li class="list-group-item d-flex justify-content-between align-items-center" onClick="alert('그룹명 1')">
-          그룹명 1
-          <span class="badge badge-secondary badge-pill">14</span>
+    	<li class="list-group-item d-flex justify-content-between align-items-center" onClick="<c:url value='/group/view'>
+		      <c:param name='g_id' value='${group.g_id}'/>
+				   </c:url>">
+          ${group.g_name}
+          <span class="badge badge-secondary badge-pill">${group.numOfMembers}</span>
         </li>
     	</c:forEach>
-      
-        <li class="list-group-item d-flex justify-content-between align-items-center" onClick="alert('그룹명 1')">
-          그룹명 1
-          <span class="badge badge-secondary badge-pill">14</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          그룹명 2
-          <span class="badge badge-secondary badge-pill">2</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          그룹명 3
-          <span class="badge badge-secondary badge-pill">1</span>
-        </li>
       </ul>
     </div>
   </body>
