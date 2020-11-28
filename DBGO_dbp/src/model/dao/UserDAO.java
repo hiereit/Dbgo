@@ -24,8 +24,8 @@ public class UserDAO {	//UserDao파일 지우고 UserDAO이름으로 다시 파�
 
     	String url = // "jdbc:oracle:thin:@localhost:1521:xe";
 				"jdbc:oracle:thin:@202.20.119.117:1521:orcl";	
-    	String user = "scott";
-    	String passwd = "TIGER";
+    	String user = "dbprog0208";
+    	String passwd = "qkrprh5";
 
     	Connection conn = null;
     	try {

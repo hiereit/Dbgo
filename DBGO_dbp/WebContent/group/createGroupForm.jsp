@@ -16,7 +16,7 @@
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
     
 
-<title>로그인</title>
+<title>그룹 생성</title>
 <style>
 .signIn {
 	font: normal normal bold 15px/15px Binggrae !important;
@@ -50,19 +50,15 @@
 		<div class="centerElement">
 			<div class="signIn">
 				<br> <br>
-				<h1 class="text-primary">Sign up</h1>
-				<br>
+				<h1 class="text-primary">그룹 생성</h1>
+				<br><br><br><br>
 				<div class="centerInput">
-				<input type="email" class="form-control" id="InputEmail" placeholder="id" style="width: 300px; height: 50px; margin-bottom: 5px;"> 
-				<input type="password" class="form-control" id="InputPassword" placeholder="Password" style="width: 300px; height: 50px;">
+				그룹명  <input type="text" class="form-control" id="InputGroupName" placeholder="" style="width: 300px; height: 50px; margin-bottom: 5px;"> 
 				</div>
-				<br><br><br>
-				<button type="submit" class="btn btn-primary" style="width: 150px;">로그인</button>
+				<br><br><br><br><br><br><br><br><br>
+				<button type="submit" class="btn btn-primary" style="width: 150px;">그룹 생성</button>
 				<br>
 				<br><br><br>
-				<button type="button" class="btn btn-link">회원가입</button>
-				&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-link">비밀번호 찾기</button>
 			</div>
 		</div>
 	</form>
