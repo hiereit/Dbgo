@@ -10,7 +10,7 @@ import model.dto.User;
 import model.service.ExistingUserException;
 import model.service.UserManager;
 
-public class RegisterUserController implements Controller {
+public class RegisterUserController implements Controller {//
     private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
 
     @Override

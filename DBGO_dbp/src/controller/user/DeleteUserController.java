@@ -11,7 +11,7 @@ import controller.Controller;
 import model.dto.User;
 import model.service.UserManager;
 
-public class DeleteUserController implements Controller{
+public class DeleteUserController implements Controller{//
 	private static final Logger log = LoggerFactory.getLogger(DeleteUserController.class);
 
 	@Override

@@ -8,7 +8,7 @@ import controller.Controller;
 import model.service.UserManager;
 import model.dto.User;
 
-public class UpdateUserController implements Controller {
+public class UpdateUserController implements Controller {//
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
 
     @Override

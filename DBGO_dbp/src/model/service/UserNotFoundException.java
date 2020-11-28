@@ -3,7 +3,7 @@ package model.service;
 /**
  * TODO
  */
-public class UserNotFoundException extends Exception {
+public class UserNotFoundException extends Exception {//
 
 	/**
 	 * 

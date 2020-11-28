@@ -10,7 +10,7 @@ import java.util.List;
 
 import model.dto.User;
 
-public class UserDAO {
+public class UserDAO {	//UserDao파일 지우고 UserDAO이름으로 다시 파일 만듦
 	
 	public UserDAO() {
 		try {

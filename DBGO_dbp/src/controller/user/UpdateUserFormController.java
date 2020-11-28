@@ -11,7 +11,7 @@ import controller.Controller;
 import model.service.UserManager;
 import model.dto.User;
 
-public class UpdateUserFormController implements Controller {
+public class UpdateUserFormController implements Controller {//
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
 
 	@Override

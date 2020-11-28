@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import controller.Controller;
 import model.service.UserManager;
 
-public class LoginController implements Controller {
+public class LoginController implements Controller {//
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String userId = request.getParameter("userId");

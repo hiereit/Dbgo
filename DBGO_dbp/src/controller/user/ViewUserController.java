@@ -8,7 +8,7 @@ import model.service.UserManager;
 import model.service.UserNotFoundException;
 import model.dto.User;
 
-public class ViewUserController implements Controller {
+public class ViewUserController implements Controller {//
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
     	// 로그인 여부 확인

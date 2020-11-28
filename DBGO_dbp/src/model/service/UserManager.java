@@ -7,7 +7,7 @@ import model.dto.User;
 import model.dao.UserDAO;
 
 
-public class UserManager {
+public class UserManager {//
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
 

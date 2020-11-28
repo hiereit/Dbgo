@@ -3,7 +3,7 @@ package model.service;
 /**
  * TODO
  */
-public class ExistingUserException extends Exception {
+public class ExistingUserException extends Exception {//
 
 	/**
 	 * 

@@ -7,7 +7,7 @@ import controller.Controller;
 import model.dto.User;
 import model.service.UserManager;
 
-public class ListUserController implements Controller {
+public class ListUserController implements Controller {//
 	// private static final int countPerPage = 100;	// 한 화면에 출력할 사용자 수
 
     @Override
