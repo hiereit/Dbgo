@@ -20,7 +20,6 @@
 
 <script>
 function userCreate() {
-	System.out.println("userCreate");
 	if (form.u_id.value == "") {
 		alert("사용자 ID를 입력하십시오.");
 		form.u_id.focus();
