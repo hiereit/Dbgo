@@ -30,19 +30,21 @@ public class CreateGroupScheduleController implements Controller{
 	
 		
 		int gSch_id, g_id;
-		String gSCh_hw, gSch_memo, gSch_title, gSchDate; 
+		String gSCh_hw, gSch_memo, gSch_title, gSchStartDate, gSchEndDate; 
 		
 		//Date gSch_date;
 		
 		gSch_id = Integer.parseInt(request.getParameter("gShcId"));
 		g_id = Integer.parseInt(request.getParameter("gId"));
-		gSchDate = request.getParameter("gSchDate");
+		gSchStartDate = request.getParameter("gSchStartDate");
+		gSchEndDate = request.getParameter("gSchEndDate");
 		
 		//String >> Date 형변환 작업
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //<< 여기 부분 수정 필요
-		Date gSch_date = (Date)transFormat.parse(gSchDate);
-		
-		GroupSchedule gSch = new GroupSchedule(g_id, gSch_id, gSch_date,
+		Date gSch_start_date = (Date)transFormat.parse(gSchStartDate);
+		Date gSch_end_date = (Date)transFormat.parse(gSchEndDate);
+
+		GroupSchedule gSch = new GroupSchedule(g_id, gSch_id, gSch_start_date, gSch_end_date,
 									request.getParameter("gSchMemo"), request.getParameter("gSchHW"), 
 									request.getParameter("gSchTitle"));
 		

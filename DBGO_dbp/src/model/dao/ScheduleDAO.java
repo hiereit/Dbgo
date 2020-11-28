@@ -39,7 +39,7 @@ public class ScheduleDAO {
 		}	 
 		return conn;
     }
-	public void insertSchedule(int sch_id, Date sch_date,
+	public void insertSchedule(int sch_id, Date sch_start_date, Date sch_end_date,
 			String memo, String title, String category, int u_id, int acv) {
 		String query = "INSERT INTO SCHEDULE "
 					 + "VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -47,12 +47,13 @@ public class ScheduleDAO {
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
 			pStmt.setInt(1, sch_id);
-			pStmt.setDate(2, (java.sql.Date)sch_date);
-			pStmt.setString(3, memo);
-			pStmt.setString(4, title);
-			pStmt.setString(5, category);
-			pStmt.setInt(6, u_id);
-			pStmt.setInt(7, acv);			
+			pStmt.setDate(2, (java.sql.Date)sch_start_date);
+			pStmt.setDate(3, (java.sql.Date)sch_end_date);
+			pStmt.setString(4, memo);
+			pStmt.setString(5, title);
+			pStmt.setString(6, category);
+			pStmt.setInt(7, u_id);
+			pStmt.setInt(8, acv);			
 			
 			pStmt.executeUpdate();
 			//System.out.println("��� ��ȣ\t����̸�\t����\t����\t����");
@@ -63,16 +64,20 @@ public class ScheduleDAO {
 			close();
 		}
 	}
-	public void updateSchedule(String memo, String title, String category) {
+	public void updateSchedule(String memo, String title, String category, Date startDate, Date endDate) {
 		String query = "UPDATE SCHEDULE SET "
 					 + "memo = ? "
-					 + ", category = ? "
+					 + ", category = ?"
+					 + ", start_date = ?"
+					 + ", end_date = ? "					 
 					 + "WHERE title = ?";
 		try {
 			conn = getConnection();
 			pStmt = conn.prepareStatement(query);
 			pStmt.setString(1, memo);
 			pStmt.setString(2, category);	
+			pStmt.setDate(3, (java.sql.Date)startDate);
+			pStmt.setDate(3, (java.sql.Date)endDate);
 			pStmt.setString(3, title);
 			pStmt.executeUpdate();
 			
@@ -114,7 +119,8 @@ public class ScheduleDAO {
 			if(rs.next()) {
 				
 				int sch_id = rs.getInt("sch_id");
-				Date sch_date = rs.getDate("sch_date");
+				Date sch_start_date = rs.getDate("start_date");
+				Date sch_end_date = rs.getDate("end_date");
 				String memo = rs.getString("memo");
 				String title = rs.getString("title");
 				String category = rs.getString("category");
@@ -122,7 +128,7 @@ public class ScheduleDAO {
 				int achievement = rs.getInt("achievement");
 				
 		
-				sch = new Schedule(sch_id, sch_date, memo, title, category, u_id, achievement);
+				sch = new Schedule(sch_id, sch_start_date,sch_end_date, memo, title, category, u_id, achievement);
 				
 				return sch;
 			}
@@ -153,7 +159,8 @@ public class ScheduleDAO {
 		    	
 		    	while(rs.next()) {	    
 		    		sch.setSchId(rs.getInt("sch_id"));
-		    		sch.setSchDate(rs.getDate("sch_date"));
+		    		sch.setSschStartDate(rs.getDate("start_date"));
+		    		sch.setSchEndDate(rs.getDate("end_date"));
 					sch.setMemo(rs.getString("memo"));
 					sch.setTitle(rs.getString("title"));
 					sch.setCategory(rs.getString("category"));
