@@ -20,7 +20,7 @@
 
 <script>
 function userCreate() {
-	
+	System.out.println("userCreate");
 	if (form.u_id.value == "") {
 		alert("사용자 ID를 입력하십시오.");
 		form.u_id.focus();
@@ -104,36 +104,42 @@ td {
 				<br><br>
 				<table>
 					<tr>
-						<th><label for="u_d">아이디</label></th>
-						<td><input type="text" class="form-control" name="u_id" style="width: 300px; height: 40px; margin-bottom: 10px;"
-						<c:if test="${registerFailed}">value="${user.name}"</c:if> > </td>
+						<th><label for="u_id">아이디</label></th>
+						<td><input type="text" class="form-control" name="u_id" style="width: 300px; height: 40px; margin-bottom: 10px;"></td>
 					</tr>
+					
 					<tr>
-						<th><label for="exampleInputEmail1">이메일</label></th>
-						<td><input type="email" class="form-control" name="userEmail"
+						<th><label for="name">이름</label></th>
+						<td><input type="text" class="form-control" name="name"
+							style="width: 300px; height: 40px; margin-bottom: 10px;"
+							<c:if test="${registerFailed}">value="${user.name}"</c:if> >  </td>
+					</tr>
+					
+					<tr>
+						<th><label for="email">이메일</label></th>
+						<td><input type="email" class="form-control" name="email"
 							aria-describedby="emailHelp" placeholder="example@dongduk.ac.kr"
 							style="width: 300px; height: 40px; margin-bottom: 10px;"
-							<c:if test="${registerFailed}">value="${user.name}"</c:if> > </td>
+							<c:if test="${registerFailed}">value="${user.email}"</c:if> > </td>
 					</tr>
 
 					<tr>
 						<th><label for="password">비밀번호</label></th>
 						<td><input type="password" class="form-control" name="password"
-							style="width: 300px; height: 40px; margin-bottom: 10px;"
-							<c:if test="${registerFailed}">value="${user.name}"</c:if> > </td>
+							style="width: 300px; height: 40px; margin-bottom: 10px;"> </td>
 					</tr>
 
 					<tr>
 						<th><label for="passwordConfirm">비밀번호 확인</label></th>
 						<td><input type="password" class="form-control" name="passwordConfirm"
-							style="width: 300px; height: 40px; margin-bottom: 10px;"
-							<c:if test="${registerFailed}">value="${user.name}"</c:if> > </td>
+							style="width: 300px; height: 40px; margin-bottom: 10px;">
+						</td>
 					</tr>
 				</table>
 				<br>
 				<br>
-				<input type="button" class="btn btn-primary" value="가입"
-					style="margin-bottom: 15px; height: 40px;" onClick="userCreate()">
+				<input type="button" class="btn btn-primary" value="가입" onClick="userCreate()"
+					style="margin-bottom: 15px; height: 40px;">
 				<br>
 			</div>
 		</div>
