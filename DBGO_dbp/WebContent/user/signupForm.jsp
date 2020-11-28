@@ -19,64 +19,72 @@
 <style>
 .signUp {
 	font: normal normal bold 15px/15px Binggrae !important;
-	position: absolute;
-	top: 50%;
+	top: 15%;
 	left: 50%;
 	background: #EFFBEF;
 	border-radius: 25px;
 	width: 700px;
-	height: 670px;
-	margin-left: -380px;
-	margin-top: -300px;
+	margin-top: 5em;
+	margin-bottom: 5em;
+	margin-left: 25em;
+	margin-right: 20em;
+	padding: 30px;
 }
+
 .centerElement {
-       text-align: center;
-       
+	text-align: center;
+}
+
+table {
+	margin-left: 50px;
+}
+
+td {
+	width: 83%;
+	padding-left: 50px;
 }
 </style>
 </head>
-<body>
+
+<body style="overflow: scroll">
 	<%@include file="/navbar.jsp"%>
+
 	<form>
 		<div class="centerElement">
 			<div class="signUp">
-				<br> <br>
-				<h1 class="text-primary">Sign up</h1><br>
-				 이메일<input type="text" class="form-control" id="InputEmail"
-					style="width: 200px; height: 40px;">@
-				<div class="mail-group">
-					<select class="custom-select" style="width: 170px; height: 40px;">
-						<option selected="selected">naver.com</option>
-						<option value="1">gmail.com</option>
-						<option value="2">daum.com</option>
-						<option value="3">hanmail.com</option>
-					</select>
-				</div>
-				비밀번호<input type="password" class="form-control" id="InputPassword"
-					style="width: 200px; height: 40px; margin-bottom: 10px;">
-				비밀번호 확인<input type="password" class="form-control"
-					id="InputPassword"
-					style="width: 200px; height: 40px; margin-bottom: 10px;">
-				전화번호
-				<div class="phone-group">
-					<select class="custom-select" style="width: 100px; height: 40px;">
-						<option selected="selected">010</option>
-						<option value="1">011</option>
-						<option value="2">012</option>
-						<option value="3">013</option>
-					</select>
-				</div>
-				- <input type='text' class="form-control"
-					style="text-align: center; width: 100px; height: 40px; margin-right: 5px;">-
-				<input type='text' class="form-control"
-					style="text-align: center; width: 100px; height: 40px; margin-right: 5px;"><br>
-				인증번호<input type="text" class="form-control"
-					style="text-align: center; width: 150px; height: 40px; margin-right: 5px;">
-				<button type="button" class="btn btn-primary"
-					style="margin-bottom: 15px; height: 40px;">확인</button>
+				<h1 class="text-primary">Sign up</h1>
+				<br><br>
+				<table>
+					<tr>
+						<th><label for="exampleInputEmail1">아이디</label></th>
+						<td><input type="text" class="form-control" id="InputId" style="width: 300px; height: 40px; margin-bottom: 10px;"></td>
+					</tr>
+					<tr>
+						<th><label for="exampleInputEmail1">이메일</label></th>
+						<td><input type="email" class="form-control" id="InputEmail1"
+							aria-describedby="emailHelp" placeholder="Enter email"
+							style="width: 300px; height: 40px; margin-bottom: 10px;"></td>
+					</tr>
+
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="password" class="form-control"
+							id="InputPassword"
+							style="width: 300px; height: 40px; margin-bottom: 10px;"></td>
+					</tr>
+
+					<tr>
+						<th>비밀번호 확인</th>
+						<td><input type="password" class="form-control"
+							id="InputPassword"
+							style="width: 300px; height: 40px; margin-bottom: 10px;"></td>
+					</tr>
+				</table>
+				<br>
 				<br>
 				<button type="submit" class="btn btn-primary"
-					style="width: 150px; height: 40px;">회원가입</button>
+					style="margin-bottom: 15px; height: 40px;">확인</button>
+				<br>
 			</div>
 		</div>
 	</form>
