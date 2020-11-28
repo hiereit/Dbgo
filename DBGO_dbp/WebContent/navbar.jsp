@@ -18,10 +18,10 @@
 						class="dropdown-item" href="#">일정 추가</a>
 				</div></li>
 			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				class="nav-link dropdown-toggle" href="<c:url value='/group/list'/>" id="navbardrop"
 				data-toggle="dropdown">그룹일정</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">일정 확인</a> <a
+					<a class="dropdown-item" href="<c:url value='/group/list'/>">일정 확인</a> <a
 						class="dropdown-item" href="#">일정 추가</a>
 				</div></li>
 			<li class="nav-item dropdown"><a
