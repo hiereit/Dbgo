@@ -3,17 +3,21 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.dto.GroupInfo;
 import model.dto.User;
+import model.dao.GroupDAO;
 import model.dao.UserDAO;
 
 
 public class UserManager {//
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
+	private GroupDAO groupDAO;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
+			groupDAO = new GroupDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -66,5 +70,13 @@ public class UserManager {//
 
 	public UserDAO getUserDAO() {
 		return this.userDAO;
+	}
+	
+	public GroupInfo createGroup(GroupInfo group) throws SQLException {
+		return groupDAO.create(group);		
+	}
+	
+	public List<GroupInfo> findMyGroupList(String u_id) throws SQLException {
+		return groupDAO.findMyGroupList(u_id);
 	}
 }

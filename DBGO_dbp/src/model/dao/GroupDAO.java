@@ -25,14 +25,14 @@ public class GroupDAO {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	public int createGroup(GroupInfo group) {
+	public GroupInfo create(GroupInfo group) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			int result = sqlSession.getMapper(GroupMapper.class).insertGroupInfo(group);
 			if (result > 0) {
 				sqlSession.commit();
 			}
-			return result;
+			return group;
 		} finally {
 			sqlSession.close();
 		}
@@ -64,7 +64,7 @@ public class GroupDAO {
 		}
 	}
 	
-	public List<GroupInfo> getGroupList() {
+	public List<GroupInfo> findGroupList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			return sqlSession.getMapper(GroupMapper.class).selectAllGroups();			
@@ -73,7 +73,7 @@ public class GroupDAO {
 		}
 	}
 	
-	public List<GroupInfo> getMyGroupList(String u_id) {
+	public List<GroupInfo> findMyGroupList(String u_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
 			return sqlSession.getMapper(GroupMapper.class).selectGroupListByUserId(u_id);			
