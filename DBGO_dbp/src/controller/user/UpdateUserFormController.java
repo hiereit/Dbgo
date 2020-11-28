@@ -16,7 +16,11 @@ public class UpdateUserFormController implements Controller {//
 
 	@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String updateId = request.getParameter("userId");
+		if (!UserSessionUtils.hasLogined(request.getSession())) {
+            return "redirect:/user/login/form";
+        }
+		//String updateId = request.getParameter("userId");
+		String updateId = UserSessionUtils.getLoginUserId(request.getSession());
 		
 		log.debug("UpdateForm Request : {}", updateId);
 
