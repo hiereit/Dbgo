@@ -30,7 +30,7 @@
       button {
       	padding-top: 5px;
       	float: right;
-        border-radius: 40px!important;
+        border-radius: 10px!important;
         text-align: left;
         font: normal normal bold 16px JSDongkang-Regular!important;
         color: #000000;
@@ -45,7 +45,14 @@
 	    	<h2>나의 그룹</h2>
 	      	<button type="button" class="btn btn-warning">그룹 추가</button>
     	</div>
-      <ul class="list-group" style=" padding-top: 30px;">
+    	<ul class="list-group" style=" padding-top: 30px;">
+    	<c:forEach var="group" items='${mGroupList}'>
+    	<li class="list-group-item d-flex justify-content-between align-items-center" onClick="alert('그룹명 1')">
+          그룹명 1
+          <span class="badge badge-secondary badge-pill">14</span>
+        </li>
+    	</c:forEach>
+      
         <li class="list-group-item d-flex justify-content-between align-items-center" onClick="alert('그룹명 1')">
           그룹명 1
           <span class="badge badge-secondary badge-pill">14</span>
