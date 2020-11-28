@@ -70,14 +70,14 @@ span {
 .groupName h5, .groupName input { display: inline; }
 .groupMem h5, .groupMem input[type="text"], .groupMem input[type="button"] { display: inline; text-align: center;}
 </style>
-	<script>
-function add_btn_click() {	
+<script>
+function add_btn_click() {
 	if(form.mem.value == "") {
 		form.mem.focus();
 		return false;
 	}
 	var $div = $('<span class="badge badge-pill badge-secondary">'+ form.mem.value +'</span><input type="hidden" name ="members" value = "' + form.mem.value + '">');
-	return $('.memList').append($div);
+	$('.memList').append($div);
 }
 function create_group_btn_click() {
 	if (form.name.value == "") {
@@ -97,7 +97,7 @@ function create_group_btn_click() {
 			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
 		</c:if>
 	</div>	
-	<form name="form" method="POST" action="<c:url value='/group/create'/>">
+	<form name="form" method="POST" id="f" action="<c:url value='/group/create'/>">
 		<div class="centerElement">
 			<div class="signIn">
 				<h1 class="text-primary">그룹 생성</h1>
@@ -120,7 +120,7 @@ function create_group_btn_click() {
 						</c:if>
 					</div>
 				</div>
-				<button type="submit" class="btn btn-primary" style=" font: normal normal bold 18px JSDongkang-Regular; margin-top: 70px;" onClick="">그룹 생성</button>
+				<button type="button" class="btn btn-primary" style=" font: normal normal bold 18px JSDongkang-Regular; margin-top: 70px;" onClick="create_group_btn_click()">그룹 생성</button>
 			</div>
 		</div>
 	</form>
