@@ -9,7 +9,8 @@ public class GroupSchedule {
 	private Date groupsch_date = null;
 	private String memo = null;
 	private String title = null;
-	//Ä«Å×°í¸® º¸·ù
+	//private String category = null;
+	//Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	public GroupSchedule() {super();}
 	

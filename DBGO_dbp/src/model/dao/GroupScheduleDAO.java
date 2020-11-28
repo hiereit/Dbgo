@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ public class GroupScheduleDAO {
 		String username = "dbprog0208";
 		String password = "qkrprh5";
 
-		// DBMS¿ÍÀÇ ¿¬°á È¹µæ
+		// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, username, password);
@@ -38,19 +39,19 @@ public class GroupScheduleDAO {
 	
 	public List<GroupSchedule> getGroupScheduleList(String g_id) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
 		String query = "SELECT * " 
 					 + "FROM GROUP_SCHEDULE "
 					 + "WHERE g_id = ?";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			rs = pStmt.executeQuery();	
 			
 			List<GroupSchedule> groupScheduleList = new ArrayList<GroupSchedule>();
-			while (rs.next()) {		// Ä¿¼­¸¦ ÅëÇØ ÇÑ Çà¾¿ fetch
+			while (rs.next()) {		// Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½à¾¿ fetch
 				GroupSchedule gsch = new GroupSchedule(rs.getString("homework"), rs.getString("g_id"),
 						rs.getString("groupsch_id"), rs.getDate("groupsch_date"), rs.getString("memo"), rs.getString("title"));
 				groupScheduleList.add(gsch);
@@ -58,7 +59,7 @@ public class GroupScheduleDAO {
 			return groupScheduleList;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -77,14 +78,14 @@ public class GroupScheduleDAO {
 	
 	public void removeGroupSchedule(String groupsch_id) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;
 		String query = "DELETE FROM group_schedule "
 					 + "WHERE groupsch_id = ?";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pStmt.setString(1, groupsch_id);
 			int result = pStmt.executeUpdate();
 			
@@ -102,7 +103,7 @@ public class GroupScheduleDAO {
 				e.printStackTrace();
 			}
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -120,15 +121,15 @@ public class GroupScheduleDAO {
 	
 	public void updateGroup(String groupsch_id, String title) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
 		String query = "UPDATE group_schedule " 
 					 + "SET title = ? "
 					 + "WHERE groupsch_id = ?";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			pStmt.setString(1, title);
 			pStmt.setString(2, groupsch_id);
 			int result1 = pStmt.executeUpdate();
@@ -147,7 +148,7 @@ public class GroupScheduleDAO {
 				e.printStackTrace();
 			}
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -163,17 +164,23 @@ public class GroupScheduleDAO {
 		}
 	}
 	
-	public void createGroup(String g_id, String title) {
+	public void createGroup(GroupSchedule g_sch) {
 		Connection conn = null;
-		PreparedStatement pStmt = null;		// PreparedStatment ÂüÁ¶ º¯¼ö »ý¼º
+		PreparedStatement pStmt = null;		// PreparedStatment ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ResultSet rs = null;		
-		String query = "INSERT INTO GROUP_SCHEDULE (g_id, title) VALUES (?, ?)";
+		String query = "INSERT INTO GROUP_SCHEDULE (g_id, title, groupsch_id, groupsch_date, memo, title, category, hw) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
-			conn = getConnection();	// DBMS¿ÍÀÇ ¿¬°á È¹µæ 
-			pStmt = conn.prepareStatement(query);	// Connection¿¡¼­ PreparedStatement °´Ã¼ »ý¼º
-			pStmt.setString(1, g_id);
-			pStmt.setString(2, title);
+			conn = getConnection();	// DBMSï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ 
+			pStmt = conn.prepareStatement(query);	// Connectionï¿½ï¿½ï¿½ï¿½ PreparedStatement ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+			pStmt.setString(1, g_sch.getG_id());
+			pStmt.setString(2, g_sch.getTitle());
+			pStmt.setString(3, g_sch.getGroupsch_id());
+			pStmt.setDate(4, (Date) g_sch.getGroupsch_date());
+			pStmt.setString(5, g_sch.getTitle());
+			pStmt.setString(6, g_sch.getTitle());
+			
 			int result1 = pStmt.executeUpdate();
 			pStmt.close();						
 			
@@ -191,7 +198,7 @@ public class GroupScheduleDAO {
 				e.printStackTrace();
 			}
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
