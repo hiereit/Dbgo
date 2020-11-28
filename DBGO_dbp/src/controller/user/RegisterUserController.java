@@ -26,7 +26,7 @@ public class RegisterUserController implements Controller {
 		try {
 			UserManager manager = UserManager.getInstance();
 			manager.create(user);
-	        return "redirect:/user/login";		// 성공 시 로그인 화면으로 redirect (추후 수정?)
+	        return "redirect:/user/login/form";		// 성공 시 로그인 화면으로 redirect (추후 수정?)
 	        
 		} catch (ExistingUserException e) {		// 예외 발생 시 회원가입 form으로 forwarding
             request.setAttribute("registerFailed", true);

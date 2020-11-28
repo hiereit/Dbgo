@@ -48,7 +48,7 @@ public class UserDAO {
 
 
 	public int createUser(String u_id, String name, String email, String password) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
 			return sqlSession.getMapper(UserMapper.class).insertUser(u_id, name, email, password);
 		}finally {

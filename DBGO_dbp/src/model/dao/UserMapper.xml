@@ -37,7 +37,7 @@
 </delete>
 
 <!-- public boolean existingUser(String u_id) -->
-<select id="selectExistingUser" parameterType="string" resultType="int">
+<select id="selectExistingUser" parameterType="string" resultType="boolean">
 	SELECT COUNT(*)
 	FROM userInfo
 	WHERE u_id = #{u_id}
