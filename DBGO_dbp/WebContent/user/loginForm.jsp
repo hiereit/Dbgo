@@ -74,7 +74,7 @@ function login() {
 		</c:if>
 	</div>	  
 	
-	<form name="form" method="POST" action="<c:url value='/user/login' />">
+	<form name="form" method="POST" action="<c:url value='/user/register/form' />">
 		<div class="centerElement">
 			<div class="signIn">
 				<br> <br>

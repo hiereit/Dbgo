@@ -77,18 +77,19 @@ td {
 				<h1 class="text-primary">회원정보 수정</h1>
 				<br> <br>
 				<table>
-					<input type="hidden" name="u_id" value="${user.u_id}" />
+					<!-- <input type="hidden" name="u_id" value="${user.u_id}" /> -->
 					<tr>
 						<th><label>ID</label></th>
 						<td>
-							<p class="form-control-static">${user.u_id}</p>
+							<input class="form-control" id="readOnlyInput"  name="u_id" type="text" placeholder="${user.u_id}" readonly
+							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>
 
 					<tr>
 						<th><label for="name">이름</label></th>
 						<td>
-							<input type="text" name="name" class="form-control" value="${user.name}"
+							<input class="form-control" id="readOnlyInput"  name="name" type="text" placeholder="${user.name}" readonly
 							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>
@@ -96,7 +97,7 @@ td {
 					<tr>
 						<th><label for="email">이메일</label></th>
 						<td>
-							<input type="text" name="email" class="form-control" value="${user.email}"
+							<input class="form-control" id="readOnlyInput"  name="email" type="text" placeholder="${user.email}" readonly
 							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>
