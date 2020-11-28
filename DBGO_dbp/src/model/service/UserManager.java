@@ -4,20 +4,23 @@ import java.sql.SQLException;
 import java.util.List;
 
 import model.dto.GroupInfo;
+import model.dto.GroupSchedule;
 import model.dto.User;
 import model.dao.GroupDAO;
 import model.dao.UserDAO;
-
+import model.dao.GroupScheduleDAO;
 
 public class UserManager {//
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
 	private GroupDAO groupDAO;
+	private GroupScheduleDAO groupScheduleDAO;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
 			groupDAO = new GroupDAO();
+			groupScheduleDAO = new GroupScheduleDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -80,5 +83,9 @@ public class UserManager {//
 	
 	public List<GroupInfo> findMyGroupList(String u_id) throws SQLException {
 		return groupDAO.findMyGroupList(u_id);
+	}
+
+	public List<GroupSchedule> findGroupSchedule(String g_id) {
+		return groupScheduleDAO.findGroupSchedule(g_id);
 	}
 }

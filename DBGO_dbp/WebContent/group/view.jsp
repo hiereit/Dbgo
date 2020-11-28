@@ -12,6 +12,12 @@
     <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
     <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
     <title>My Group View</title>
+    <script language="JavaScript">
+    	function findSchedule(targetUri) {
+    		form.action = targetUri;
+    		form.submit();
+    	}
+    </script>
     <style>
       table.table-bordered{
         font: normal normal normal 18px JSDongkang-Regular;
@@ -22,7 +28,7 @@
         float:left;
         margin:auto;
         width: 300px;
-        height: 550px;
+        height: 510px;
         margin:10px;
       }
       .list-group{
@@ -30,20 +36,22 @@
         width: 305px;
         margin-left:13px;
         margin-top:13px;
-		font: normal normal normal 18px JSDongkang-Regular;
         }
        .card {
          position:absolute;
          width: 300px;
-         height: 370px;
+         height: 390px;
          left:51%;
-         top:33%;
+         top:23%;
          font: normal normal normal 18px JSDongkang-Regular;
         }
         .wrap {
           position:absolute;
           left:30%;
           top:20%;
+        }
+        .mb-1 {
+        font: normal normal normal 18px JSDongkang-Regular;
         }
     </style>
   </head>
@@ -52,34 +60,24 @@
     <div class="wrap">
     <div class="tdiv">
     <table class="table table-bordered">
+  	<c:forEach var="grpsch" items="${grpschList}">
       <tr>
-        <th scope="row">11월 28일</th>
-        <td>알고리즘 설계1</td>
+        <th scope="row">${grpsch.groupsch_date}</th>
+        <td onClick="findSchedule('<c:url value='/group/view'/>')">${grpsch.title}</td>
       </tr>
-      <tr>
-        <th scope="row">12월 1일</th>
-        <td>알고리즘 설계2</td>
-      </tr>
-      <tr>
-        <th scope="row">12월 8일</th>
-        <td>알고리즘 설계3</td>
-      </tr>
+     </c:forEach>
     </table>
     </div>
     <ul class="list-group">
-  <li class="list-group-item list-group-item-warning">
-      <h5 class="mb-1">연습문제 질의응답</h5>
-      <h5 class="mb-1">한글 파일 예제 질의응답</h5>
-  </li>
-  <li class="list-group-item">
-    <h8 class="mb-1">다음 일정</h8>
-    <p class="mb-1">12월 1일 (목) 20:30</p>
+  <li class="list-group-item list-group-item-warning" style="padding-top:20px;padding-bottom:20px;
+        text-align: center;">
+      <h5 class="mb-1">${grpsch.homework}</h5>
   </li>
 </ul>
 <div class="card border-warning mb-3">
   <div class="card-header">기록</div>
   <div class="card-body">
-    <p class="card-text">그리드 알고리즘에 관한 퀴즈 풀이</p>
+    <p class="card-text">${grpsch.memo}</p>
   </div>
 </div>
 </div>
