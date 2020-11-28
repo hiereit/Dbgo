@@ -52,7 +52,7 @@
 		<c:when test="${isLogined==true}">
 			<a href="<c:url value='/user/logout' />">
 			<button class="btn">
-				<i class="fas fa-sign-out-alt fa-2x" aria-hidden="true"
+				<i class="fa fa-sign-out" style="font-size:36px" aria-hidden="true"
 					style="color: white;"></i>
 			</button>
 			</a>
@@ -60,7 +60,7 @@
 		<c:otherwise>
 			<a href="<c:url value='/user/login/form' />">
 			<button class="btn">
-				<i class="fas fa-sign-in-alt fa-2x" aria-hidden="true"
+				<i class="fa fa-sign-in" style="font-size:36px" aria-hidden="true"
 					style="color: white;"></i>
 			</button>
 			</a>
