@@ -1,21 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="controller.user.UserSessionUtils"%>
 <head>
-<script>
 
-function myPageMethod()
-{
-    document.location.href="<c:url value='/user/update' />";
-}
-
-function logoutMethod()
-{
-    document.location.href="<c:url value='/user/logout' />";
-}
-
-</script>
 </head>
 
 
@@ -30,10 +18,10 @@ function logoutMethod()
 	<div class="collapse navbar-collapse" id="navbarColor01">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbardrop"
+				class="nav-link dropdown-toggle" href="<c:url value='/schedule/monthly'/>" id="navbardrop"
 				data-toggle="dropdown">개인일정</a>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">일정 확인</a> <a
+					<a class="dropdown-item" href="<c:url value='/schedule/monthly'/>">일정 확인</a> <a
 						class="dropdown-item" href="#">일정 추가</a>
 				</div></li>
 			<li class="nav-item dropdown"><a
@@ -55,13 +43,17 @@ function logoutMethod()
 		<button class="btn">
 			<i class="fa fa-bell fa-2x" aria-hidden="true" style="color: white;"></i>
 		</button>
+		<a href="<c:url value='/user/view' />">
 		<button class="btn">
 			<i class="fa fa-address-book fa-2x" aria-hidden="true"
 				style="color: white;"></i>
 		</button>
-		<button class="btn" onClick="logoutMethod()">	//이거 아직 안됨
-			<i class="fas fa-sign-out-alt fa-2x" aria-hidden="true"
+		</a>
+		<a href="<c:url value='/user/logout' />">
+		<button class="btn">
+			<i class="fas fa-sign-in-alt fa-2x" aria-hidden="true"
 				style="color: white;"></i>
 		</button>
+		</a>
 	</div>
 </nav>
