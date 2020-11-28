@@ -4,13 +4,13 @@
 <mapper namespace="model.dao.GroupMapper">
 <cache />
 
- <insert id="insertGroupInfo" parameterType="GroupInfo">
-	<selectKey keyProperty="id" resultType="string" order="BEFORE">
+ <insert id="insertGroupInfo" parameterType="GroupInfo" useGeneratedKeys="true" keyProperty="g_id">
+	<selectKey keyProperty="g_id" resultType="string" order="BEFORE">
 		SELECT seq_gid.nextval AS id FROM DUAL
 	</selectKey>
 				
 	INSERT INTO GroupInfo
-	VALUES (#{id}, #{g_name})
+	VALUES (#{g_id}, #{g_name})
  </insert>
 
  <insert id="insertAdmission" parameterType="string">
