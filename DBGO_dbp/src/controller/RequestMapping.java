@@ -18,10 +18,14 @@ public class RequestMapping {
     	mappings.put("/", new ForwardController("index.jsp"));
     	mappings.put("/main", new ForwardController("main.jsp"));
     	
+    	mappings.put("/schedule/monthly", new MonthlyController());
+    	
     	mappings.put("/group/view", new ForwardController("/group/view.jsp"));
     	mappings.put("/group/list", new MyGroupListController());
     	mappings.put("/group/create/form", new ForwardController("/group/creationForm.jsp"));
         mappings.put("/group/create", new CreateGroupController());
+
+        mappings.put("/group/update", new UpdateGroupController());
     	
     	mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
         mappings.put("/user/login", new LoginController());
@@ -34,7 +38,6 @@ public class RequestMapping {
         mappings.put("/user/update", new UpdateUserController());
         mappings.put("/user/delete", new DeleteUserController());
         
-        mappings.put("/schedule/monthly", new MonthlyController());
         
     	/*
 
