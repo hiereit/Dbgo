@@ -29,7 +29,7 @@ public class ViewUserController implements Controller {//
 		try {
 			user = manager.findUser(userId);	// 사용자 정보 검색
 		} catch (UserNotFoundException e) {				
-	        return "redirect:/user/list";
+			request.setAttribute("exception", e);
 		}	
 		
 		request.setAttribute("user", user);		// 사용자 정보 저장				
