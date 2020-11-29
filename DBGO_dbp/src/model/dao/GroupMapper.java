@@ -13,6 +13,8 @@ public interface GroupMapper {
 	
 	public int deleteGroupInfo(String g_id);
 
+	public int deleteUserInGroup(String u_id);
+	
 	public List<GroupInfo> selectAllGroups();
 	
 	public List<GroupInfo> selectGroupListByUserId(String u_id);

@@ -22,6 +22,11 @@
  	DELETE FROM GroupInfo
  	WHERE g_id = #{id}
  </delete>
+ 
+ <delete id="deleteUserInGroup" parameterType="string">	<!-- 탈퇴 -->
+ 	DELETE FROM Admission
+ 	WHERE fk_admission2 = #{u_id}
+ </delete>
 
  <select id="selectGroupListByUserId" parameterType="string" resultType="GroupInfo">
  	SELECT g.g_id, g.g_name, count(g.g_id) AS numOfMembers

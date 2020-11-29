@@ -44,9 +44,13 @@ public class UserManager {//
 	
 	
 	public int remove(String userId) throws SQLException {
+		groupDAO.removeUserInGroup(userId);
 		return userDAO.removeUser(userId);
 	}
 	
+	public int removeUserInGroup(String userId) throws SQLException {
+		return groupDAO.removeUserInGroup(userId);
+	}
 
 	public User findUser(String userId)
 		throws SQLException, UserNotFoundException {

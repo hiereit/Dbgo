@@ -2,13 +2,11 @@ package controller.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import model.dto.User;
 import model.service.UserManager;
 
 public class DeleteUserController implements Controller{//
@@ -20,8 +18,10 @@ public class DeleteUserController implements Controller{//
     	log.debug("Delete User : {}", deleteId);
 
     	UserManager manager = UserManager.getInstance();	
-		HttpSession session = request.getSession();	
 		
+		manager.removeUserInGroup(deleteId);
+		
+		manager.remove(deleteId);	
 		return "redirect:/user/logout";		// logout 처리
 		
 	}
