@@ -44,9 +44,13 @@ public class UserManager {//
 	
 	
 	public int remove(String userId) throws SQLException {
+		groupDAO.removeUserInGroup(userId);
 		return userDAO.removeUser(userId);
 	}
 	
+	public int removeUserInGroup(String userId) throws SQLException {
+		return groupDAO.removeUserInGroup(userId);
+	}
 
 	public User findUser(String userId)
 		throws SQLException, UserNotFoundException {
@@ -99,5 +103,9 @@ public class UserManager {//
 
 	public String findGroupName(String g_id) {
 		return groupScheduleDAO.findGroupName(g_id);
+	}
+	
+	public GroupSchedule insertGroupSchedule(GroupSchedule sch) {
+		return groupScheduleDAO.insertGroupSchedule(sch);
 	}
 }

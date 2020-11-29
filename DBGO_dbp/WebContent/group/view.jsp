@@ -163,7 +163,7 @@ h3 {
 }
 </style>
 <script>
-    document.getElementById('subBtn').addEventListener('click', function() {
+    /* document.getElementById('subBtn').addEventListener('click', function() {
 		if (form.title.value == "") {
 			alert("일정 제목을 입력하십시오.");
 			form.title.focus();
@@ -175,13 +175,23 @@ h3 {
 				return false;
 		}
 		 $('#myModal').hide();
-	  });
+	  }); */
+    function addSchedule() {
+    	if (form.title.value == "") {
+			alert("일정 제목을 입력하십시오.");
+			form.title.focus();
+			return false;
+		}
+		 if (form.date.value == "") {
+				alert("날짜를 입력하십시오.");
+				form.date.focus();
+				return false;
+		}
+    	form.submit();
+    }
     function show_pop() {
         $('#myModal').show();
     }
-function close_pop() {
-     $('#myModal').hide();
- }
     </script>
 </head>
 <body>
@@ -206,11 +216,17 @@ function close_pop() {
 		</div>
 		<div id="myModal" class="modal">
 			<div class="modal-content">
-				<form name="form">
+				<form name="form" method="POST" action="<c:url value='/group/schedule/add'/>">
 					<fieldset>
-						<button id="subBtn" class="btn btn-warning btn-rounded">추가</button>
-						<button data-dismiss="modal" class="btn btn-warning btn-rounded"
-							onClick="close_pop();">취소</button>
+						<button type="button" id="subBtn" class="btn btn-warning btn-rounded" onClick="addSchedule()">추가</button>
+						<a href="<c:url value='/group/view'>
+						      <c:param name='g_id' value='${g_id}'/>
+						 </c:url>">
+						<button type="button" class="btn btn-warning btn-rounded">취소</button>
+						</a>
+						<div class="form-group">
+							<input type="hidden" id="g_id" name="g_id" value="${g_id}">
+						</div>
 						<div class="form-group">
 							<input type="text" class="form-control-plaintext"
 								id="inputScheduleTitle" placeholder="제목" name="title">
@@ -230,7 +246,7 @@ function close_pop() {
 									class="fa fa-users"></i></label>
 								<div class="col-md-11">
 									<input type="text" class="form-control-plaintext"
-										id="inputAttens" placeholder="과제" name="atten">
+										id="inputAttens" placeholder="과제" name="homework">
 								</div>
 							</div>
 							<div class="form-group row">
@@ -238,7 +254,7 @@ function close_pop() {
 									class="fa fa-sticky-note"></i></label>
 								<div class="col-md-11">
 									<input type="text" class="form-control-plaintext"
-										id="inputMemo" placeholder="메모" name="memo">
+										id="inputMemo" placeholder="기록" name="memo">
 								</div>
 							</div>
 						</div>

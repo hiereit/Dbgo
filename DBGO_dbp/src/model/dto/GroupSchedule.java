@@ -12,12 +12,9 @@ public class GroupSchedule implements Serializable {
 	
 	public GroupSchedule() {}
 	
-	public GroupSchedule(String g_name, String g_id, String groupsch_id, String homework, String groupsch_date, String memo,
-			String title) {
+	public GroupSchedule(String g_id, String title, String groupsch_date, String homework, String memo) {
 		super();
-		this.g_name = g_name;
 		this.g_id = g_id;
-		this.groupsch_id = groupsch_id;
 		this.homework = homework;
 		this.groupsch_date = groupsch_date;
 		this.memo = memo;
