@@ -1,29 +1,22 @@
 package model.dao;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
-import model.dto.GroupSchedule;
 import model.dto.Schedule;
 
 public interface ScheduleMapper {
-	public void insertScheduleInfo(Schedule sch);
+	public int insertSchedule(Schedule sch);
 	
-	public int deleteScheduleInfo(String sch_id);
+	public int deleteSchedule(String sch_id);
 			
-	public void updateScheduleInfo(String memo, String title, String category, 
-			String startDate, String endDate);
+	public int updateSchedule(@Param("memo") String memo, @Param("memo") String title, @Param("memo") String category, 
+			@Param("memo") String start_date, @Param("memo") String end_date);
 
 	public void updateScheduleACH(int ach);
 	
-	public Schedule findScheduleInfo(String schTitle);
+	//public Schedule findSchedule(String sch_id);
 	
-	//public List<Schedule> selectAllSchedule(String userId);
-	 
-
-	
-
+	public List<Schedule> selectAllSchedule(String u_id);
 }

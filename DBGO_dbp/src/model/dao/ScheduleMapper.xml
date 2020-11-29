@@ -3,41 +3,33 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.dao.ScheduleMapper">
 <cache />
-<insert id="insertScheduleInfo" parameterType="Schedule" useGeneratedKeys="true" keyProperty="sch_id">
+<insert id="insertSchedule" parameterType="Schedule">
 	<selectKey keyProperty="sch_id" resultType="string" order="BEFORE">
 		SELECT seq_schid.nextval AS id FROM DUAL
 	</selectKey>
 				
-	INSERT INTO SCHEDULE
-	VALUES (#{sch_id}, #{memo} #{title}, #{category}, #{u_id}, #{achievement}, #{end_date}, #{start_date})
+	INSERT INTO SCHEDULE 
+	VALUES (#{sch_id}, #{memo, jdbcType=VARCHAR}, #{title}, #{category}, #{u_id}, #{achievement}, #{end_date, jdbcType=VARCHAR}, #{start_date})
  </insert>
 
-<delete id="deleteScheduleInfo" parameterType="string">
+<delete id="deleteSchedule" parameterType="string">
  	DELETE FROM SCHEDULE
- 	WHERE shc_id = #{shc_id}
+ 	WHERE shc_id = #{sch_id}
  </delete>
- <update id="updateScheduleInfo" parameterType="string">
+ <update id="updateSchedule" parameterType="string">
 	UPDATE SCHEDULE
 	SET memo = #{memo}, title = #{title}, String = #{category},
-		startDate = #{startDate}, endDate =#{endDate}
+		startDate = #{start_date}, endDate =#{end_date}
 	WHERE sch_id = #{sch_id}
 </update>
  <update id="updateScheduleACH" parameterType="int">
-	UPDATE userInfo
+	UPDATE SCHEDULE
 	SET achievement = #{achievement},  
 	WHERE sch_id = #{sch_id}
 </update>
-<select id="selectAllSchedule" resultType="Schedule">
- 	SELECT *
+<select id="selectAllSchedule" parameterType="string" resultType="Schedule">
+ 	SELECT sch_id, title, start_date, end_date
  	FROM Schedule
- 	WHERE title = #{title}
+ 	WHERE u_id = #{u_id}
 </select>
-
- <!-- select id="selectAllSchedule" resultType="Schedule">
- 	SELECT *
- 	FROM Schedule
- 	WHERE 
- </select> -->
-
-
 </mapper>

@@ -17,6 +17,7 @@ public class CreateGroupController implements Controller{
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/user/login/form";
         }
+		
 		GroupInfo group = new GroupInfo(null, request.getParameter("name"));
 		String[] membersParam = request.getParameterValues("members");
 		if (membersParam != null) {

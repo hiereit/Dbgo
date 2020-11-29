@@ -59,7 +59,7 @@ public class DiaryDAO {
 			return dateList;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {	
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -101,7 +101,7 @@ public class DiaryDAO {
 			return diary;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (rs != null) 
 				try { 
 					rs.close(); 
@@ -136,7 +136,7 @@ public class DiaryDAO {
 			return result;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (pStmt != null) 
 				try { 
 					pStmt.close(); 
@@ -169,7 +169,7 @@ public class DiaryDAO {
 			return result;
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally {		// ÀÚ¿ø ¹Ý³³
+		} finally {		// ï¿½Ú¿ï¿½ ï¿½Ý³ï¿½
 			if (pStmt != null) 
 				try { 
 					pStmt.close(); 

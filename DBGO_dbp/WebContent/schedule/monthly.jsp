@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="model.dto.Schedule"%>
-<% java.util.List<Schedule> schedules = (java.util.ArrayList<Schedule>)request.getAttribute("test"); %>
+<% java.util.List<Schedule> schedules = (java.util.List<Schedule>)request.getAttribute("schedules"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +28,10 @@
     #calendar {
       width: 50%;
       height: 50%;
-      margin-left: 25%;
-      padding-top : 10px;
+      margin: auto;
+      margin-top : 30px;
       padding-bottom: 40px;
+      font: normal normal normal 20px JSDongkang-Regular;
     }
 	::placeholder {
         color: #B8B8B8;
@@ -91,7 +92,6 @@
 	        background: #FFFFFF 0% 0% no-repeat padding-box;
 	        box-shadow: 0px 3px 50px #CECECE;
 	        opacity: 1;
-	        top:1148px;right:0;bottom:0;left:0;
 	        position:absolute;
 	        margin: auto;
 	        -moz-border-radius: 50px;
@@ -99,8 +99,6 @@
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
@@ -116,26 +114,20 @@
             border: 1px solid #888;
             width: 30%; /* Could be more or less, depending on screen size */                          
         }
+        .fc-time{
+   display : none;
+}
 </style>
 <script>
-	var isSubSch = false;
-	var list = new Array();
-	'<c:forEach items="${test}" var="item">'
-	list.push("${item}");
-'</c:forEach>'
-
-
-
-	
 	 var calendar;
+	
 	document.addEventListener('DOMContentLoaded', function() {
+		var initialLocaleCode = 'ko';
 		var calendarEl = document.getElementById('calendar');
 		calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView : 'dayGridMonth',
 			themeSystem : 'bootstrap',
 			dateClick: function(info) {
-				   //alert('Date: ' + info.dateStr);
-				   //alert('Resource ID: ' + info.resource.id);
 				    $('#inputScheduleDate').val(info.dateStr);
 				   $('#myModal').show(); 
 			},
@@ -147,18 +139,25 @@
 				%>
 				{
 					title: '<%= s.getTitle() %>',
-					start: "2020-11-10"
+					start: '<%= s.getStart_date() %>',
+					end: '<%= s.getEnd_date() %>'+" 20:00:00",
+					timeFormat: ' '
 				},
 				<%
 				}
 				%>
-				{
-					title: 'default',
-					start: "2020-11-11"
-				}
-		]
-		});
+				
+			],
+			displayEventTime: false,
+			headerToolbar: {
+			    left: 'prev,next today',
+				center: 'title',
+				right: 'dayGridMonth,timeGridWeek,timeGridDay'
+			},
+			locale: initialLocaleCode,
+			
 		
+		});
 		
 		calendar.render();
 		
@@ -168,35 +167,25 @@
 				form.title.focus();
 				return false;
 			}
-			 if (form.date.value == "") {
-					alert("날짜를 입력하십시오.");
-					form.date.focus();
+			if (form.startDate.value == "") {
+					alert("시작 날짜를 입력하십시오.");
+					form.startDate.focus();
 					return false;
 			}
-			 calendar.addEvent({
-	             title: 'dynamic event',
-	             start: '2020-11-11'
-	             
-	             
-	           });
-			 $('#myModal').hide();
+			if (form.category.value == "카테고리") {
+				 alert("카테고리를 선택하십시오.");
+					form.category.focus();
+					return false;
+			 }
+		
+			form.submit();
+	
 		  });
 		
 	
 		
 	});
-	function close_pop() {
-		$('#myModal').modal('hide');
-	 };
-	 
 
-
-	 '<c:forEach items="${test}" var="item" varStatus="status">'
-		var title = '${item.title}';
-		var date = '${item.schStartDate}';
-		//add_event(title, date);
-		
-	'</c:forEach>'
 	
 </script>
 
@@ -210,18 +199,19 @@
  
       <!-- Modal content -->
       <div class="modal-content">
-		<form name="form">
+		<form name="form" method="POST" 
+		action="<c:url value='/schedule/create'/>">
         <fieldset>
           <button id="subBtn" class="btn btn-warning btn-rounded" >등록</button>
-          <button data-dismiss="modal" class="btn btn-warning btn-rounded" onClick="close_pop();">취소</button>
+          <a href="<c:url value='/schedule/monthly' />"><button type="button" class="btn btn-warning btn-rounded">취소</button></a>
           <div class="form-group row" >
             <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder" aria-hidden="true"></i></label>
         
-              <select class="selectCategory">
+              <select name="category" class="selectCategory">
                 <option selected>카테고리</option>
-                <option value="1">기본</option>
-                <option value="2">학교</option>
-                <option value="3">친구</option>
+                <option>기본</option>
+                <option>학교</option>
+                <option>친구</option>
               </select>
           
           </div>
@@ -231,21 +221,13 @@
           <hr>
           <div class="inputContent">
             <div class="form-group row">
-              <label for="inputScheduleDate" class="col-md-1 col-form-label"><i class="far fa-calendar"></i></label>
+              <label for="inputScheduleDate" class="col-md-1 col-form-label "><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-range" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+  <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/>
+</svg></label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="날짜" name="date">
-              </div>
-            </div>
-        <!--     <div class="form-group row">
-              <label for="inputAlarm" class="col-md-1 col-form-label"><i class="fa fa-clock-o fa-2x"></i></label>
-              <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputAlarm" placeholder="알람 설정">
-              </div>
-            </div> -->
-            <div class="form-group row">
-              <label for="inputUsers" class="col-md-1 col-form-label"><i class="fa fa-users"></i></label>
-              <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputAttens" placeholder="참석자" name="atten">
+                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="시작 날짜" name="startDate">
+                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="마지막 날짜" name="endDate">
               </div>
             </div>
             <div class="form-group row">
