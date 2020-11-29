@@ -20,6 +20,7 @@ public class RequestMapping {
 		mappings.put("/main", new ForwardController("main.jsp"));
 
 		mappings.put("/schedule/monthly", new MonthlyController());
+		mappings.put("/schedule/create", new CreateScheduleController());
 
     	mappings.put("/group/view", new ViewGroupController());
     	mappings.put("/group/schedule/view", new ViewGroupScheduleController());
