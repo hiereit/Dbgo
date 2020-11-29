@@ -27,7 +27,7 @@ public class RequestMapping {
 		mappings.put("/group/create/form", new ForwardController("/group/creationForm.jsp"));
 		mappings.put("/group/create", new CreateGroupController());
 
-		mappings.put("/group/update", new UpdateGroupController());
+		mappings.put("/group/update", new AddMembersToGroupController());
 
 		mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
 		mappings.put("/user/login", new LoginController());
