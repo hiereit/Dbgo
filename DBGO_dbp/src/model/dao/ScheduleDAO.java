@@ -39,10 +39,10 @@ public class ScheduleDAO {
 		}
 	}
 	
-	public int update(String memo, String title, String category, String start_date, String end_date) {
+	public int update(Schedule sch) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(ScheduleMapper.class).updateSchedule(memo, title, category, start_date, end_date);
+			int result = sqlSession.getMapper(ScheduleMapper.class).updateSchedule(sch);
 			if (result > 0) {
 				sqlSession.commit();
 			}
