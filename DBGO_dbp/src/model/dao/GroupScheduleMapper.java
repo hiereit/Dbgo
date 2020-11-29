@@ -11,7 +11,7 @@ public interface GroupScheduleMapper {
 	
 	public int deleteGroupSchedule(String groupsch_id);
 	
-	public int updateGroupSchedule(@Param("groupsch_id") String groupsch_id, @Param("title") String title);
+	public int updateGroupSchedule(GroupSchedule groupsch);
 
 	public List<GroupSchedule> findGroupSchedule(String g_id);
 

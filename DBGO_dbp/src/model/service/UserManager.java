@@ -108,4 +108,8 @@ public class UserManager {//
 	public GroupSchedule insertGroupSchedule(GroupSchedule sch) {
 		return groupScheduleDAO.insertGroupSchedule(sch);
 	}
+
+	public int updateGroupSchedule(GroupSchedule sch) throws SQLException {
+		return groupScheduleDAO.updateGroupSchedule(sch);			
+	}
 }
