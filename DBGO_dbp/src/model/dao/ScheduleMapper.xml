@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.dao.ScheduleMapper">
+<cache />
+<insert id="insertScheduleInfo" parameterType="Schedule" useGeneratedKeys="true" keyProperty="sch_id">
+	<selectKey keyProperty="sch_id" resultType="string" order="BEFORE">
+		SELECT seq_schid.nextval AS id FROM DUAL
+	</selectKey>
+				
+	INSERT INTO SCHEDULE
+	VALUES (#{sch_id}, #{memo} #{title}, #{category}, #{u_id}, #{achievement}, #{end_date}, #{start_date})
+ </insert>
+
+<delete id="deleteScheduleInfo" parameterType="string">
+ 	DELETE FROM SCHEDULE
+ 	WHERE shc_id = #{shc_id}
+ </delete>
+ <update id="updateScheduleInfo" parameterType="string">
+	UPDATE SCHEDULE
+	SET memo = #{memo}, title = #{title}, String = #{category},
+		startDate = #{startDate}, endDate =#{endDate}
+	WHERE sch_id = #{sch_id}
+</update>
+ <update id="updateScheduleACH" parameterType="int">
+	UPDATE userInfo
+	SET achievement = #{achievement},  
+	WHERE sch_id = #{sch_id}
+</update>
+<select id="selectAllSchedule" resultType="Schedule">
+ 	SELECT *
+ 	FROM Schedule
+ 	WHERE title = #{title}
+</select>
+
+ <!-- select id="selectAllSchedule" resultType="Schedule">
+ 	SELECT *
+ 	FROM Schedule
+ 	WHERE 
+ </select> -->
+
+
+</mapper>
