@@ -20,12 +20,24 @@
  <update id="updateGroupSchedule" parameterType="string">
  	UPDATE FROM GROUP_SCHEDULE
  	SET title = #{title}
- 	WHERE groupsch_id = #groupsch_id}
+ 	WHERE groupsch_id = #{groupsch_id}
  </update>
 
  <select id="findGroupSchedule" parameterType="string" resultType="GroupSchedule">
- 	SELECT groupsch_id, title, groupsch_date, homework, memo
+ 	SELECT groupsch_id, title, groupsch_date, homework, memo, g_id
 	FROM GROUP_SCHEDULE
 	WHERE g_id = #{id}
+ </select>
+ 
+ <select id="findGroupName" parameterType="string" resultType="string">
+ 	SELECT g_name
+	FROM GROUPINFO
+	WHERE g_id = #{id}
+ </select>
+ 
+ <select id="findGroupScheduleDetail" parameterType="string" resultType="GroupSchedule">
+ 	SELECT homework, memo
+	FROM GROUP_SCHEDULE
+	WHERE groupsch_id = #{id}
  </select>
 </mapper>

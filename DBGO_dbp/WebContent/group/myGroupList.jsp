@@ -53,10 +53,11 @@
     	</div>
       <ul class="list-group" style=" padding-top: 30px;">
     	<c:forEach var="group" items='${mGroupList}'>
-    	<li class="list-group-item d-flex justify-content-between align-items-center" onClick="<c:url value='/group/view'>
+    	<li class="list-group-item d-flex justify-content-between align-items-center">
+    	<a href="<c:url value='/group/view'>
 		      <c:param name='g_id' value='${group.g_id}'/>
 				   </c:url>">
-          ${group.g_name}
+          ${group.g_name}</a>
           <span class="badge badge-secondary badge-pill">${group.numOfMembers}</span>
         </li>
     	</c:forEach>

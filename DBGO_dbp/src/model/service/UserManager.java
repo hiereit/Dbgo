@@ -92,4 +92,12 @@ public class UserManager {//
 	public List<GroupSchedule> findGroupSchedule(String g_id) {
 		return groupScheduleDAO.findGroupSchedule(g_id);
 	}
+
+	public GroupSchedule findGroupScheduleDetail(String groupsch_id) {
+		return groupScheduleDAO.findGroupScheduleDetail(groupsch_id);
+	}
+
+	public String findGroupName(String g_id) {
+		return groupScheduleDAO.findGroupName(g_id);
+	}
 }

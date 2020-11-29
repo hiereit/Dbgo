@@ -1,19 +1,21 @@
 package model.dto;
 
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
 
-public class GroupSchedule {
-	private String g_id, groupsch_id;
+@SuppressWarnings("serial")
+public class GroupSchedule implements Serializable {
+	private String g_id, groupsch_id, g_name;
 	private String homework;
-	private Date groupsch_date;
+	private String groupsch_date;
 	private String memo;
 	private String title;
 	
 	public GroupSchedule() {}
-
-	public GroupSchedule(String g_id) {
+	
+	public GroupSchedule(String g_name, String g_id, String groupsch_id, String homework, String groupsch_date, String memo,
+			String title) {
 		super();
+		this.g_name = g_name;
 		this.g_id = g_id;
 		this.groupsch_id = groupsch_id;
 		this.homework = homework;
@@ -22,15 +24,12 @@ public class GroupSchedule {
 		this.title = title;
 	}
 	
-	public GroupSchedule(String g_id, String groupsch_id, String homework, Date groupsch_date, String memo,
-			String title) {
-		super();
-		this.g_id = g_id;
-		this.groupsch_id = groupsch_id;
-		this.homework = homework;
-		this.groupsch_date = groupsch_date;
-		this.memo = memo;
-		this.title = title;
+	public String getG_name() {
+		return g_name;
+	}
+
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
 	}
 
 	public String getG_id() {
@@ -57,11 +56,11 @@ public class GroupSchedule {
 		this.homework = homework;
 	}
 
-	public Date getGroupsch_date() {
+	public String getGroupsch_date() {
 		return groupsch_date;
 	}
 
-	public void setGroupsch_date(Date groupsch_date) {
+	public void setGroupsch_date(String groupsch_date) {
 		this.groupsch_date = groupsch_date;
 	}
 

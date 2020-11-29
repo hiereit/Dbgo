@@ -24,7 +24,7 @@
 			form.password.focus();
 			return false;
 		}
-		if (form.password.value != form.password2.value) {
+		if (form.password.value != form.passwordConfirm.value) {
 			alert("비밀번호가 일치하지 않습니다.");
 			form.name.focus();
 			return false;
@@ -81,7 +81,7 @@ td {
 					<tr>
 						<th><label>ID</label></th>
 						<td>
-							<input class="form-control" id="readOnlyInput"  name="u_id" type="text" placeholder="${user.u_id}" readonly
+							<input class="form-control" id="readOnlyInput"  name="u_id" type="text" value="${user.u_id}" readonly
 							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>

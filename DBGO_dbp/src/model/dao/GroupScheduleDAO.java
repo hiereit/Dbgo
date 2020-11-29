@@ -39,7 +39,7 @@ public class GroupScheduleDAO {
 		} finally {
 			sqlSession.close();
 		}
-	};
+	}
 	
 	public int deleteGroupSchedule(String groupsch_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -52,7 +52,7 @@ public class GroupScheduleDAO {
 		} finally {
 			sqlSession.close();
 		}
-	};
+	}
 	
 	public int updateGroupSchedule(String groupsch_id, String title) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -65,7 +65,7 @@ public class GroupScheduleDAO {
 		} finally {
 			sqlSession.close();
 		}
-	};
+	}
 
 	public List<GroupSchedule> findGroupSchedule(String g_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -74,5 +74,23 @@ public class GroupScheduleDAO {
 		} finally {
 			sqlSession.close();
 		}
-	};
+	}
+
+	public GroupSchedule findGroupScheduleDetail(String groupsch_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(GroupScheduleMapper.class).findGroupScheduleDetail(groupsch_id);			
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public String findGroupName(String g_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(GroupScheduleMapper.class).findGroupName(g_id);			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

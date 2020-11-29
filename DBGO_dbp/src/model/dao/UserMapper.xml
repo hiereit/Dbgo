@@ -33,7 +33,7 @@
 <!-- public int removeUser (String u_id) -->
 <delete id="deleteUser" parameterType="string">
 	DELETE FROM userInfo
-	WHERE u_id = ?
+	WHERE u_id = #{u_id}
 </delete>
 
 <!-- public boolean existingUser(String u_id) -->

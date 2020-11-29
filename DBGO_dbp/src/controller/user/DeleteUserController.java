@@ -16,10 +16,10 @@ public class DeleteUserController implements Controller{//
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String deleteId = request.getParameter("userId");
+		String deleteId = request.getParameter("u_id");
     	log.debug("Delete User : {}", deleteId);
 
-    	UserManager manager = UserManager.getInstance();		
+    	UserManager manager = UserManager.getInstance();	
 		HttpSession session = request.getSession();	
 	
 		if ((UserSessionUtils.isLoginUser("admin", session) && 	// 로그인한 사용자가 관리자이고 	

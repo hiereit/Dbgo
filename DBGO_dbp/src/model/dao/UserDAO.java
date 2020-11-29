@@ -57,7 +57,7 @@ public class UserDAO {
 	}
 
 	public int updateUser(String u_id, String password) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
 			return sqlSession.getMapper(UserMapper.class).updateUser(u_id, password);
 		}finally {
@@ -67,7 +67,7 @@ public class UserDAO {
 	
 	
 	public int removeUser (String u_id) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
 			return sqlSession.getMapper(UserMapper.class).deleteUser(u_id);
 		}finally {
