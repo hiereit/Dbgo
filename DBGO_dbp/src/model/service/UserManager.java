@@ -85,7 +85,10 @@ public class UserManager {//
 		return groupDAO.create(group);		
 	}
 	
-	public int addMember(String g_id, String u_id) throws SQLException {
+	public int addMember(String g_id, String u_id) throws SQLException, UserNotFoundException {
+		if (userDAO.existingUser(u_id) == false) {
+			throw new UserNotFoundException(u_id + "는 존재하지 않는 아이디로 그룹에 추가할 수 없습니다.");
+		}	
 		return groupDAO.addMembers(g_id, u_id);
 	}
 	

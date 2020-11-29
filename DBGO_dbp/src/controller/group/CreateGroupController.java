@@ -17,17 +17,17 @@ public class CreateGroupController implements Controller{
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/user/login/form";
         }
-		
 		GroupInfo group = new GroupInfo(null, request.getParameter("name"));
-		String[] membersParam = request.getParameterValues("members");
-		if (membersParam != null) {
-			for (String member : membersParam) {
-				group.getMembers().add(member);
-			}
-		}
-		group.getMembers().add(UserSessionUtils.getLoginUserId(request.getSession()));
 	
 			try {
+				String[] membersParam = request.getParameterValues("members");
+				if (membersParam != null) {
+					for (String member : membersParam) {
+						group.getMembers().add(member);
+					}
+				}
+				group.getMembers().add(UserSessionUtils.getLoginUserId(request.getSession()));
+				
 				UserManager manager = UserManager.getInstance();
 				String gid = manager.createGroup(group).getG_id();
 				for (String member : group.getMembers()) {
@@ -39,6 +39,7 @@ public class CreateGroupController implements Controller{
 		        return "redirect:/group/list";	// 성공 시 커뮤니티 리스트 화면으로 redirect
 		        
 			} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
+				request.setAttribute("addMemberFailed", true);
 	            request.setAttribute("creationFailed", true);
 				request.setAttribute("exception", e);
 				request.setAttribute("group", group);
