@@ -11,8 +11,7 @@ public interface ScheduleMapper {
 	
 	public int deleteSchedule(String sch_id);
 			
-	public int updateSchedule(@Param("memo") String memo, @Param("memo") String title, @Param("memo") String category, 
-			@Param("memo") String start_date, @Param("memo") String end_date);
+	public int updateSchedule(Schedule sch);
 
 	public void updateScheduleACH(int ach);
 	

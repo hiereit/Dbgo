@@ -14,12 +14,12 @@
 
 <delete id="deleteSchedule" parameterType="string">
  	DELETE FROM SCHEDULE
- 	WHERE shc_id = #{sch_id}
+ 	WHERE sch_id = #{sch_id}
  </delete>
- <update id="updateSchedule" parameterType="string">
+ <update id="updateSchedule" parameterType="Schedule">
 	UPDATE SCHEDULE
-	SET memo = #{memo}, title = #{title}, String = #{category},
-		startDate = #{start_date}, endDate =#{end_date}
+	SET memo = #{memo, jdbcType=VARCHAR}, title = #{title}, category = #{category},
+		start_date = #{start_date}, end_date = #{end_date, jdbcType=VARCHAR}
 	WHERE sch_id = #{sch_id}
 </update>
  <update id="updateScheduleACH" parameterType="int">
@@ -28,7 +28,7 @@
 	WHERE sch_id = #{sch_id}
 </update>
 <select id="selectAllSchedule" parameterType="string" resultType="Schedule">
- 	SELECT sch_id, title, start_date, end_date
+ 	SELECT sch_id, title, start_date, end_date, memo, category
  	FROM Schedule
  	WHERE u_id = #{u_id}
 </select>
