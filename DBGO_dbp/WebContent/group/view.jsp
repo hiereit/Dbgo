@@ -40,7 +40,7 @@ table.table-bordered {
 }
 
 .card {
-	position:absolute;
+	position: absolute;
 	width: 300px;
 	height: 390px;
 	left: 51%;
@@ -149,21 +149,30 @@ hr {
 	border: 1px solid #888;
 	width: 30%; /* Could be more or less, depending on screen size */
 }
+
 h3 {
 	position: absolute;
 	left: 32%;
 	top: 20%;
 	font: normal normal 600 20px JSDongkang-Regular;
 }
+
 #addBtn {
 	position: absolute;
 	left: 40%;
 	top: 20%;
 	font: normal normal 600 15px JSDongkang-Regular;
 }
+
+#updateBtn {
+	position: absolute;
+	left: 47%;
+	top: 20%;
+	font: normal normal 600 15px JSDongkang-Regular;
+}
 </style>
 <script>
-    /* document.getElementById('subBtn').addEventListener('click', function() {
+	/* document.getElementById('subBtn').addEventListener('click', function() {
 		if (form.title.value == "") {
 			alert("일정 제목을 입력하십시오.");
 			form.title.focus();
@@ -176,53 +185,77 @@ h3 {
 		}
 		 $('#myModal').hide();
 	  }); */
-    function addSchedule() {
-    	if (form.title.value == "") {
+	function addSchedule() {
+		if (form.title.value == "") {
 			alert("일정 제목을 입력하십시오.");
 			form.title.focus();
 			return false;
 		}
-		 if (form.date.value == "") {
-				alert("날짜를 입력하십시오.");
-				form.date.focus();
-				return false;
+		if (form.date.value == "") {
+			alert("날짜를 입력하십시오.");
+			form.date.focus();
+			return false;
 		}
-    	form.submit();
-    }
-    function show_pop() {
-        $('#myModal').show();
-    }
-    </script>
+		form.submit();
+	}
+	function updateSchedule() {
+		if (update.updateTitle.value == "") {
+			alert("일정 제목을 입력하십시오.");
+			form.title.focus();
+			return false;
+		}
+		if (update.updateDate.value == "") {
+			alert("날짜를 입력하십시오.");
+			form.date.focus();
+			return false;
+		}
+		update.submit();
+	}
+	function show_pop() {
+		$('#myModal').show();
+	}
+	function updatenDel() {
+		$('#updelModal').show();
+	}
+</script>
 </head>
 <body>
 	<%@include file="/navbar.jsp"%>
 	<h3>${g_name}</h3>
-	<button id="addBtn" class="btn btn-warning" onClick="show_pop();">일정 추가</button>
+	<button id="addBtn" class="btn btn-warning" onClick="show_pop();">일정
+		추가</button>
+	<c:if test="${detail}">
+		<button id="updateBtn" class="btn btn-secondary"
+			onClick="updatenDel();">수정/삭제</button>
+	</c:if>
 	<div class="wrap">
 		<div class="tdiv">
 			<table class="table table-bordered">
 				<c:forEach var="grpsch" items="${grpschList}">
 					<tr>
 						<th scope="row">${grpsch.groupsch_date}</th>
-						<td>
-						<a href="<c:url value='/group/schedule/view'>
+						<td><a
+							href="<c:url value='/group/schedule/view'>
 						      <c:param name='groupsch_id' value='${grpsch.groupsch_id}'/>
 						      <c:param name='g_id' value='${g_id}'/>
 						 </c:url>">
-				  ${grpsch.title}</a></td>
+								${grpsch.title}</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
 		<div id="myModal" class="modal">
 			<div class="modal-content">
-				<form name="form" method="POST" action="<c:url value='/group/schedule/add'/>">
+				<form name="form" method="POST"
+					action="<c:url value='/group/schedule/add'/>">
 					<fieldset>
-						<button type="button" id="subBtn" class="btn btn-warning btn-rounded" onClick="addSchedule()">추가</button>
-						<a href="<c:url value='/group/view'>
+						<button type="button" id="subBtn"
+							class="btn btn-warning btn-rounded" onClick="addSchedule()">추가</button>
+						<a
+							href="<c:url value='/group/view'>
 						      <c:param name='g_id' value='${g_id}'/>
 						 </c:url>">
-						<button type="button" class="btn btn-warning btn-rounded">취소</button>
+							<button type="button" class="btn btn-warning btn-rounded">취소</button>
 						</a>
 						<div class="form-group">
 							<input type="hidden" id="g_id" name="g_id" value="${g_id}">
@@ -262,20 +295,82 @@ h3 {
 				</form>
 			</div>
 		</div>
+		<div id="updelModal" class="modal">
+			<div class="modal-content">
+				<form name="update" method="POST"
+					action="<c:url value='/group/schedule/update'/>">
+					<fieldset>
+						<a
+							href="<c:url value='/group/schedule/view'>
+						      <c:param name='groupsch_id' value='${groupsch_id}'/>
+						      <c:param name='g_id' value='${g_id}'/>
+						 </c:url>">
+							<button type="button" class="btn btn-warning btn-rounded">취소</button>
+						</a>
+						<button type="button" id="subBtn"
+							class="btn btn-warning btn-rounded" onClick="updateSchedule()">수정</button>
+						<a
+							href="<c:url value='/group/schedule/delete'>
+						      <c:param name='groupsch_id' value='${groupsch_id}'/>
+						      <c:param name='g_id' value='${g_id}'/>
+						 </c:url>">
+							<button type="button" class="btn btn-warning btn-rounded">삭제</button>
+						</a>
+						<div class="form-group">
+							<input type="hidden" id="g_id" name="updateG_id"
+								value="${fgsch.g_id}"> <input type="hidden"
+								id="groupsch_id" name="updateGroupsch_id"
+								value="${fgsch.groupsch_id}">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control-plaintext"
+								id="inputScheduleTitle" placeholder="제목" name="updateTitle"
+								value="${fgsch.title}">
+						</div>
+						<hr>
+						<div class="inputContent">
+							<div class="form-group row">
+								<label for="inputScheduleDate" class="col-md-1 col-form-label"><i
+									class="far fa-calendar"></i></label>
+								<div class="col-md-11">
+									<input type="text" class="form-control-plaintext"
+										id="inputScheduleDate" placeholder="날짜" name="updateDate"
+										value="${fgsch.groupsch_date}">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputUsers" class="col-md-1 col-form-label"><i
+									class="fa fa-users"></i></label>
+								<div class="col-md-11">
+									<input type="text" class="form-control-plaintext"
+										id="inputAttens" placeholder="과제" name="updateHomework"
+										value="${fgsch.homework}">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputMemo" class="col-md-1 col-form-label"><i
+									class="fa fa-sticky-note"></i></label>
+								<div class="col-md-11">
+									<input type="text" class="form-control-plaintext"
+										id="inputMemo" placeholder="기록" name="updateMemo"
+										value="${fgsch.memo}">
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
 		<ul class="list-group">
 			<li class="list-group-item list-group-item-warning"
 				style="padding-top: 20px; padding-bottom: 20px; text-align: center;">
-				<h5 class="mb-1">
-					${fgsch.homework}
-				</h5>
+				<h5 class="mb-1">${fgsch.homework}</h5>
 			</li>
 		</ul>
 		<div class="card border-warning mb-3">
 			<div class="card-header">기록</div>
 			<div class="card-body">
-				<p class="card-text">
-					${fgsch.memo}
-				</p>
+				<p class="card-text">${fgsch.memo}</p>
 			</div>
 		</div>
 	</div>

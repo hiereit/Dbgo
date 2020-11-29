@@ -25,6 +25,8 @@ public class RequestMapping {
     	mappings.put("/group/view", new ViewGroupController());
     	mappings.put("/group/schedule/view", new ViewGroupScheduleController());
     	mappings.put("/group/schedule/add", new InsertGroupScheduleController());
+    	mappings.put("/group/schedule/update", new UpdateGroupScheduleController());
+    	mappings.put("/group/schedule/delete", new DeleteGroupScheduleController());
 		mappings.put("/group/list", new MyGroupListController());
 		mappings.put("/group/create/form", new ForwardController("/group/creationForm.jsp"));
 		mappings.put("/group/create", new CreateGroupController());

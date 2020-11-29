@@ -21,10 +21,12 @@ public class ViewGroupScheduleController implements Controller {
 		List<GroupSchedule> grpschList = manager.findGroupSchedule(g_id);
 		String g_name = manager.findGroupName(g_id);
 		
+		request.setAttribute("groupsch_id", groupsch_id);
 		request.setAttribute("fgsch", fgsch);
 		request.setAttribute("grpschList", grpschList);
 		request.setAttribute("g_name", g_name);
 		request.setAttribute("g_id", g_id);
+		request.setAttribute("detail", true);
 		return "/group/view.jsp";
     }
 }

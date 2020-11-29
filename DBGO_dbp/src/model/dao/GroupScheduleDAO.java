@@ -54,10 +54,10 @@ public class GroupScheduleDAO {
 		}
 	}
 	
-	public int updateGroupSchedule(String groupsch_id, String title) {
+	public int updateGroupSchedule(GroupSchedule groupsch) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(GroupScheduleMapper.class).updateGroupSchedule(groupsch_id, title);
+			int result = sqlSession.getMapper(GroupScheduleMapper.class).updateGroupSchedule(groupsch);
 			if (result > 0) {
 				sqlSession.commit();
 			} 

@@ -21,6 +21,14 @@ public class GroupSchedule implements Serializable {
 		this.title = title;
 	}
 	
+	public void UpdateGroupSchedule(String groupsch_id, String title, String groupsch_date, String homework, String memo) {
+		this.groupsch_id = groupsch_id;
+		this.homework = homework;
+		this.groupsch_date = groupsch_date;
+		this.memo = memo;
+		this.title = title;
+	}
+	
 	public String getG_name() {
 		return g_name;
 	}

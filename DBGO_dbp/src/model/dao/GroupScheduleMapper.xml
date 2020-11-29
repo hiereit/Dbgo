@@ -17,9 +17,9 @@
  	WHERE groupsch_id = #{id}
  </delete>
  
- <update id="updateGroupSchedule" parameterType="string">
- 	UPDATE FROM GROUP_SCHEDULE
- 	SET title = #{title}
+ <update id="updateGroupSchedule" parameterType="GroupSchedule">
+ 	UPDATE GROUP_SCHEDULE
+ 	SET title = #{title}, groupsch_date = #{groupsch_date}, homework = #{homework}, memo = #{memo}
  	WHERE groupsch_id = #{groupsch_id}
  </update>
 
@@ -36,7 +36,7 @@
  </select>
  
  <select id="findGroupScheduleDetail" parameterType="string" resultType="GroupSchedule">
- 	SELECT homework, memo
+ 	SELECT *
 	FROM GROUP_SCHEDULE
 	WHERE groupsch_id = #{id}
  </select>
