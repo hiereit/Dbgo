@@ -33,6 +33,8 @@ public class DispatcherServlet extends HttpServlet {
     	
     	// URL 중 servletPath에 대응되는 controller를 구함
         Controller controller = rm.findController(servletPath);
+        if (controller == null) { System.out.println(servletPath); return; }
+        else { System.out.println(servletPath); }
         try {
         	// controller를 통해 request 처리 후, 이동할 uri를 반환 받음
             String uri = controller.execute(request, response);

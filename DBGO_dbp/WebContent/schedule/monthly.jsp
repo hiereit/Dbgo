@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="model.dto.Schedule"%>
+<% java.util.List<Schedule> schedules = (java.util.ArrayList<Schedule>)request.getAttribute("test"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +17,7 @@
 	href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css'
 	rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script src="../static/vendor/jquery/jquery.min.js"></script>
+
 <link href="<c:url value='/css/fullcalendar.css' />" rel='stylesheet' />
 <script src="<c:url value='/js/fullcalendar.js' />"></script>
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
@@ -32,7 +34,7 @@
     }
 	::placeholder {
         color: #B8B8B8;
-      }
+    }
       label[for="selectCategory"] {
         padding-bottom: 0px;
         padding-top: 0px;
@@ -117,20 +119,46 @@
 </style>
 <script>
 	var isSubSch = false;
+	var list = new Array();
+	'<c:forEach items="${test}" var="item">'
+	list.push("${item}");
+'</c:forEach>'
+
+
+
+	
+	 var calendar;
 	document.addEventListener('DOMContentLoaded', function() {
 		var calendarEl = document.getElementById('calendar');
-		var calendar = new FullCalendar.Calendar(calendarEl, {
+		calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView : 'dayGridMonth',
 			themeSystem : 'bootstrap',
-			
 			dateClick: function(info) {
 				   //alert('Date: ' + info.dateStr);
 				   //alert('Resource ID: ' + info.resource.id);
 				    $('#inputScheduleDate').val(info.dateStr);
 				   $('#myModal').show(); 
-			}
-			
+			},
+			editable: true,
+			events: [
+				<%
+				for (int i = 0; i < schedules.size(); i++) {
+					Schedule s = schedules.get(i);
+				%>
+				{
+					title: '<%= s.getTitle() %>',
+					start: "2020-11-10"
+				},
+				<%
+				}
+				%>
+				{
+					title: 'default',
+					start: "2020-11-11"
+				}
+		]
 		});
+		
 		
 		calendar.render();
 		
@@ -149,15 +177,30 @@
 	             title: 'dynamic event',
 	             start: '2020-11-11'
 	             
+	             
 	           });
 			 $('#myModal').hide();
 		  });
+		
+	
+		
 	});
 	function close_pop() {
-	     $('#myModal').hide();
+		$('#myModal').modal('hide');
 	 };
 	 
+
+
+	 '<c:forEach items="${test}" var="item" varStatus="status">'
+		var title = '${item.title}';
+		var date = '${item.schStartDate}';
+		//add_event(title, date);
+		
+	'</c:forEach>'
+	
 </script>
+
+
 </head>
 <body>
   	<%@include file="/navbar.jsp" %>

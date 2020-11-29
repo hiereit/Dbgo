@@ -11,6 +11,13 @@ public class Schedule {
 		super();
 	}
 	
+	public Schedule(Date schStartDate, String title) {
+		super();
+		this.schStartDate = schStartDate;
+		this.title = title;
+
+	}	
+	
 	public Schedule(int sch_id, Date schStartDate, Date schEndDate, String memo, 
 			String title, String category, int u_id, int achievement) {
 		super();
