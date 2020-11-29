@@ -312,6 +312,7 @@ h3 {
 						<a
 							href="<c:url value='/group/schedule/delete'>
 						      <c:param name='groupsch_id' value='${groupsch_id}'/>
+						      <c:param name='g_id' value='${g_id}'/>
 						 </c:url>">
 							<button type="button" class="btn btn-warning btn-rounded">삭제</button>
 						</a>

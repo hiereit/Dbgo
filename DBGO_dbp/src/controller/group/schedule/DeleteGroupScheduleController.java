@@ -10,16 +10,12 @@ import model.service.UserManager;
 public class DeleteGroupScheduleController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		GroupSchedule sch = new GroupSchedule();
-		sch.UpdateGroupSchedule(request.getParameter("updateGroupsch_id"),
-				request.getParameter("updateTitle"),
-				request.getParameter("updateDate"),
-				request.getParameter("updateHomework"),
-				request.getParameter("updateMemo"));
+		String groupsch_id = request.getParameter("groupsch_id");
+		String g_id = request.getParameter("g_id");
 
 		UserManager manager = UserManager.getInstance();
-		manager.updateGroupSchedule(sch);
+		manager.deleteGroupSchedule(groupsch_id);
 
-		return "redirect:/group/schedule/view?groupsch_id=" + request.getParameter("updateGroupsch_id") + "&g_id=" + request.getParameter("updateG_id");
+		return "redirect:/group/schedule/view?groupsch_id=" + groupsch_id + "&g_id=" + g_id;
 	}
 }
