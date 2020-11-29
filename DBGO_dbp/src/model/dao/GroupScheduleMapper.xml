@@ -5,11 +5,11 @@
 <cache />
 
  <insert id="insertGroupSchedule" parameterType="GroupSchedule">
-	<selectKey keyProperty="id" resultType="string" order="BEFORE">
+	<selectKey keyProperty="groupsch_id" resultType="string" order="BEFORE">
 		SELECT seq_gschid.nextval AS id FROM DUAL
 	</selectKey>
-	INSERT INTO GROUP_SCHEDULE 
-	VALUES (#{homework}, #{g_id}, #{id}, #{memo}, #{title}, #{groupsch_date})
+	INSERT INTO GROUP_SCHEDULE (homework, g_id, groupsch_id, memo, title, groupsch_date)
+	VALUES (#{homework}, #{g_id}, #{groupsch_id}, #{memo}, #{title}, #{groupsch_date})
  </insert>
 
  <delete id="deleteGroupSchedule" parameterType="string">

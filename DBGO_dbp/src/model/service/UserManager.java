@@ -104,4 +104,8 @@ public class UserManager {//
 	public String findGroupName(String g_id) {
 		return groupScheduleDAO.findGroupName(g_id);
 	}
+	
+	public GroupSchedule insertGroupSchedule(GroupSchedule sch) {
+		return groupScheduleDAO.insertGroupSchedule(sch);
+	}
 }

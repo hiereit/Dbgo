@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.group.*;
-import controller.group.schedule.ViewGroupScheduleController;
+import controller.group.schedule.*;
 import controller.user.*;
 import controller.schedule.*;
 
@@ -23,6 +23,7 @@ public class RequestMapping {
 
     	mappings.put("/group/view", new ViewGroupController());
     	mappings.put("/group/schedule/view", new ViewGroupScheduleController());
+    	mappings.put("/group/schedule/add", new InsertGroupScheduleController());
 		mappings.put("/group/list", new MyGroupListController());
 		mappings.put("/group/create/form", new ForwardController("/group/creationForm.jsp"));
 		mappings.put("/group/create", new CreateGroupController());
