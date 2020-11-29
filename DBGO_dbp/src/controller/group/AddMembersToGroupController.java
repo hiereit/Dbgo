@@ -21,26 +21,30 @@ public class AddMembersToGroupController implements Controller{
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/user/login/form";
 		}
-		
-		String myId = UserSessionUtils.getLoginUserId(request.getSession());
-		
-		if (request.getMethod().equals("GET")) {	
-    		// GET request: 회원정보 수정 form 요청	
-    		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
-   
-    		log.debug("AddMembersToGroup Request : {}", myId);
-    		
-    		UserManager manager = UserManager.getInstance();
-    		
-			List<GroupInfo> myGroupList = manager.findMyGroupList(myId);	// 커뮤니티 리스트 검색
-			request.setAttribute("mGroupList", myGroupList);	
-				
-			return "/group/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
+		try {
+			String myId = UserSessionUtils.getLoginUserId(request.getSession());
 			
+			if (request.getMethod().equals("GET")) {	
+	    		// GET request: 회원정보 수정 form 요청	
+	    		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
+	   
+	    		log.debug("AddMembersToGroup Request : {}", myId);
+	    		
+	    		UserManager manager = UserManager.getInstance();
+	    		
+				List<GroupInfo> myGroupList = manager.findMyGroupList(myId);	// 커뮤니티 리스트 검색
+				request.setAttribute("mGroupList", myGroupList);	
+					
+				return "/group/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
+				
+			}
+	    	// POST request (회원정보가 parameter로 전송됨)
+			UserManager manager = UserManager.getInstance();
+			manager.addMember(request.getParameter("g_id"), request.getParameter("mem"));			
+			return "redirect:/group/list";
+		} catch (Exception e) {
+			request.setAttribute("addMemberFailed", true);
+			return "redirect:/group/update";
 		}
-    	// POST request (회원정보가 parameter로 전송됨)
-		UserManager manager = UserManager.getInstance();
-		manager.addMember(request.getParameter("g_id"), request.getParameter("mem"));			
-        return "redirect:/group/list";		
 	}
 }
