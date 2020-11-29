@@ -159,14 +159,14 @@ h3 {
 
 #addBtn {
 	position: absolute;
-	left: 40%;
+	left: 60%;
 	top: 20%;
 	font: normal normal 600 15px JSDongkang-Regular;
 }
 
 #updateBtn {
 	position: absolute;
-	left: 47%;
+	left: 67%;
 	top: 20%;
 	font: normal normal 600 15px JSDongkang-Regular;
 }
@@ -233,12 +233,21 @@ h3 {
 			<table class="table table-bordered">
 				<c:forEach var="grpsch" items="${grpschList}">
 					<tr>
+						<c:choose>
+						<c:when test="${fgsch.groupsch_id==grpsch.groupsch_id}">
+						<th scope="row" style="background-color:#ffe4e1">${grpsch.groupsch_date}</th>
+						<td style="background-color:#ffe4e1">
+						</c:when>
+						<c:otherwise>
 						<th scope="row">${grpsch.groupsch_date}</th>
-						<td><a
+						<td>
+						</c:otherwise>
+						</c:choose>
+						<a
 							href="<c:url value='/group/schedule/view'>
 						      <c:param name='groupsch_id' value='${grpsch.groupsch_id}'/>
 						      <c:param name='g_id' value='${g_id}'/>
-						 </c:url>">
+						 </c:url>" class="text-muted">
 								${grpsch.title}</a></td>
 					</tr>
 				</c:forEach>
@@ -276,7 +285,7 @@ h3 {
 							</div>
 							<div class="form-group row">
 								<label for="inputUsers" class="col-md-1 col-form-label"><i
-									class="fa fa-users"></i></label>
+									class="fas fa-tasks"></i></label>
 								<div class="col-md-11">
 									<input type="text" class="form-control-plaintext"
 										id="inputAttens" placeholder="과제" name="homework">
@@ -340,7 +349,7 @@ h3 {
 							</div>
 							<div class="form-group row">
 								<label for="inputUsers" class="col-md-1 col-form-label"><i
-									class="fa fa-users"></i></label>
+									class="fas fa-tasks"></i></label>
 								<div class="col-md-11">
 									<input type="text" class="form-control-plaintext"
 										id="inputAttens" placeholder="과제" name="updateHomework"
