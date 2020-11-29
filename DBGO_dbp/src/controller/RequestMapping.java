@@ -21,6 +21,7 @@ public class RequestMapping {
 
 		mappings.put("/schedule/monthly", new MonthlyController());
 		mappings.put("/schedule/create", new CreateScheduleController());
+		mappings.put("/schedule/update", new UpdateScheduleController());
 
     	mappings.put("/group/view", new ViewGroupController());
     	mappings.put("/group/schedule/view", new ViewGroupScheduleController());
@@ -30,7 +31,7 @@ public class RequestMapping {
 		mappings.put("/group/list", new MyGroupListController());
 		mappings.put("/group/create/form", new ForwardController("/group/creationForm.jsp"));
 		mappings.put("/group/create", new CreateGroupController());
-
+		mappings.put("/group/create/idCheck", new IdCheckController());
 		mappings.put("/group/update", new AddMembersToGroupController());
 
 		mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
