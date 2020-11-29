@@ -16,19 +16,6 @@ public class IdCheckController implements Controller {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		try {
-			UserDAO userDAO = new UserDAO();
-			if (userDAO.existingUser(request.getParameter("id")) == true) {
-				return "/user/creationFormm.jsp";
-			}
-			else {
-				return "/user/creationFormm.jsp";
-			}
-	        
-		} catch (ExistingUserException e) {		// 예외 발생 시 회원가입 form으로 forwarding
-            request.setAttribute("registerFailed", true);
-			request.setAttribute("exception", e);
-			return "/user/registerForm.jsp";
-		}
+		
     }
 }

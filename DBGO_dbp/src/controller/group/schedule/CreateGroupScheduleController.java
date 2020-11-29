@@ -1,4 +1,4 @@
-package controller.schedule;
+package controller.group.schedule;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

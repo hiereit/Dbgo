@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.group.*;
+import controller.group.schedule.ViewGroupScheduleController;
 import controller.user.*;
 import controller.schedule.*;
 

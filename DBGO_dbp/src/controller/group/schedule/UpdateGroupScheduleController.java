@@ -1,4 +1,4 @@
-package controller.schedule;
+package controller.group.schedule;
 
 public class UpdateGroupScheduleController {
 

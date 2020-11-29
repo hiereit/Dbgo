@@ -182,9 +182,6 @@ h3 {
 function close_pop() {
      $('#myModal').hide();
  }
- function submit() {
-	 form.submit();
- }
     </script>
 </head>
 <body>
