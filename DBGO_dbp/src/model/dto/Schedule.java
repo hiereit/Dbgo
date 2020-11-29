@@ -1,24 +1,21 @@
 package model.dto;
-import java.util.Date;
 
 public class Schedule {
-	private String memo, title, category;
+	private String memo, title, category, schStartDate, schEndDate;
 	private int achievement, u_id, schId;
-	private Date schStartDate, schEndDate;
 	
-	//Constructor (default/ ...)
-	public Schedule() { //default ������
+	public Schedule() {
 		super();
 	}
 	
-	public Schedule(Date schStartDate, String title) {
+	public Schedule(String schStartDate, String title) {
 		super();
 		this.schStartDate = schStartDate;
 		this.title = title;
 
 	}	
 	
-	public Schedule(int sch_id, Date schStartDate, Date schEndDate, String memo, 
+	public Schedule(int sch_id, String schStartDate, String schEndDate, String memo, 
 			String title, String category, int u_id, int achievement) {
 		super();
 		this.schId = sch_id;
@@ -30,13 +27,13 @@ public class Schedule {
 		this.achievement = achievement;
 	}	
 	
-	//setter & getter ����
+
 	public int getSchId() {		return schId;	}
 	public void setSchId(int schId) {		this.schId = schId;	}
-	public Date getSchStartDate() {		return schStartDate;	}
-	public void setSschStartDate(Date schStartDate) {		this.schStartDate = schStartDate;	}
-	public Date getSchEndDate() {	return schEndDate;}
-	public void setSchEndDate(Date schEndDate) {		this.schEndDate = schEndDate;	}
+	public String getSchStartDate() {		return schStartDate;	}
+	public void setSschStartDate(String schStartDate) {		this.schStartDate = schStartDate;	}
+	public String getSchEndDate() {	return schEndDate;}
+	public void setSchEndDate(String schEndDate) {		this.schEndDate = schEndDate;	}
 	public String getMemo() {		return memo;	}
 	public void setMemo(String memo) {		this.memo = memo;	}
 	public String getTitle() {		return title;	}
