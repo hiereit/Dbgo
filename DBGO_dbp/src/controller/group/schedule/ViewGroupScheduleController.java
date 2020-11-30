@@ -1,5 +1,6 @@
 package controller.group.schedule;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ public class ViewGroupScheduleController implements Controller {
 		GroupSchedule fgsch = manager.findGroupScheduleDetail(groupsch_id);
 		
 		List<GroupSchedule> grpschList = manager.findGroupSchedule(g_id);
+		Collections.sort(grpschList, new GroupSchedule.SortByDate());
+		
 		String g_name = manager.findGroupName(g_id);
 		
 		request.setAttribute("groupsch_id", groupsch_id);

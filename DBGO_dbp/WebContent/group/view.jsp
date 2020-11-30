@@ -76,9 +76,10 @@ table.table-bordered {
 	opacity: 1;
 }
 
-.btn-warning {
+.btn-warning, .btn-secondary {
 	font-family: JSDongkang-Regular;
 	font-size: 18px;
+	margin-left: 5px;
 }
 
 
@@ -188,12 +189,12 @@ margin: auto; }
 	function updateSchedule() {
 		if (update.updateTitle.value == "") {
 			alert("일정 제목을 입력하십시오.");
-			form.title.focus();
+			update.title.focus();
 			return false;
 		}
 		if (update.updateDate.value == "") {
 			alert("날짜를 입력하십시오.");
-			form.date.focus();
+			update.date.focus();
 			return false;
 		}
 		update.submit();
@@ -226,17 +227,22 @@ margin: auto; }
 						<c:choose>
 						<c:when test="${fgsch.groupsch_id==grpsch.groupsch_id}">
 						<th scope="row" style="background-color:#ffe4e1">${grpsch.groupsch_date}</th>
-						<td style="background-color:#ffe4e1">
+						<td style="background-color:#ffe4e1"><a href="<c:url value='/group/schedule/view'>
+						      <c:param name='groupsch_id' value='${grpsch.groupsch_id}'/>
+						      <c:param name='g_id' value='${g_id}'/></c:url>" class="text-muted">
+								${grpsch.title}</a>
+								</td>
 						</c:when>
 						<c:otherwise>
 						<th scope="row">${grpsch.groupsch_date}</th>
-						<td>
-						</c:otherwise>
-						</c:choose>
-						<a href="<c:url value='/group/schedule/view'>
+						<td><a href="<c:url value='/group/schedule/view'>
 						      <c:param name='groupsch_id' value='${grpsch.groupsch_id}'/>
 						      <c:param name='g_id' value='${g_id}'/></c:url>" class="text-muted">
-								${grpsch.title}</a></td>
+								${grpsch.title}</a>
+								</td>
+						</c:otherwise>
+						</c:choose>
+						
 					</tr>
 				</c:forEach>
 			</table>
