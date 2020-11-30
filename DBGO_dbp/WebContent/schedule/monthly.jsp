@@ -120,26 +120,24 @@
 <script>
 	 var calendar;
 	 
-	 HashMap = function() {
-		 this.map = new Array();
-	 }
-	 
-	 HashMap.prototype = {
-			 put : function(key, value) {
-				 this.map[key] = value;
-			 },
-	 			get : function(key) {
-	 				return this.map[key];
-	 			},
-	 			isIn : function(key) {
-	 				for (i in this.map){
-	 					if (i == key) {
-	 						return true;
-	 					}
-	 					return false;
-	 				}
-	 			}
-	 };
+	 var HashMap = function(obj) {
+		 var mapData = (obj != null) ? cloneObject(obj) : new Object();
+		 
+		 this.put = function(key, value) {
+				mapData[key] = value;
+			}
+		 this.get = function(key) {
+				return mapData[key];
+			}
+		 this.containsKey = function(key) {
+				for (var tKey in mapData) {
+					if (tKey == key) {
+						return true;
+					}
+				}
+				return false;
+			}
+	 }	 
 	 
 	 function getFormatDate(date){
 		    var year = date.getFullYear();              //yyyy
@@ -203,7 +201,7 @@
 			      if (eventObj.end != null) {
 			    	  $('#myModal2 #inputScheduleDate[name="endDate"]').val(getFormatDate(eventObj.end)); 
 			      }
-			      if (memo.isIn(eventObj.id)) {
+			      if (memo.containsKey(eventObj.id)) {
 			    	  $('#myModal2 #inputMemo').val(memo.get(eventObj.id));
 			      }
 			      $('#myModal2 form').append('<input type="hidden" name="sch_id" value="'+  eventObj.id +'" >');
