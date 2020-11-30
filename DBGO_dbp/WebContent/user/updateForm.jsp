@@ -35,7 +35,8 @@
 
 <style>
 .signUp {
-	font: normal normal bold 15px/15px Binggrae !important;
+	font-family: JSDongkang-Bold!important;
+	font-size: 15px;
 	top: 15%;
 	left: 50%;
 	background: #EFFBEF;
@@ -43,17 +44,18 @@
 	width: 700px;
 	margin-top: 5em;
 	margin-bottom: 5em;
-	margin-left: 25em;
-	margin-right: 20em;
 	padding: 30px;
 }
 
 .centerElement {
-	text-align: center;
+	width: fit-content;
+       padding-top: 30px;
+		margin: auto;
+		text-align: center;
 }
 
 table {
-	margin-left: 50px;
+	margin: 40px auto;
 }
 
 td {
@@ -66,18 +68,24 @@ td {
 	margin-top: 3em;
 }
 
+h1 {
+	font-family: JSDongkang-Bold!important;
+}
+
+.btn-primary {
+font-family: JSDongkang-Regular!important;
+}
+
 </style>
 </head>
 <body style="overflow: scroll">
 	<%@include file="/navbar.jsp"%>
 
-	<form name="form" method="POST" action="<c:url value='/user/update' />">
-		<div class="centerElement">
+	<div class="centerElement">
+		<form name="form" method="POST" action="<c:url value='/user/update' />">
 			<div class="signUp">
 				<h1 class="text-primary">회원정보 수정</h1>
-				<br> <br>
 				<table>
-					<!-- <input type="hidden" name="u_id" value="${user.u_id}" /> -->
 					<tr>
 						<th><label>ID</label></th>
 						<td>
@@ -118,15 +126,12 @@ td {
 						</td>
 					</tr>
 				</table>
-				<br>
 				<div class="form-group">
 					<input type="button" class="btn btn-primary" value="수정" onClick="userModify()" 
-					style="margin-bottom: 15px; height: 40px;">
+					style="height: 40px;">
 				</div>
 			</div>
-		</div>
-		
-	</form>
-	
+		</form>
+	</div>
 </body>
 </html>

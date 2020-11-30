@@ -18,25 +18,32 @@
         padding-right: 10px;
       }
       .list {
-        margin:auto;
-        width: 40%;
+        margin: auto;
+        width: fit-content;
         padding-top: 100px;
-        font: normal normal normal 15px JSDongkang-Regular;
       }
-      h2 {
-      	padding-left: 5px;
-        font: normal normal normal 40px JSDongkang-Regular;
-      }
+     
       a { float: right; }
       button {
       	padding-top: 5px;
       	float: right;
         border-radius: 10px!important;
-        text-align: left;
-        font: normal normal bold 16px JSDongkang-Regular!important;
+        text-align: center;
         color: #000000;
       }
+      .gl {
+      	font: normal normal normal 16px JSDongkang-Regular!important;
+      	width: 600px;
+      }
+       h2 {
+      	padding-left: 5px;
+      	font-family: JSDongkang-Regular;
+		font-size: 40px;
+      }
       .title button, .title h2 { display: inline; }
+      .btn-warning {
+      	font: normal normal normal 18px JSDongkang-Regular!important;
+      }
     </style>
     <script>
     
@@ -48,12 +55,10 @@
     	<div class="title">
 	    	<h2>나의 그룹</h2>
 	    	<a href="<c:url value='/group/create/form'/>" class="btn btn-link"><button type="button" class="btn btn-warning">그룹 추가</button></a>
-	    	
-	      	
     	</div>
       <ul class="list-group" style=" padding-top: 30px;">
     	<c:forEach var="group" items='${mGroupList}'>
-    	<li class="list-group-item d-flex justify-content-between align-items-center">
+    	<li class="list-group-item d-flex justify-content-between align-items-center gl">
     	<a href="<c:url value='/group/view'>
 		      <c:param name='g_id' value='${group.g_id}'/>
 				   </c:url>">

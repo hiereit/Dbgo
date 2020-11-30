@@ -29,18 +29,17 @@
 	background: #EFFBEF;
 	border-radius: 25px;
 	width: 500px;
-	height: 500px;
 	margin: auto;
 	margin-bottom: 50px;
 }
 
 .centerElement {
 	text-align: center;
-	padding-top: 130px;
+	padding-top: 50px;
 }
 
 h1 {
-	padding-top: 50px;
+	padding-top: 30px;
 	font: normal normal normal 50px JSDongkang-Regular;
 }
 
@@ -49,7 +48,7 @@ h6 {
 }
 
 .groupName, .groupMem {
-	padding-top: 50px;
+	padding-top: 30px;
 	text-align: left;
 	margin-left: 90px;
 }
@@ -59,10 +58,20 @@ h6 {
 	font: normal normal normal 18px JSDongkang-Regular;
 }
 
-#btnAdd {
+.btn-warning {
 	margin-bottom: 5px;
 	margin-left: 5px;
-	font: normal normal bold 18px JSDongkang-Regular;
+}
+
+.btn-primary {
+	margin-top: 70px;
+	margin-bottom: 50px;
+}
+
+
+#btn {
+	font-family: JSDongkang-Regular;
+	font-size: 18px;
 }
 
 .memList {
@@ -72,7 +81,8 @@ h6 {
 }
 
 span {
-	font: normal normal bold 12px JSDongkang-Regular;
+	font-family: JSDongkang-Bold;
+	font-size: 12px;
 	margin-right: 5px;
 }
 
@@ -85,10 +95,24 @@ span {
 	display: inline;
 	text-align: center;
 }
+
 .failMessage{
 	text-align: center;
 	margin-top: 3em;
 }
+
+.addMemBtn {
+	font-family: JSDongkang-Bold;
+	font-size: 18px;
+	margin-top: 70px;
+	margin-bottom: 50px;
+}
+
+input, select {
+font-family: JSDongkang-Regular;
+	font-size: 15px;
+}
+
 </style>
 
 <script>
@@ -101,6 +125,7 @@ span {
 				+ form.mem.value
 				+ '</span><input type="hidden" name ="members" value = "' + form.mem.value + '">');
 		$('.memList').append($div);
+		form.mem.value = "";
 	}
 	function update_group_btn_click() {
 		if (form.g_id.value == "") {
@@ -135,10 +160,10 @@ span {
 					<div class="groupName">
 						<div class="form-group">
 							<h5>
-								<label for="exampleSelect1">그룹 선택</label>
+								<label>그룹 선택</label>
 							</h5>
 							<select id="groupSelect" name="g_id" class="form-control"
-								style="width: 318px; height: 50px;">
+								style="width: 80%; height: 50px;">
 								<c:forEach var="group" items="${mGroupList}">
 									<option value="${group.g_id}">
 										${group.g_name}</option>
@@ -149,10 +174,12 @@ span {
 					</div>
 
 					<div class="groupMem">
-						<h5>추가할 회원의 ID</h5>
+						<h5>
+						<label for="exampleSelect1">추가할 회원의 ID</label>
+						</h5>
 						<input type="text" class="form-control" name="mem" placeholder=""
-							style="width: 160px; height: 50px;">
-						<button type="button" class="btn btn-warning" id="btnAdd"
+							style="width: 70%; height: 50px;">
+						<button type="button" class="btn btn-warning" id="btn"
 							onClick="add_btn_click();">추가</button>
 					</div>
 
@@ -163,10 +190,8 @@ span {
 							</c:forEach>
 						</c:if>
 					</div>
-
-					<button class="btn btn-primary"
-						style="font: normal normal bold 18px JSDongkang-Regular; margin-top: 30px;"
-						onClick="update_group_btn_click()">그룹원 추가</button>
+					<button class="btn btn-primary addMemBtn" id="btn"
+						onClick="update_group_btn_click()">그룹원 추가</button>	
 				</div>
 			</div>
 		</div>

@@ -25,11 +25,12 @@
 	text-align: center;
 	line-height: 80vh;
 	
-	margin-top: 40px;
+	margin-top: 50px;
 	margin-bottom: 40px;
 	margin-left: -100px;
 	margin-right: 100px;
 	width: 1300px;
+	
 }
 
 .menu {
@@ -41,9 +42,9 @@
 	color: white;
 	justify-content: center;
 	align-items: center;
-	font-weight: bold;
+	font-family: JSDongkang-Bold;
 	font-size: 30px;
-	font: normal normal bold 30px/40px Binggrae !important;
+	padding: 10px;
 }
 </style>
 </head>
@@ -51,9 +52,9 @@
 	<%@include file="/navbar.jsp"%>
 	<div class="container">
 		<div class="center">
-			<a href="<c:url value='/schedule/monthly' />"> <span class="menu" style="background-color: #FDB3B1;">개인 일정</span></a>
-			<a href="<c:url value='' />"><span class="menu" style="background-color: #FED88C">실시간 랭킹</span></a>
-			<a href="<c:url value='/group/list' />"><span class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
+			<a href="<c:url value='/schedule/monthly' />" style="padding: 5px;"> <span class="menu" style="background-color: #FDB3B1;">개인 일정</span></a>
+			<a href="<c:url value='' />" style="padding: 5px;"><span class="menu" style="background-color: #FED88C">실시간 랭킹</span></a>
+			<a href="<c:url value='/group/list' />" style="padding: 5px;"><span class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
 		</div>
 	</div>
 </body>
