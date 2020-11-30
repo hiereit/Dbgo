@@ -30,22 +30,23 @@
 	background: #EFFBEF;
 	border-radius: 25px;
 	width: 500px;
-	height: 500px;
 	margin: auto;
 }
 
 .centerElement {
 	text-align: center;
-	padding-top: 130px;
+	padding-top: 80px;
 }
 
 h1 {
 	padding-top: 50px;
-	font: normal normal normal 50px JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
+	font-size: 50px;
 }
 
 h6 {
-	font: normal normal normal 15px JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
+	font-size: 15px;
 }
 
 .groupName, .groupMem {
@@ -56,14 +57,32 @@ h6 {
 
 .groupName h5, .groupMem h5 {
 	padding-right: 20px;
-	font: normal normal normal 18px JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
+	font-size: 18px;
 }
 
-#btnAdd {
+#btnSub {
+	margin-top: 70px;
+	margin-bottom: 50px;
+	font-family: JSDongkang-Bold;
+	font-size: 18px;
+}
+
+.btn-warning {
 	margin-bottom: 5px;
 	margin-left: 5px;
-	font: normal normal bold 18px JSDongkang-Regular;
 }
+
+.btn-primary {
+	margin-top: 70px;
+	margin-bottom: 50px;
+}
+
+#btn {
+	font-family: JSDongkang-Regular;
+	font-size: 18px;
+}
+
 
 .memList {
 	margin-left: 80px;
@@ -72,7 +91,8 @@ h6 {
 }
 
 span {
-	font: normal normal bold 12px JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
+	font-size: 12px;
 	margin-right: 5px;
 }
 
@@ -85,10 +105,21 @@ span {
 	display: inline;
 	text-align: center;
 }
+
 .failMessage{
 	text-align: center;
 	margin-top: 30px;
 }
+
+form {
+	margin-bottom: 30px;
+}
+
+input {
+font-family: JSDongkang-Regular;
+	font-size: 15px;
+}
+
 </style>
 
 <script>
@@ -139,9 +170,9 @@ span {
 					</div>
 					<div class="groupMem">
 						<h5>구성원</h5>
-							<input type="text" class="form-control" name="mem" placeholder=""
+							<input type="text" class="form-control" name="mem"
 								style="width: 160px; height: 50px;">
-							<button type="button"  class="btn btn-warning" id="btnAdd" onClick="add_btn_click()">추가</button>
+							<button type="button"  class="btn btn-warning" id="btn" onClick="add_btn_click()">추가</button>
 					</div>
 					<div class="memList">
 						<c:if test="${!creationFailed}">
@@ -150,10 +181,8 @@ span {
 							</c:forEach>
 						</c:if>
 					</div>
+					<button type="button"  class="btn btn-primary" id="btn" onClick="create_group_btn_click()">그룹 생성</button>
 				</div>
-				<button type="button" class="btn btn-primary"
-					style="font: normal normal bold 18px JSDongkang-Regular; margin-top: 70px;"
-					onClick="create_group_btn_click()">그룹 생성</button>
 			</div>
 		</div>
 	</form>

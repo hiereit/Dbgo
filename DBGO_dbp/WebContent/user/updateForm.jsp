@@ -35,7 +35,8 @@
 
 <style>
 .signUp {
-	font: normal normal bold 15px/15px Binggrae !important;
+	font-family: JSDongkang-Bold!important;
+	font-size: 15px;
 	top: 15%;
 	left: 50%;
 	background: #EFFBEF;

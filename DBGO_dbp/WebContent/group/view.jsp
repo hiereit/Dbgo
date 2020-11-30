@@ -18,18 +18,18 @@
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
 <title>My Group View</title>
 <style>
+
 table.table-bordered {
 	font: normal normal normal 18px JSDongkang-Regular;
 	text-align: center;
 }
 
 .tdiv {
-	border: 2px solid #CCCCCC;
+	border: 1px solid #cccccc;
 	float: left;
 	margin: auto;
 	width: 300px;
-	height: 510px;
-	margin: 10px;
+	height: 550px;
 }
 
 .list-group {
@@ -40,18 +40,8 @@ table.table-bordered {
 }
 
 .card {
-	position: absolute;
 	width: 300px;
-	height: 390px;
-	left: 51%;
-	top: 20%;
 	font: normal normal normal 18px JSDongkang-Regular;
-}
-
-.wrap {
-	position: absolute;
-	left: 30%;
-	top: 25%;
 }
 
 .mb-1 {
@@ -63,7 +53,7 @@ table.table-bordered {
 }
 
 .inputContent i {
-	font-size: 30px/40px;
+	font-size: 30px;
 	color: #B8B8B8;
 	padding-bottom: 0px;
 	padding-top: 6px;
@@ -79,22 +69,18 @@ table.table-bordered {
 
 #inputScheduleTitle {
 	text-align: left;
-	font: normal normal bold 20px JSDongkang-Regular;
+	font-family: JSDongkang-Bold;
+	font-size: 20px;
 	letter-spacing: 0px;
 	color: #000000;
 	opacity: 1;
 }
 
-.btn-rounded {
-	width: 60px;
-	height: 30px;
-	float: right;
-	margin-left: 10px;
-	border-radius: 40px !important;
-	text-align: center;
-	font: normal normal bold 15px JSDongkang-Regular !important;
-	color: #ffffff;
+.btn-warning {
+	font-family: JSDongkang-Regular;
+	font-size: 18px;
 }
+
 
 hr {
 	margin-top: 15px;
@@ -106,7 +92,8 @@ hr {
 	outline: 0px;
 	padding-left: 20px;
 	text-align: left;
-	font: normal normal 600 20px JSDongkang-Regular;
+	font-family: JSDongkang-Bold;
+	font-size: 20px;
 	letter-spacing: 0px;
 	color: #B8B8B8;
 	opacity: 1;
@@ -114,6 +101,8 @@ hr {
 
 .row {
 	text-align: center;
+	font-family: JSDongkang-Regular;
+	font-size: 18px;
 }
 
 .modal {
@@ -151,40 +140,38 @@ hr {
 }
 
 h3 {
-	position: absolute;
-	left: 32%;
-	top: 20%;
-	font: normal normal 600 20px JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
 }
 
-#addBtn {
-	position: absolute;
-	left: 60%;
-	top: 20%;
-	font: normal normal 600 15px JSDongkang-Regular;
+h3, #addBtn, #updateBtn {
+	display: inline;
 }
 
-#updateBtn {
-	position: absolute;
-	left: 67%;
-	top: 20%;
-	font: normal normal 600 15px JSDongkang-Regular;
+#addBtn, #updateBtn  {
+	float: right;
 }
+
+.cards {
+	float: right;
+	padding-left: 15px;
+}
+
+
+.homework { min-height:120px; }
+
+.memo { min-height:415px; }
+
+.wrap { 
+padding-top: 50px;
+width: fit-content;
+margin: auto; }
+
+.titleNBtn {
+	margin-bottom: 15px;
+}
+
 </style>
 <script>
-	/* document.getElementById('subBtn').addEventListener('click', function() {
-		if (form.title.value == "") {
-			alert("일정 제목을 입력하십시오.");
-			form.title.focus();
-			return false;
-		}
-		 if (form.date.value == "") {
-				alert("날짜를 입력하십시오.");
-				form.date.focus();
-				return false;
-		}
-		 $('#myModal').hide();
-	  }); */
 	function addSchedule() {
 		if (form.title.value == "") {
 			alert("일정 제목을 입력하십시오.");
@@ -221,14 +208,17 @@ h3 {
 </head>
 <body>
 	<%@include file="/navbar.jsp"%>
-	<h3>${g_name}</h3>
-	<button id="addBtn" class="btn btn-warning" onClick="show_pop();">일정
-		추가</button>
-	<c:if test="${detail}">
-		<button id="updateBtn" class="btn btn-secondary"
-			onClick="updatenDel();">수정/삭제</button>
-	</c:if>
+	
 	<div class="wrap">
+		<div class="titleNBtn">
+		<h3>${g_name}</h3>
+		<c:if test="${detail}">
+			<button id="updateBtn" class="btn btn-secondary"
+				onClick="updatenDel();">수정/삭제</button>
+		</c:if>
+		<button id="addBtn" class="btn btn-warning" id="btn" onClick="show_pop()">일정 추가</button>
+		</div>
+		<div class="sch">
 		<div class="tdiv">
 			<table class="table table-bordered">
 				<c:forEach var="grpsch" items="${grpschList}">
@@ -243,16 +233,30 @@ h3 {
 						<td>
 						</c:otherwise>
 						</c:choose>
-						<a
-							href="<c:url value='/group/schedule/view'>
+						<a href="<c:url value='/group/schedule/view'>
 						      <c:param name='groupsch_id' value='${grpsch.groupsch_id}'/>
-						      <c:param name='g_id' value='${g_id}'/>
-						 </c:url>" class="text-muted">
+						      <c:param name='g_id' value='${g_id}'/></c:url>" class="text-muted">
 								${grpsch.title}</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
+		<div class="cards">
+		<div class="card border-warning mb-3 homework">
+			<div class="card-header">과제</div>
+			<div class="card-body">
+				<p class="card-text">${fgsch.homework}</p>
+			</div>
+		</div>
+		<div class="card border-warning mb-3 memo">
+			<div class="card-header">기록</div>
+			<div class="card-body">
+				<p class="card-text">${fgsch.memo}</p>
+			</div>
+		</div>
+		</div>
+		</div>
+	</div>
 		<div id="myModal" class="modal">
 			<div class="modal-content">
 				<form name="form" method="POST"
@@ -370,18 +374,5 @@ h3 {
 				</form>
 			</div>
 		</div>
-		<ul class="list-group">
-			<li class="list-group-item list-group-item-warning"
-				style="padding-top: 20px; padding-bottom: 20px; text-align: center;">
-				<h5 class="mb-1">${fgsch.homework}</h5>
-			</li>
-		</ul>
-		<div class="card border-warning mb-3">
-			<div class="card-header">기록</div>
-			<div class="card-body">
-				<p class="card-text">${fgsch.memo}</p>
-			</div>
-		</div>
-	</div>
 </body>
 </html>

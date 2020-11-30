@@ -35,7 +35,8 @@ function login() {
 
 <style>
 .signIn {
-	font: normal normal bold 15px/15px Binggrae !important;
+	font-family: JSDongkang-Bold;
+	font-size: 15px;
 	top: 15%;
 	left: 50%;
 	background: #EFFBEF;
@@ -77,19 +78,13 @@ function login() {
 	<form name="form" method="POST" action="<c:url value='/user/login' />">
 		<div class="centerElement">
 			<div class="signIn">
-				<br> <br>
 				<h1 class="text-primary">Sign up</h1>
-				<br>
 				<div class="centerInput">
 				<input type="text" class="form-control" name="u_id" placeholder="id" style="width: 300px; height: 50px; margin-bottom: 5px;"> 
 				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 300px; height: 50px;">
 				</div>
-				<br><br><br>
 				<input type="button" class="btn btn-primary" value="로그인" onClick="login()" style="width: 150px;">
-				<br>
-				<br><br><br>
 				<a href="<c:url value='/user/register/form' />"><button type="button" class="btn btn-link">회원가입</button></a>
-				&nbsp;&nbsp;&nbsp;
 				<button type="button" class="btn btn-link">비밀번호 찾기</button>
 			</div>
 		</div>

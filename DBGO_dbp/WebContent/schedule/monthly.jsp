@@ -55,7 +55,8 @@
       }
       #inputScheduleTitle {
         text-align: left;
-        font: normal normal bold 20px JSDongkang-Regular;
+        font-family: JSDongkang-Bold;
+		font-size: 20px;
         letter-spacing: 0px;
         color: #000000;
         opacity: 1;
@@ -67,7 +68,8 @@
         margin-left: 10px;
         border-radius: 40px!important;
         text-align: center;
-        font: normal normal bold 15px JSDongkang-Regular!important;
+        font-family: JSDongkang-Bold!important;
+		font-size: 15px;
         color: #ffffff;
       }
       hr {
@@ -79,7 +81,8 @@
         outline:0px;
         padding-left: 20px;
         text-align: left;
-        font: normal normal 600 20px JSDongkang-Regular;
+        font-family: JSDongkang-Bold;
+		font-size: 20px;
         letter-spacing: 0px;
         color: #B8B8B8;
         opacity: 1;

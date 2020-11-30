@@ -41,9 +41,8 @@
 	color: white;
 	justify-content: center;
 	align-items: center;
-	font-weight: bold;
+	font-family: JSDongkang-Bold;
 	font-size: 30px;
-	font: normal normal bold 30px/40px Binggrae !important;
 }
 </style>
 </head>
