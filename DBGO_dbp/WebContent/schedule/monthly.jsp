@@ -205,62 +205,62 @@
 			    	  $('#myModal2 #inputScheduleDate[name="endDate"]').val(getFormatDate(eventObj.end)); 
 			      }
 			      if (memo.containsKey(eventObj.id)) {
-			    	  $('#myModal2 #inputMemo').val(memo.get(eventObj.id));
-			      }
+	                  if (memo.get(eventObj.id) != "null") {
+	                     $('#myModal2 #inputMemo').val(memo.get(eventObj.id));
+	                  }
+	               }
 			      $('#myModal2 form').append('<input type="hidden" name="sch_id" value="'+  eventObj.id +'" >');
 			      $('#myModal2').show(); 
 			    }
 		});
 		
 		calendar.render();
-		
-		document.getElementById('subBtn').addEventListener('click', function() {
-			if (form.title.value == "") {
-				alert("일정 제목을 입력하십시오.");
-				form.title.focus();
-				return false;
-			}
-			if (form.startDate.value == "") {
-					alert("시작 날짜를 입력하십시오.");
-					form.startDate.focus();
-					return false;
-			}
-			if (form.category.value == "카테고리") {
-				 alert("카테고리를 선택하십시오.");
-					form.category.focus();
-					return false;
-			 }
-		
-			form.submit();
-	
-		  });
-		
-		document.getElementById('updateBtn').addEventListener('click', function() {
-			if (form.title.value == "") {
-				alert("일정 제목을 입력하십시오.");
-				form.title.focus();
-				return false;
-			}
-			if (form.startDate.value == "") {
-					alert("시작 날짜를 입력하십시오.");
-					form.startDate.focus();
-					return false;
-			}
-			if (form.category.value == "카테고리") {
-				 alert("카테고리를 선택하십시오.");
-					form.category.focus();
-					return false;
-			 }
-		
-			form.submit();
-	
-		  });
-		document.getElementById('deleteBtn').addEventListener('click', function() {
-			form.submit();
-		  });
 	});
 
+	function add() {
+		if (form.title.value == "") {
+			alert("일정 제목을 입력하십시오.");
+			form.title.focus();
+			return false;
+		}
+		if (form.startDate.value == "") {
+				alert("시작 날짜를 입력하십시오.");
+				form.startDate.focus();
+				return false;
+		}
+		if (form.category.value == "카테고리") {
+			 alert("카테고리를 선택하십시오.");
+				form.category.focus();
+				return false;
+		 }
 	
+		form.submit();
+
+	  }
+	
+	function upd() {
+		if (update.title.value == "") {
+			alert("일정 제목을 입력하십시오.");
+			update.title.focus();
+			return false;
+		}
+		if (update.startDate.value == "") {
+				alert("시작 날짜를 입력하십시오.");
+				update.startDate.focus();
+				return false;
+		}
+		if (update.category.value == "카테고리") {
+			 alert("카테고리를 선택하십시오.");
+				update.category.focus();
+				return false;
+		 }
+		$('#myModal2 form').append('<input type="hidden" name="btn" value="update" >');
+		update.submit();
+	  }
+	function del() {
+		 $('#myModal2 form').append('<input type="hidden" name="btn" value="delete" >');
+		update.submit();
+	  }	
 </script>
 
 
@@ -276,7 +276,7 @@
 		<form name="form" method="POST" 
 		action="<c:url value='/schedule/create'/>">
         <fieldset>
-          <button id="subBtn" class="btn btn-warning btn-rounded" >등록</button>
+          <button type="button" id="subBtn" class="btn btn-warning btn-rounded" onClick="add()">등록</button>
           <a href="<c:url value='/schedule/monthly' />"><button type="button" class="btn btn-warning btn-rounded">취소</button></a>
           <div class="form-group row" >
             <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder" aria-hidden="true"></i></label>
@@ -286,8 +286,7 @@
                 <option>기본</option>
                 <option>학교</option>
                 <option>친구</option>
-                <option>STUDY</option>
-                <option>공휴일</option>
+                <option>가족</option>
               </select>
           
           </div>
@@ -323,11 +322,11 @@
  
       <!-- Modal content -->
       <div class="modal-content">
-		<form name="form" method="POST" 
+		<form name="update" method="POST" 
 		action="<c:url value='/schedule/update'/>">
         <fieldset>
-        <button id="deleteBtn" class="btn btn-warning btn-rounded" value="delete" name="btn">삭제</button>
-          <button id="updateBtn" class="btn btn-warning btn-rounded" value="update" name="btn">수정</button>
+        <button type="button" id="deleteBtn" class="btn btn-warning btn-rounded" value="delete" onClick="del()">삭제</button>
+          <button type="button" id="updateBtn" class="btn btn-warning btn-rounded" value="update" onClick="upd()">수정</button>
           <a href="<c:url value='/schedule/monthly' />"><button type="button" class="btn btn-warning btn-rounded">취소</button></a>
           <div class="form-group row" >
             <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder" aria-hidden="true"></i></label>
@@ -337,8 +336,7 @@
                 <option>기본</option>
                 <option>학교</option>
                 <option>친구</option>
-                <option>STUDY</option>
-                <option>공휴일</option>
+                <option>가족</option>
               </select>
           
           </div>

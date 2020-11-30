@@ -1,6 +1,10 @@
 package model.dto;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Comparator;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class GroupSchedule implements Serializable {
@@ -83,5 +87,22 @@ public class GroupSchedule implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public static class SortByDate implements Comparator<GroupSchedule> {
+	    @Override
+	    public int compare(GroupSchedule s1, GroupSchedule s2) {
+	    	DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");  // 주의: 월을 나타내는 MM은 대문자
+	    	Date d1 = null, d2 = null;
+	    	try {
+				d1 = df.parse(s1.getGroupsch_date());
+				d2 = df.parse(s2.getGroupsch_date());
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}   
+	    	return d2.compareTo(d1);
+	    }
 	}
 }

@@ -30,7 +30,6 @@
 	margin-left: -100px;
 	margin-right: 100px;
 	width: 1300px;
-	
 }
 
 .menu {
