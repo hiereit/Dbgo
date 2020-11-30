@@ -1,13 +1,11 @@
 package controller.group.schedule;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dto.GroupSchedule;
-import model.dto.User;
 import model.service.UserManager;
 
 public class InsertGroupScheduleController implements Controller {
