@@ -57,33 +57,43 @@ function userCreate() {//주석
 	font-family: JSDongkang-Bold!important;
 	font-size: 15px;
 	top: 15%;
-	left: 50%;
 	background: #EFFBEF;
 	border-radius: 25px;
-	width: 700px;
-	margin-top: 5em;
+	width: 650px;
 	margin-bottom: 5em;
-	margin-left: 25em;
-	margin-right: 20em;
+	text-align: center;
 	padding: 30px;
 }
 
 .centerElement {
-	text-align: center;
+		width: fit-content;
+       padding-top: 30px;
+		margin: auto;
 }
 
 table {
-	margin-left: 50px;
-}
+	margin: auto;
+	}
 
 td {
 	width: 83%;
 	padding-left: 50px;
 }
+
 .failMessage{
 	text-align: center;
 	margin-top: 3em;
 }
+
+.btn-primary {
+font-family: JSDongkang-Regular;
+	font-size: 16px;
+}
+
+h1 {
+font-family: JSDongkang-Bold!important;
+}
+
 </style>
 </head>
 
@@ -97,12 +107,11 @@ td {
 		</c:if>
 	</div>	  
 
-	<form name="form" method="POST" action="<c:url value='/user/register' />">
-		<div class="centerElement">
+	<div class="centerElement">
+		<form name="form" method="POST" action="<c:url value='/user/register' />">
 			<div class="signUp">
 				<h1 class="text-primary">Sign up</h1>
-				<br><br>
-				<table>
+				<table style="margin-top: 50px;">
 					<tr>
 						<th><label for="u_id">아이디</label></th>
 						<td><input type="text" class="form-control" name="u_id" style="width: 300px; height: 40px; margin-bottom: 10px;"></td>
@@ -136,13 +145,10 @@ td {
 						</td>
 					</tr>
 				</table>
-				<br>
-				<br>
 				<input type="button" class="btn btn-primary" value="가입" onClick="userCreate()"
-					style="margin-bottom: 15px; height: 40px;">
-				<br>
+					style="margin: 20px; height: 40px;">
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </body>
 </html>

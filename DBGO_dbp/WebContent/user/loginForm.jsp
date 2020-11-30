@@ -35,34 +35,58 @@ function login() {
 
 <style>
 .signIn {
-	font-family: JSDongkang-Bold;
+	font-family: JSDongkang-Regular;
 	font-size: 15px;
 	top: 15%;
-	left: 50%;
 	background: #EFFBEF;
 	border-radius: 25px;
-	width: 400px;
-	height: 400px;
-
+	text-align: center;
 	margin-bottom: 5em;
-	margin-left: 35em;
-	margin-right: 20em;
-	padding: 30px;;
+	padding: 30px;
+}
+
+.centerInput {
+	text-align: center;
 }
 
 .centerElement {
+		margin: auto;
+		width: 450px;
        text-align: center;
        padding: 30px
 }
 
-.centerInput{
-	padding-left:20px;
-	padding-right:50px;
-}
 .failMessage{
 	text-align: center;
 	margin-top: 3em;
 }
+
+input {
+	margin: 20px auto;
+}
+
+#btnSignUp, #btnFindPw {
+	padding: 5px;
+	display: inline;
+}
+
+.userBtn {
+	margin-top: 15px;
+}
+
+.btn-primary {
+	font-family: JSDongkang-Regular;
+	font-size: 15px;
+}
+
+input[type="button"] {
+	margin-top: 60px;
+}
+
+h1 {
+font-family: JSDongkang-Bold!important;
+}
+
 </style>
 </head>
 
@@ -75,19 +99,21 @@ function login() {
 		</c:if>
 	</div>	  
 	
-	<form name="form" method="POST" action="<c:url value='/user/login' />">
-		<div class="centerElement">
+	<div class="centerElement">
+		<form name="form" method="POST" action="<c:url value='/user/login' />">
 			<div class="signIn">
-				<h1 class="text-primary">Sign up</h1>
+				<h1 class="text-primary">Sign in</h1>
 				<div class="centerInput">
-				<input type="text" class="form-control" name="u_id" placeholder="id" style="width: 300px; height: 50px; margin-bottom: 5px;"> 
-				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 300px; height: 50px;">
+				<input type="text" class="form-control" name="u_id" placeholder="Id" style="width: 80%; height: 50px; margin-top: 40px;"> 
+				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 80%; height: 50px;">
 				</div>
 				<input type="button" class="btn btn-primary" value="로그인" onClick="login()" style="width: 150px;">
-				<a href="<c:url value='/user/register/form' />"><button type="button" class="btn btn-link">회원가입</button></a>
-				<button type="button" class="btn btn-link">비밀번호 찾기</button>
+				<div class="userBtn">
+				<a id="btnSignUp" href="<c:url value='/user/register/form' />">회원가입</a>
+				<a id="btnFindPw" href="#">비밀번호 찾기</a>
+				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 </body>
 </html>
