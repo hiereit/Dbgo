@@ -20,6 +20,7 @@ public class DeleteUserController implements Controller{//
     	UserManager manager = UserManager.getInstance();	
 		
 		manager.removeUserInGroup(deleteId);
+		manager.removeUserInSchedule(deleteId);
 		
 		manager.remove(deleteId);	
 		

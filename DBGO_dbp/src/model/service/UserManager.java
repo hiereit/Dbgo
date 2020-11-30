@@ -9,11 +9,13 @@ import model.dto.User;
 import model.dao.GroupDAO;
 import model.dao.UserDAO;
 import model.dao.GroupScheduleDAO;
+import model.dao.ScheduleDAO;
 
 public class UserManager {//
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
 	private GroupDAO groupDAO;
+	private ScheduleDAO scheduleDAO;
 	private GroupScheduleDAO groupScheduleDAO;
 
 	private UserManager() {
@@ -21,6 +23,7 @@ public class UserManager {//
 			userDAO = new UserDAO();
 			groupDAO = new GroupDAO();
 			groupScheduleDAO = new GroupScheduleDAO();
+			scheduleDAO = new ScheduleDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -50,6 +53,10 @@ public class UserManager {//
 	
 	public int removeUserInGroup(String userId) throws SQLException {
 		return groupDAO.removeUserInGroup(userId);
+	}
+	
+	public int removeUserInSchedule(String userId) throws SQLException {
+		return scheduleDAO.removeUserInSchedule(userId);
 	}
 
 	public User findUser(String userId)

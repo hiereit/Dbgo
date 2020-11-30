@@ -16,4 +16,6 @@ public interface ScheduleMapper {
 	//public Schedule findSchedule(String sch_id);
 	
 	public List<Schedule> selectAllSchedule(String u_id);
+
+	public int deleteUserInSchedule(String u_id);
 }

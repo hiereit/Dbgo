@@ -68,7 +68,7 @@ public class GroupDAO {
 		System.out.println("removeUserInGroup");
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			int result = sqlSession.getMapper(GroupMapper.class).deleteGroupInfo(u_id);
+			int result = sqlSession.getMapper(GroupMapper.class).deleteUserInGroup(u_id);
 			if (result > 0) {
 				sqlSession.commit();
 			} 
