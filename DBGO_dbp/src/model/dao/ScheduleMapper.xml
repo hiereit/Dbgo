@@ -16,10 +16,6 @@
  	DELETE FROM SCHEDULE
  	WHERE sch_id = #{sch_id}
  </delete>
- <delete id="deleteUserInSchedule" parameterType="string">
- 	DELETE FROM SCHEDULE
- 	WHERE fk_schedule = #{u_id}
- </delete>
  <update id="updateSchedule" parameterType="Schedule">
 	UPDATE SCHEDULE
 	SET memo = #{memo, jdbcType=VARCHAR}, title = #{title}, category = #{category},

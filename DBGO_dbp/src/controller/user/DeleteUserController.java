@@ -17,14 +17,10 @@ public class DeleteUserController implements Controller{//
 		String deleteId = request.getParameter("u_id");
     	log.debug("Delete User : {}", deleteId);
 
-    	UserManager manager = UserManager.getInstance();	
-		
-		manager.removeUserInGroup(deleteId);
-		manager.removeUserInSchedule(deleteId);
+    	UserManager manager = UserManager.getInstance();
 		
 		manager.remove(deleteId);	
 		
 		return "redirect:/user/logout";		// logout 처리
-		
 	}
 }

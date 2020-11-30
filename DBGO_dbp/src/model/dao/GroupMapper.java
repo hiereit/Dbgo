@@ -11,10 +11,6 @@ public interface GroupMapper {
 	
 	public int insertAdmission(@Param("g_id") String g_id, @Param("u_id") String u_id);
 	
-	public int deleteGroupInfo(String g_id);
-
-	public int deleteUserInGroup(String u_id);
-	
 	public List<GroupInfo> selectAllGroups();
 	
 	public List<GroupInfo> selectGroupListByUserId(String u_id);

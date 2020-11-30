@@ -82,17 +82,4 @@ public class ScheduleDAO {
 				sqlSession.close();
 			}
 	    }
-	 
-	 public int removeUserInSchedule(String u_id) {
-			SqlSession sqlSession = sqlSessionFactory.openSession();
-			try {
-				int result = sqlSession.getMapper(ScheduleMapper.class).deleteUserInSchedule(u_id);
-				if (result > 0) {
-					sqlSession.commit();
-				} 
-				return result;	
-			} finally {
-				sqlSession.close();
-			}
-		}
 }

@@ -51,33 +51,6 @@ public class GroupDAO {
 		}
 	}
 	
-	public int removeGroup(String g_id) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			int result = sqlSession.getMapper(GroupMapper.class).deleteGroupInfo(g_id);
-			if (result > 0) {
-				sqlSession.commit();
-			} 
-			return result;	
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
-	public int removeUserInGroup(String u_id) {
-		System.out.println("removeUserInGroup");
-		SqlSession sqlSession = sqlSessionFactory.openSession();
-		try {
-			int result = sqlSession.getMapper(GroupMapper.class).deleteUserInGroup(u_id);
-			if (result > 0) {
-				sqlSession.commit();
-			} 
-			return result;	
-		} finally {
-			sqlSession.close();
-		}
-	}
-	
 	public List<GroupInfo> findGroupList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -94,8 +67,5 @@ public class GroupDAO {
 		} finally {
 			sqlSession.close();
 		}
-	}
-	
-	
-	
+	}	
 }
