@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.dto.GroupInfo;
-import model.service.UserManager;
+import model.service.Manager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +28,7 @@ public class CreateGroupController implements Controller{
 				}
 				group.getMembers().add(UserSessionUtils.getLoginUserId(request.getSession()));
 				
-				UserManager manager = UserManager.getInstance();
+				Manager manager = Manager.getInstance();
 				String gid = manager.createGroup(group).getG_id();
 				for (String member : group.getMembers()) {
 					manager.addMember(gid, member);

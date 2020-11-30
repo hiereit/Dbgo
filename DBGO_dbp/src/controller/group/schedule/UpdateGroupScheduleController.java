@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dto.GroupSchedule;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class UpdateGroupScheduleController implements Controller {
 	@Override
@@ -17,7 +17,7 @@ public class UpdateGroupScheduleController implements Controller {
 				request.getParameter("updateHomework"),
 				request.getParameter("updateMemo"));
 
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		manager.updateGroupSchedule(sch);
 
 		return "redirect:/group/schedule/view?groupsch_id=" + request.getParameter("updateGroupsch_id") + "&g_id=" + request.getParameter("updateG_id");

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.dto.GroupInfo;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class AddMembersToGroupController implements Controller{
 	private static final Logger log = LoggerFactory.getLogger(AddMembersToGroupController.class);
@@ -30,7 +30,7 @@ public class AddMembersToGroupController implements Controller{
 	   
 	    		log.debug("AddMembersToGroup Request : {}", myId);
 	    		
-	    		UserManager manager = UserManager.getInstance();
+	    		Manager manager = Manager.getInstance();
 	    		
 				List<GroupInfo> myGroupList = manager.findMyGroupList(myId);	// 커뮤니티 리스트 검색
 				request.setAttribute("mGroupList", myGroupList);	
@@ -39,7 +39,7 @@ public class AddMembersToGroupController implements Controller{
 				
 			}
 	    	// POST request (회원정보가 parameter로 전송됨)
-			UserManager manager = UserManager.getInstance();
+			Manager manager = Manager.getInstance();
 			manager.addMember(request.getParameter("g_id"), request.getParameter("mem"));			
 			return "redirect:/group/list";
 		} catch (Exception e) {

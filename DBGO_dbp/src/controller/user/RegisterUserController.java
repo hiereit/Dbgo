@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import controller.Controller;
 import model.dto.User;
 import model.service.ExistingUserException;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class RegisterUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
@@ -24,7 +24,7 @@ public class RegisterUserController implements Controller {
         log.debug("Create User : {}", user);
 
 		try {
-			UserManager manager = UserManager.getInstance();
+			Manager manager = Manager.getInstance();
 			manager.create(user);
 	        return "redirect:/user/login/form";		// 성공 시 로그인 화면으로 redirect (추후 수정?)
 	        

@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import model.service.UserManager;
+import model.service.Manager;
 import model.dto.User;
 
 public class UpdateUserFormController implements Controller {//
@@ -23,7 +23,7 @@ public class UpdateUserFormController implements Controller {//
 		
 		log.debug("UpdateForm Request : {}", updateId);
 
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		User user = manager.findUser(updateId);	// 사용자 정보 검색
 		request.setAttribute("user", user);						
 		

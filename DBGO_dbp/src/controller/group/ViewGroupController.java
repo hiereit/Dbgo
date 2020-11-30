@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.service.UserManager;
+import model.service.Manager;
 import model.dto.GroupSchedule;
 
 public class ViewGroupController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
     	String g_id = request.getParameter("g_id");
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		List<GroupSchedule> grpschList = manager.findGroupSchedule(g_id);
 		String g_name = manager.findGroupName(g_id);
 		request.setAttribute("grpschList", grpschList);

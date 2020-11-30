@@ -18,12 +18,9 @@
 
    <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
-         <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" href="<c:url value='/schedule/monthly'/>" id="navbardrop"
-            data-toggle="dropdown">개인일정</a>
-            <div class="dropdown-menu">
-               <a class="dropdown-item" href="<c:url value='/schedule/monthly'/>">일정 확인</a>
-            </div></li>
+      
+         <li class="nav-item"><a class="nav-link" href="<c:url value='/schedule/monthly'/>">개인일정</a></li>
+         
          <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="<c:url value='/group/list'/>" id="navbardrop"
             data-toggle="dropdown">그룹일정</a>

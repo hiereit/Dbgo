@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dto.GroupSchedule;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class InsertGroupScheduleController implements Controller {
     @Override
@@ -18,7 +18,7 @@ public class InsertGroupScheduleController implements Controller {
     			request.getParameter("homework"),
     			request.getParameter("memo"));
     	
-    	UserManager manager = UserManager.getInstance();
+    	Manager manager = Manager.getInstance();
 		manager.insertGroupSchedule(sch);
 	
 		request.setAttribute("g_id", request.getParameter("g_id"));

@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class DeleteGroupScheduleController implements Controller {
 	@Override
@@ -12,7 +12,7 @@ public class DeleteGroupScheduleController implements Controller {
 		String groupsch_id = request.getParameter("groupsch_id");
 		String g_id = request.getParameter("g_id");
 
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		manager.deleteGroupSchedule(groupsch_id);
 
 		return "redirect:/group/schedule/view?groupsch_id=" + groupsch_id + "&g_id=" + g_id;

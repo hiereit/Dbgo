@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class DeleteUserController implements Controller{//
 	private static final Logger log = LoggerFactory.getLogger(DeleteUserController.class);
@@ -17,7 +17,7 @@ public class DeleteUserController implements Controller{//
 		String deleteId = request.getParameter("u_id");
     	log.debug("Delete User : {}", deleteId);
 
-    	UserManager manager = UserManager.getInstance();
+    	Manager manager = Manager.getInstance();
 		
 		manager.remove(deleteId);	
 		

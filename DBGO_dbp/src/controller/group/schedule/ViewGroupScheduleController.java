@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.dto.GroupSchedule;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class ViewGroupScheduleController implements Controller {
     @Override
@@ -15,7 +15,7 @@ public class ViewGroupScheduleController implements Controller {
     	String g_id = request.getParameter("g_id");
     	String groupsch_id = request.getParameter("groupsch_id");
     	
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		GroupSchedule fgsch = manager.findGroupScheduleDetail(groupsch_id);
 		
 		List<GroupSchedule> grpschList = manager.findGroupSchedule(g_id);

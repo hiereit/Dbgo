@@ -13,7 +13,5 @@ public interface ScheduleMapper {
 
 	public void updateScheduleACH(int ach);
 	
-	//public Schedule findSchedule(String sch_id);
-	
 	public List<Schedule> selectAllSchedule(String u_id);
 }

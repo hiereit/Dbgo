@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import controller.Controller;
-import model.service.UserManager;
+import model.service.Manager;
 import model.dto.User;
 
 public class UpdateUserController implements Controller {
@@ -23,7 +23,7 @@ public class UpdateUserController implements Controller {
     	
     	log.debug("Update User : {}", updateUser);
 
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		manager.update(updateUser);		
 		HttpSession session = request.getSession();
 		session.removeAttribute(UserSessionUtils.USER_SESSION_KEY);

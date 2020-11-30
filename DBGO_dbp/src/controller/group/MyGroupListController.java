@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
 import controller.user.UserSessionUtils;
 import model.dto.GroupInfo;
-import model.service.UserManager;
+import model.service.Manager;
 
 public class MyGroupListController implements Controller {
 	
@@ -18,7 +18,7 @@ public class MyGroupListController implements Controller {
             return "redirect:/user/login/form";
         }
 		
-		UserManager manager = UserManager.getInstance();
+		Manager manager = Manager.getInstance();
 		List<GroupInfo> mGroupList = manager.findMyGroupList(UserSessionUtils.getLoginUserId(request.getSession()));
 
 		request.setAttribute("mGroupList", mGroupList);
