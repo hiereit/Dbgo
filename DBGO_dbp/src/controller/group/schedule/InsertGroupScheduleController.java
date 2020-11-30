@@ -20,8 +20,7 @@ public class InsertGroupScheduleController implements Controller {
     	
     	Manager manager = Manager.getInstance();
 		manager.insertGroupSchedule(sch);
-	
-		request.setAttribute("g_id", request.getParameter("g_id"));
-		return "/group/view";	// 성공 시 커뮤니티 리스트 화면으로 redirect
+		
+		return "redirect:/group/view?g_id=" + request.getParameter("g_id");
     }
 }
