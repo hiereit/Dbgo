@@ -4,6 +4,9 @@
 <%@ page import="model.dto.User"%>
 <%@ page import="model.dao.UserDAO"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page import="controller.group.CreateGroupController" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,17 +85,25 @@ span {
 	display: inline;
 	text-align: center;
 }
+.failMessage{
+	text-align: center;
+	margin-top: 30px;
+}
 </style>
+
 <script>
 	function add_btn_click() {
+		
 		if (form.mem.value == "") {
 			form.mem.focus();
 			return false;
 		}
+		
 		var $div = $('<span class="badge badge-pill badge-secondary">'
 				+ form.mem.value
 				+ '</span><input type="hidden" name ="members" value = "' + form.mem.value + '">');
 		$('.memList').append($div);
+		form.mem.value = "";
 	}
 	function create_group_btn_click() {
 		if (form.name.value == "") {
@@ -107,33 +118,33 @@ span {
 
 <body>
 	<%@include file="/navbar.jsp"%>
-	<div class="row col-lg-12">
-		<c:if test="${creationFailed}">
-			<h6 class="text-danger">
-				<c:out value="${exception.getMessage()}" />
-			</h6>
+	<div class="failMessage">
+		<c:if test="${addMemberFailed || creationFailed}">
+			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
 		</c:if>
 	</div>
+
 	<form name="form" method="POST" id="f"
 		action="<c:url value='/group/create'/>">
+		
 		<div class="centerElement">
 			<div class="signIn">
 				<h1 class="text-primary">그룹 생성</h1>
 				<div class="centerInput">
 					<div class="groupName">
 						<h5>그룹명</h5>
-						<input type="text" class="form-control" name="name" placeholder=""
+						<input type="text" class="form-control" name="name" placeholder="" id="groupName"
 							style="width: 230px; height: 50px;"
 							<c:if test="${creationFailed}">value="${group.g_name}"</c:if>>
 					</div>
 					<div class="groupMem">
 						<h5>구성원</h5>
-						<input type="text" class="form-control" name="mem" placeholder=""
-							style="width: 160px; height: 50px;">
-						<button type="button" class="btn btn-warning" id="btnAdd" onClick="add_btn_click()">추가</button>
+							<input type="text" class="form-control" name="mem" placeholder=""
+								style="width: 160px; height: 50px;">
+							<button type="button"  class="btn btn-warning" id="btnAdd" onClick="add_btn_click()">추가</button>
 					</div>
 					<div class="memList">
-						<c:if test="${creationFailed}">
+						<c:if test="${!creationFailed}">
 							<c:forEach var="member" items="${group.members}">
 								<span class="badge badge-pill badge-secondary">${member}</span>
 							</c:forEach>

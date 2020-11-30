@@ -22,6 +22,7 @@ public class DeleteUserController implements Controller{//
 		manager.removeUserInGroup(deleteId);
 		
 		manager.remove(deleteId);	
+		
 		return "redirect:/user/logout";		// logout 처리
 		
 	}

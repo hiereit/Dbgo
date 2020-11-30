@@ -85,6 +85,10 @@ span {
 	display: inline;
 	text-align: center;
 }
+.failMessage{
+	text-align: center;
+	margin-top: 3em;
+}
 </style>
 
 <script>
@@ -116,11 +120,9 @@ span {
 
 <body>
 	<%@include file="/navbar.jsp"%>
-	<div class="row col-lg-12">
-		<c:if test="${creationFailed}">
-			<h6 class="text-danger">
-				<c:out value="${exception.getMessage()}" />
-			</h6>
+	<div class="failMessage">
+		<c:if test="${addMemberFailed || creationFailed}">
+			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
 		</c:if>
 	</div>
 
@@ -155,7 +157,7 @@ span {
 					</div>
 
 					<div class="memList">
-						<c:if test="${creationFailed}">
+						<c:if test="${!creationFailed}">
 							<c:forEach var="member" items="${group.members}">
 								<span class="badge badge-pill badge-secondary">${member}</span>
 							</c:forEach>

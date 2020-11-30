@@ -21,7 +21,7 @@ public class ViewUserController implements Controller {//
     	
 		UserManager manager = UserManager.getInstance();
 		String userId = UserSessionUtils.getLoginUserId(request.getSession());
-		List<GroupInfo> mGroupList = manager.findMyGroupList(UserSessionUtils.getLoginUserId(request.getSession()));
+		List<GroupInfo> mGroupList = manager.findMyGroupList(userId);
 
 		request.setAttribute("mGroupList", mGroupList);
 		

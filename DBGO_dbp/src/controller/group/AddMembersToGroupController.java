@@ -44,6 +44,7 @@ public class AddMembersToGroupController implements Controller{
 			return "redirect:/group/list";
 		} catch (Exception e) {
 			request.setAttribute("addMemberFailed", true);
+			request.setAttribute("exception", e);
 			return "redirect:/group/update";
 		}
 	}

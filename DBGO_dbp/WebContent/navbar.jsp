@@ -25,14 +25,14 @@
                <a class="dropdown-item" href="<c:url value='/schedule/monthly'/>">일정 확인</a> 
                <a class="dropdown-item" href="#">일정 추가</a>
             </div></li>
-         <li class="nav-item dropdown"><a
-            class="nav-link dropdown-toggle" href="<c:url value='/group/list'/>" id="navbardrop"
+         <li class="nav-item dropdown">
+         <a class="nav-link dropdown-toggle" href="<c:url value='/group/list'/>" id="navbardrop"
             data-toggle="dropdown">그룹일정</a>
             <div class="dropdown-menu">
                <a class="dropdown-item" href="<c:url value='/group/list'/>">일정 확인</a> 
                <a class="dropdown-item" href="#">일정 추가</a>
-                  <a
-                  class="dropdown-item" href="<c:url value='/group/update'/>">그룹원 추가</a>
+               <a class="dropdown-item" href="<c:url value='/group/create/form'/>">그룹 생성</a>
+               <a class="dropdown-item" href="<c:url value='/group/update'/>">그룹원 추가</a>
             </div></li>
          <li class="nav-item dropdown"><a
             class="nav-link dropdown-toggle" href="#" id="navbardrop"
@@ -46,6 +46,7 @@
       <button class="btn">
          <i class="fa fa-bell fa-2x" aria-hidden="true" style="color: white;"></i>
       </button>
+      
       <a href="<c:url value='/user/view' />">
       <button class="btn">
          <i class="fa fa-address-book fa-2x" aria-hidden="true"

@@ -27,7 +27,7 @@ public class UserDAO {
 
 	
 	public User findUserInfo(String u_id) {
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		
 		try {
 			return sqlSession.getMapper(UserMapper.class).selectUserByUserId(u_id);
@@ -38,7 +38,7 @@ public class UserDAO {
 
 	
 	public List<User> findUserList(){
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
 			return sqlSession.getMapper(UserMapper.class).selectAllUsers();
 		} finally {
@@ -77,12 +77,13 @@ public class UserDAO {
 
 
 	public boolean existingUser(String u_id){
-		SqlSession sqlSession = sqlSessionFactory.openSession();
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
 			return sqlSession.getMapper(UserMapper.class).selectExistingUser(u_id);
 		}finally {
 			sqlSession.close();
 		}
 	}
+	
 	
 }
