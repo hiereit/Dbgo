@@ -135,13 +135,13 @@ font-family: JSDongkang-Bold!important;
 					<tr>
 						<th><label for="password">비밀번호</label></th>
 						<td><input type="password" class="form-control" name="password"
-							style="width: 300px; height: 40px; margin-bottom: 10px;"> </td>
+							style="width: 300px; height: 40px; margin-bottom: 10px; font-family:san-serif;"> </td>
 					</tr>
 
 					<tr>
 						<th><label for="passwordConfirm">비밀번호 확인</label></th>
 						<td><input type="password" class="form-control" name="passwordConfirm"
-							style="width: 300px; height: 40px; margin-bottom: 10px;">
+							style="width: 300px; height: 40px; margin-bottom: 10px; font-family:san-serif;">
 						</td>
 					</tr>
 				</table>
