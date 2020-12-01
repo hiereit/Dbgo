@@ -114,7 +114,7 @@ font-family: JSDongkang-Regular!important;
 						<th><label for="password">비밀번호</label></th>
 						<td>
 							<input type="password" name="password" class="form-control" value="${user.password}"
-							style="width: 300px; height: 40px; margin-bottom: 10px;">
+							style="width: 300px; height: 40px; margin-bottom: 10px; font-family:san-serif;">
 						</td>
 					</tr>
 
@@ -122,7 +122,7 @@ font-family: JSDongkang-Regular!important;
 						<th><label for="passwordConfirm">비밀번호 확인</label></th>
 						<td>
 							<input type="password" name="passwordConfirm" class="form-control" value="${user.password}"
-							style="width: 300px; height: 40px; margin-bottom: 10px;">
+							style="width: 300px; height: 40px; margin-bottom: 10px; font-family:san-serif;">
 						</td>
 					</tr>
 				</table>

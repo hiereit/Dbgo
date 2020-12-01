@@ -105,7 +105,7 @@ font-family: JSDongkang-Bold!important;
 				<h1 class="text-primary">Sign in</h1>
 				<div class="centerInput">
 				<input type="text" class="form-control" name="u_id" placeholder="Id" style="width: 80%; height: 50px; margin-top: 40px;"> 
-				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 80%; height: 50px;">
+				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 80%; height: 50px; font-family: san-serif;">
 				</div>
 				<input type="button" class="btn btn-primary" value="로그인" onClick="login()" style="width: 150px;">
 				<div class="userBtn">
