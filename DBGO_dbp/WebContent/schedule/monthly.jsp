@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/minty/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -119,6 +120,32 @@
         .fc-time{
    display : none;
 }
+.fc .fc-list-event-dot {
+    display: inline-block;
+    box-sizing: content-box;
+    width: 0;
+    height: 0;
+    border: 5px solid #f3969a;
+    border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #f3969a);
+    border-radius: 5px;
+    border-radius: calc(var(--fc-list-event-dot-width, 10px) / 2);
+  }
+  .fc-v-event { /* allowed to be top-level */
+  display: block;
+  border: 1px solid #f3969a;
+  border: 1px solid var(--fc-event-border-color, #f3969a);
+  background-color: #f3969a;
+  background-color: var(--fc-event-bg-color, #f3969a)
+
+}
+.fc-h-event { /* allowed to be top-level */
+  display: block;
+  border: 1px solid #f3969a;
+  border: 1px solid var(--fc-event-border-color, #f3969a);
+  background-color: #f3969a;
+  background-color: var(--fc-event-bg-color, #f3969a)
+
+}
 </style>
 <script>
 	 var calendar;
@@ -161,7 +188,22 @@
 		category.put('<%= s.getSch_id() %>', '<%= s.getCategory() %>');
 		<%
 		}%>
-	
+
+	function updateDrop(param){
+		 $.ajax({
+             type: 'POST',
+             url: '/schedule/updateDrop',
+             data: param,
+             dataType: 'text',
+             success: function() {
+                location.reload();
+                
+             }, error: function(request, status, error) {
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+             }
+          });
+	}
+		
 	document.addEventListener('DOMContentLoaded', function() {
 		var initialLocaleCode = 'ko';
 		var calendarEl = document.getElementById('calendar');
@@ -174,6 +216,26 @@
 				   $('#myModal').show(); 
 			},
 			editable: true,
+			droppable: true,
+			dragRevertDuration: 0,
+            eventDrop: function(eventDropInfo) {
+            	var newEventObj = eventDropInfo.event;
+                var oldEventObj = eventDropInfo.oldEvent;
+                
+                var changeId = oldEventObj.id;
+                var changeStart = moment(newEventObj.start).format('YYYY-MM-DD');
+                var param;
+                if (oldEventObj.end == null) {
+                	 param = 'sch_id='+changeId+'&start_date='+changeStart;
+                }
+                else {
+                	var changeEnd = moment(newEventObj.end).format('YYYY-MM-DD');
+                	param = 'sch_id='+changeId+'&start_date='+changeStart+'&end_date='+changeEnd;
+                }
+        	
+                updateDrop(param);
+             
+            },
 			events: [
 				<%
 				for (int i = 0; i < schedules.size(); i++) {
@@ -183,7 +245,7 @@
 					id: '<%= s.getSch_id() %>',
 					title: '<%= s.getTitle() %>',
 					start: '<%= s.getStart_date() %>',
-					end: '<%= s.getEnd_date() %>'+" 20:00:00"
+					end: '<%= s.getEnd_date() %>'+" 23:59:59"
 				},
 				<%
 				}
@@ -216,6 +278,8 @@
 		
 		calendar.render();
 	});
+	
+	
 
 	function add() {
 		if (form.title.value == "") {
