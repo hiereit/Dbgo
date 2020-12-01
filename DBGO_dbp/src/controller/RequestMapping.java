@@ -22,6 +22,7 @@ public class RequestMapping {
 		mappings.put("/schedule/monthly", new MonthlyController());
 		mappings.put("/schedule/create", new CreateScheduleController());
 		mappings.put("/schedule/update", new UpdateScheduleController());
+		mappings.put("/schedule/updateDrop", new UpdateDropController());
 
     	mappings.put("/group/view", new ViewGroupController());
     	mappings.put("/group/schedule/view", new ViewGroupScheduleController());
