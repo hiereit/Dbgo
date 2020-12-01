@@ -30,10 +30,10 @@ public class CreateGroupController implements Controller{
 				
 				Manager manager = Manager.getInstance();
 				
-				for (String member : group.getMembers()) {
-					manager.addMember(group.getG_id(), member);
-				}
-				manager.createGroup(group).getG_id();
+				String g_id = manager.createGroup(group).getG_id();
+				manager.addMember(g_id, member);
+				
+				
 				
 		    	log.debug("Create Group : {}", group);
 		        return "redirect:/group/list";	// 성공 시 커뮤니티 리스트 화면으로 redirect

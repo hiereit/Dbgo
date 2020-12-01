@@ -11,7 +11,9 @@ public class GroupInfo implements Serializable {
 	private int numOfMembers;
 	private List<String> members;
 	
-	public GroupInfo() {}
+	public GroupInfo() {
+		this.members = new ArrayList<>();
+	}
 	
 	public GroupInfo(String g_id, String g_name) {
 		super();

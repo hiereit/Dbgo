@@ -41,7 +41,12 @@ public class AddMembersToGroupController implements Controller{
 		try {
 	    	// POST request (회원정보가 parameter로 전송됨)
 			Manager manager = Manager.getInstance();
-			manager.addMember(request.getParameter("g_id"), request.getParameter("mem"));			
+			String[] membersParam = request.getParameterValues("members");
+			if (membersParam != null) {
+				for (String member : membersParam) {
+					manager.addMember(request.getParameter("g_id"), member);
+				}
+			}
 			return "redirect:/group/list";
 		} catch (Exception e) {
 			request.setAttribute("addMemberFailed", true);

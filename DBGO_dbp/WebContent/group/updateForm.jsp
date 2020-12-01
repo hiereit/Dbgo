@@ -177,7 +177,7 @@ font-family: JSDongkang-Regular;
 						<h5>
 						<label for="exampleSelect1">추가할 회원의 ID</label>
 						</h5>
-						<input type="text" class="form-control" name="mem" placeholder=""
+						<input type="text" class="form-control" name="mem"
 							style="width: 70%; height: 50px;">
 						<button type="button" class="btn btn-warning" id="btn"
 							onClick="add_btn_click();">추가</button>
