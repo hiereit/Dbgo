@@ -45,5 +45,7 @@ public class UpdateScheduleController implements Controller{
 		
 		return "redirect:/schedule/monthly";
 	}
+	
+	
 
 }

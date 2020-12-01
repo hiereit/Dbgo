@@ -22,6 +22,16 @@
 		start_date = #{start_date}, end_date = #{end_date, jdbcType=VARCHAR}
 	WHERE sch_id = #{sch_id}
 </update>
+ <update id="updateScheduleStart" parameterType="string">
+	UPDATE SCHEDULE
+	SET start_date = #{start_date}
+	WHERE sch_id = #{sch_id}
+</update>
+ <update id="updateScheduleSE" parameterType="string">
+	UPDATE SCHEDULE
+	SET start_date = #{start_date}, end_date = #{end_date}
+	WHERE sch_id = #{sch_id}
+</update>
  <update id="updateScheduleACH" parameterType="int">
 	UPDATE SCHEDULE
 	SET achievement = #{achievement},  

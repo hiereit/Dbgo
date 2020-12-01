@@ -52,6 +52,32 @@ public class ScheduleDAO {
 		}
 	}
 	
+	public int updateByDrop(String sch_id, String start_date) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			int result = sqlSession.getMapper(ScheduleMapper.class).updateScheduleStart(sch_id, start_date);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
+	public int updateByDrop(String sch_id, String start_date, String end_date) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			int result = sqlSession.getMapper(ScheduleMapper.class).updateScheduleSE(sch_id, start_date, end_date);
+			if (result > 0) {
+				sqlSession.commit();
+			}
+			return result;
+		}finally {
+			sqlSession.close();
+		}
+	}
+	
 	public int delete(String sch_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
