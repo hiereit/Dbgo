@@ -56,6 +56,14 @@ public class Manager {//
 		return user;
 	}
 	
+	public boolean existUser(String userId) {
+		User user = userDAO.findUserInfo(userId);
+		if (user == null) {
+			return false;
+		}	
+		return true;
+	}
+	
 	public List<User> findUserList() throws SQLException {
 		return userDAO.findUserList();
 }
