@@ -15,6 +15,6 @@ public class DeleteGroupScheduleController implements Controller {
 		Manager manager = Manager.getInstance();
 		manager.deleteGroupSchedule(groupsch_id);
 
-		return "redirect:/group/schedule/view?groupsch_id=" + groupsch_id + "&g_id=" + g_id;
+		return "redirect:/group/view?g_id=" + g_id;
 	}
 }

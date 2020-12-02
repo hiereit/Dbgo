@@ -1,5 +1,8 @@
 package controller.group;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import controller.Controller;
@@ -17,34 +20,44 @@ public class CreateGroupController implements Controller{
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/user/login/form";
         }
+
 		GroupInfo group = new GroupInfo(null, request.getParameter("name"));
-	
-			try {
-				String[] membersParam = request.getParameterValues("members");
-				if (membersParam != null) {
-					for (String member : membersParam) {
-						group.getMembers().add(member);
-					}
+		List<String> failMem = new ArrayList<>();
+		
+		Manager manager = Manager.getInstance();
+		String g_id = request.getParameter("g_id");
+		if (request.getParameter("isFailed") == null) {
+			g_id = manager.createGroup(group).getG_id();
+			group.setG_id(g_id);
+			manager.addMember(g_id, UserSessionUtils.getLoginUserId(request.getSession()));
+		}
+		
+		String[] membersParam = request.getParameterValues("members");
+		if (membersParam != null) {
+			for (String member : membersParam) {
+				if (manager.existUser(member)) {
+					manager.addMember(g_id, member);
 				}
-				group.getMembers().add(UserSessionUtils.getLoginUserId(request.getSession()));
-				
-				Manager manager = Manager.getInstance();
-				
-				for (String member : group.getMembers()) {
-					manager.addMember(group.getG_id(), member);
+				else {
+					failMem.add(member);
 				}
-				manager.createGroup(group).getG_id();
-				
-		    	log.debug("Create Group : {}", group);
-		        return "redirect:/group/list";	// 성공 시 커뮤니티 리스트 화면으로 redirect
-		        
-			} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
-				request.setAttribute("addMemberFailed", true);
-	            request.setAttribute("creationFailed", true);
-				request.setAttribute("exception", e);
-				request.setAttribute("group", group);
-				return "/group/creationForm.jsp";
 			}
+		}
+		
+		try {
+			if (failMem.size() > 0) {
+				throw new Exception();
+			}
+			else {
+				 return "redirect:/group/list";
+			}
+		} catch (Exception e) {		// 예외 발생 시 입력 form으로 forwarding
+			request.setAttribute("addMemberFailed", true);
+			request.setAttribute("exception", failMem.toString() + "이 없습니다.");
+			request.setAttribute("group", group);
+			return "/group/creationForm.jsp";
+		}
+		
 	}
 
 }

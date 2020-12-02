@@ -148,16 +148,20 @@ font-family: JSDongkang-Regular;
 </head>
 
 <body>
+	
 	<%@include file="/navbar.jsp"%>
 	<div class="failMessage">
 		<c:if test="${addMemberFailed || creationFailed}">
-			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
+			<h6 class="text-danger"><c:out value="${exception}"/></h6>
 		</c:if>
 	</div>
 
 	<form name="form" method="POST" id="f"
 		action="<c:url value='/group/create'/>">
-		
+		<c:if test="${addMemberFailed}">
+			<input type="hidden" name="isFailed" value="true">
+			<input type="hidden" name="g_id" value="${group.g_id}">
+		</c:if>
 		<div class="centerElement">
 			<div class="signIn">
 				<h1 class="text-primary">그룹 생성</h1>
@@ -166,7 +170,7 @@ font-family: JSDongkang-Regular;
 						<h5>그룹명</h5>
 						<input type="text" class="form-control" name="name" placeholder="" id="groupName"
 							style="width: 230px; height: 50px;"
-							<c:if test="${creationFailed}">value="${group.g_name}"</c:if>>
+							<c:if test="${creationFailed || addMemberFailed}">value="${group.g_name}" readonly</c:if>>
 					</div>
 					<div class="groupMem">
 						<h5>구성원</h5>
