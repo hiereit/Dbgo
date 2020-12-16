@@ -26,6 +26,6 @@ public class MyDiaryListController implements Controller{
 		Collections.sort(mDiaryList, new Diary.SortByDate());
 		
 		request.setAttribute("mDiaryList", mDiaryList);
-		return "/diary/list.jsp";
+		return "/diary/diary_view.jsp";
 	}
 }
