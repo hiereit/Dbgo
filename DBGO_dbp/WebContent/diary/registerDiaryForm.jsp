@@ -103,16 +103,16 @@ function fnChkByte(obj, maxByte)
 	<div class="centerElement">
 			<div class="diary">
 	<div id="form-div">
-      <form name="form" method="POST" action="<c:url value='/diary/register'/>">
+      <form name="form" method="POST" action="<c:url value='/diary/insert'/>">
           <fieldset>
            <button type="button" id="subBtn" class="btn btn-warning btn-rounded">등록</button>
            <div class="form-group">
 	      <label for="exampleTextarea" style="font-family: JSDongkang-Bold; font-size: 18px;">일기 작성</label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="diaryDate" placeholder="날짜" name="diaryDate" style="font-family: JSDongkang-Regular; font-size: 18px; margin-top: 15px;">
+                <input type="text" class="form-control-plaintext" id="diaryDate" placeholder="날짜" name="date" style="font-family: JSDongkang-Regular; font-size: 18px; margin-top: 15px;">
               </div>
           <hr>
-	      <textarea class="form-control" id="exampleTextarea" rows="3" maxlength="1500"  onKeyUp="javascript:fnChkByte(this,'1500')" style="font-family: JSDongkang-Regular; margin-top: 0px; margin-bottom: 0px; height: 336px;"></textarea>
+	      <textarea name="content" class="form-control" id="exampleTextarea" rows="3" maxlength="1500"  onKeyUp="javascript:fnChkByte(this,'1500')" style="font-family: JSDongkang-Regular; margin-top: 0px; margin-bottom: 0px; height: 336px;"></textarea>
 	    	<br/>
 			<div id="byte"><span id="byteInfo">0</span>/1500</div>
 	    </div>
