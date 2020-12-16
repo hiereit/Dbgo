@@ -95,14 +95,24 @@ tr{
 table{ /*테이블의 위치 */
 	margin:auto;	
 }
-.btn-secondary, .btn-warning{
+h3, .btn-warning{
+	display: inline;
+}
+.btn-warning{
+	font-family: JSDongkang-Regular;
+	font-size: 13px;
+	float:right;
+}
+.form-control-plaintext, .btn-secondary{
 	font-family: JSDongkang-Regular;
 	font-size: 13px;
 	display: inline;
+	text-align: center;
 }
-a {
-	float:right;
+.dateBox{
+	margin-top : 20px;
 }
+
 </style>
 <script>
 	$( function(){
@@ -127,15 +137,15 @@ a {
 	<div class="diaryBox">
 		<div class="titleBox">
 			<h3><b>${u_id}</b>님의 일기장</h3>
-			<div>
+			<a href="<c:url value='/diary/register'/>"><button class="btn btn-warning">일기 쓰기</button></a>
+			<div class="dateBox">
 				<form name="form" method="POST" action="<c:url value='/diary/list'/>">
-					<input type="text" class="form-control-plaintext" id="searchDate" name="searchDate" placeholder="날짜" readonly>
-					<button class="btn btn-secondary">검색</button>
+					<input type="text" style="width:100px;"class="form-control-plaintext" id="searchDate" placeholder="날짜 선택" name="searchDate" readonly>
+					<button class="btn btn-secondary" style="width:50px; height:30px; margin:auto;">검색</button>
 				</form>
-				<a href="<c:url value='/diary/register'/>" class="btn btn-warning">일기 쓰기</a>
 			</div>
 		</div>
-		<hr><!-- ------------------------------------------------------------ -->
+		<hr><!-- ---------------------------------------------------------------------- -->
 		<div class="dairyTable">
 				<table>
 					<tr>
