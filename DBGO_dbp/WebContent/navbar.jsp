@@ -33,8 +33,8 @@
             class="nav-link dropdown-toggle" href="#" id="navbardrop"
             data-toggle="dropdown">일기</a>
             <div class="dropdown-menu">
-               <a class="dropdown-item" href="#">일기 확인</a> <a
-                  class="dropdown-item" href="#">일기 쓰기</a>
+              <a class="dropdown-item" href="<c:url value='/diary/view'/>">일기 보기</a>
+              <a class="dropdown-item" href="<c:url value='/diary/create'/>">일기 쓰기</a>
             </div></li>
          <li class="nav-item"><a class="nav-link" href="#">랭킹보기</a></li>
       </ul>
