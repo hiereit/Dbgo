@@ -36,7 +36,6 @@
               <a class="dropdown-item" href="<c:url value='/diary/list'/>">일기 보기</a>
               <a class="dropdown-item" href="<c:url value='/diary/register'/>">일기 쓰기</a>
             </div></li>
-         <li class="nav-item"><a class="nav-link" href="#">랭킹보기</a></li>
       </ul>
       <button class="btn">
          <i class="fa fa-bell fa-2x" aria-hidden="true" style="color: white;"></i>
