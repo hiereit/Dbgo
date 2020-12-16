@@ -18,8 +18,15 @@ public class MyDiaryListController implements Controller{
             return "redirect:/user/login/form";
         }
 		String u_id = UserSessionUtils.getLoginUserId(request.getSession());
+		List<Diary> mDiaryList = null;
 		Manager manager = Manager.getInstance();
-		List<Diary> mDiaryList = manager.findAllDiaries(u_id);
+		if(request.getParameter("searchDate") != null) {
+			String d_date = request.getParameter("searchDate");
+			mDiaryList = manager.findAllDiariesByDate(u_id, d_date);
+		}
+		else {
+			mDiaryList = manager.findAllDiaries(u_id);
+		}
 		Collections.sort(mDiaryList, new Diary.SortByDate());
 		
 		request.setAttribute("u_id", u_id);

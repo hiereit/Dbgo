@@ -2,6 +2,8 @@ package model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import model.dto.Diary;
 
 public interface DiaryMapper {
@@ -12,4 +14,6 @@ public interface DiaryMapper {
 	public Diary findDiary(String d_id);
 
 	public int deleteDiary(String d_id);
+
+	public List<Diary> findAllDiariesByDate(@Param("u_id") String u_id, @Param("d_date") String d_date);
 }
