@@ -9,6 +9,7 @@ import controller.group.*;
 import controller.group.schedule.*;
 import controller.user.*;
 import controller.schedule.*;
+import controller.diary.*;
 
 public class RequestMapping {
 	private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -45,10 +46,10 @@ public class RequestMapping {
 		mappings.put("/user/update", new UpdateUserController());
 		mappings.put("/user/delete", new DeleteUserController());
 		
-		//mappings.put("/diary/view", new ViewDiaryController());
-		//mappings.put("/diary/create", new CreateDiaryController());
-		//mappings.put("/diary/delete" new DeleteDiaryController());
-
+		mappings.put("/diary/list", new MyDiaryListController());
+		mappings.put("/diary/view", new ViewDiaryController());
+		mappings.put("/diary/insert", new InsertDiaryController());
+		mappings.put("/diary/delete", new DeleteDiaryController());
 
 		/*
 

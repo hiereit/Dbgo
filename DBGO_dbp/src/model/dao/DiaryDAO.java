@@ -1,5 +1,7 @@
 package model.dao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,176 +11,69 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import model.dto.Diary;
+import model.dto.GroupSchedule;
 
 public class DiaryDAO {
+	private SqlSessionFactory sqlSessionFactory;
+	
 	public DiaryDAO() {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException ex) {
-			ex.printStackTrace();
+			inputStream = Resources.getResourceAsStream(resource);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e);
 		}
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 	
-	private static Connection getConnection() {
-		String url = // "jdbc:oracle:thin:@localhost:1521:xe";
-				"jdbc:oracle:thin:@202.20.119.117:1521:orcl";
-		String user = "dbprog0208";
-		String passwd = "qkrprh5";
-
-		Connection conn = null;
+	public Diary insertDiary(Diary diary) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			conn = DriverManager.getConnection(url, user, passwd);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}
-	
-	public List<String> findMonthDiary(String userId, Date date) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;
-		ResultSet rs = null;
-
-		String query = "SELECT d_date "
-				+ "FROM diary "
-				+ "WHERE MONTHS_BETWEEN (" + date + ", d_date) = ? "
-				+ "AND u_id = ?";
-		
-		try {
-			conn = getConnection();
-			pStmt = conn.prepareStatement(query);
-			pStmt.setInt(1, 0);
-			pStmt.setString(2, userId);
-			rs = pStmt.executeQuery();	
-			
-			List<String> dateList = new ArrayList<>();
-			while (rs.next()) {
-				dateList.add(rs.getDate("d_date").toString());
-			}
-			return dateList;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {	
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-		}
-		return null;		
-	}
-	
-	public Diary getDiaryContent(String userId, Date date) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;
-		ResultSet rs = null;
-
-		String query = "SELECT d_date "
-				+ "FROM diary "
-				+ "WHERE d_date = ? "
-				+ "AND u_id = ?";
-
-		try {
-			conn = getConnection();
-			pStmt = conn.prepareStatement(query);
-			pStmt.setDate(1, date);
-			pStmt.setString(2, userId);
-			rs = pStmt.executeQuery();	
-			
-			Diary diary = new Diary();
-			if (rs.next()) {
-				diary.setDate(rs.getDate("d_date").toString());
-				diary.setContent(rs.getString("content"));
-			}
+			int result = sqlSession.getMapper(DiaryMapper.class).insertDiary(diary);
+			if (result > 0) {
+				sqlSession.commit();
+			} 
 			return diary;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (rs != null) 
-				try { 
-					rs.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+		} finally {
+			sqlSession.close();
 		}
-		return null;
 	}
 	
-	public int deleteDiary(String userId, Date date) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;
-		int result;
-
-		String query = "DELETE FROM diary "
-				+ "WHERE d_date = ? "
-				+ "AND u_id = ?";
-		
+	public List<Diary> findAllDiaries(String u_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			conn = getConnection();
-			pStmt = conn.prepareStatement(query);
-			pStmt.setDate(1, date);
-			pStmt.setString(2, userId);
-			result = pStmt.executeUpdate();	
-			return result;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+			return sqlSession.getMapper(DiaryMapper.class).findAllDiaries(u_id);			
+		} finally {
+			sqlSession.close();
 		}
-		return 0;
 	}
 	
-	public int updateDiary(String userId, Date date, String content) {
-		Connection conn = null;
-		PreparedStatement pStmt = null;
-		int result;
-
-		String query = "UPDATE diary "
-				+ "SET content = ? "
-				+ "WHERE d_date = ? "
-				+ "AND u_id = ?";
-		
+	public Diary findDiary(String d_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			conn = getConnection();
-			pStmt = conn.prepareStatement(query);
-			pStmt.setString(1, content);
-			pStmt.setDate(2, date);
-			pStmt.setString(3, userId);
-			result = pStmt.executeUpdate();	
-			return result;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {		// �ڿ� �ݳ�
-			if (pStmt != null) 
-				try { 
-					pStmt.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
-			if (conn != null) 
-				try { 
-					conn.close(); 
-				} catch (SQLException ex) { ex.printStackTrace(); }
+			return sqlSession.getMapper(DiaryMapper.class).findDiary(d_id);			
+		} finally {
+			sqlSession.close();
 		}
-		return 0;
+	}
+	
+	public int deleteDiary(String d_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			int result = sqlSession.getMapper(DiaryMapper.class).deleteDiary(d_id);
+			if (result > 0) {
+				sqlSession.commit();
+			} 
+			return result;	
+		} finally {
+			sqlSession.close();
+		}
 	}
 }

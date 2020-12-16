@@ -3,9 +3,11 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.dto.Diary;
 import model.dto.GroupInfo;
 import model.dto.GroupSchedule;
 import model.dto.User;
+import model.dao.DiaryDAO;
 import model.dao.GroupDAO;
 import model.dao.UserDAO;
 import model.dao.GroupScheduleDAO;
@@ -15,12 +17,14 @@ public class Manager {//
 	private UserDAO userDAO;
 	private GroupDAO groupDAO;
 	private GroupScheduleDAO groupScheduleDAO;
+	private DiaryDAO diaryDAO;
 
 	private Manager() {
 		try {
 			userDAO = new UserDAO();
 			groupDAO = new GroupDAO();
 			groupScheduleDAO = new GroupScheduleDAO();
+			diaryDAO = new DiaryDAO();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
@@ -120,5 +124,21 @@ public class Manager {//
 	
 	public int deleteGroupSchedule(String groupsch_id) throws SQLException {
 		return groupScheduleDAO.deleteGroupSchedule(groupsch_id);			
+	}
+	
+	public Diary insertDiary(Diary diary) {
+		return diaryDAO.insertDiary(diary);
+	}
+
+	public List<Diary> findAllDiaries(String u_id) throws SQLException {
+		return diaryDAO.findAllDiaries(u_id);			
+	}
+	
+	public Diary findDiary(String d_id) throws SQLException {
+		return diaryDAO.findDiary(d_id);			
+	}
+	
+	public int deleteDiary(String d_id) throws SQLException {
+		return diaryDAO.deleteDiary(d_id);			
 	}
 }

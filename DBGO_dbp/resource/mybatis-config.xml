@@ -29,5 +29,6 @@
 		<mapper resource="model/dao/GroupScheduleMapper.xml" />
 		<mapper resource="model/dao/UserMapper.xml" />
 		<mapper resource="model/dao/ScheduleMapper.xml" />
+		<mapper resource="model/dao/DiaryMapper.xml" />
 	</mappers>
 </configuration>
