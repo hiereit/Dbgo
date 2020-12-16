@@ -52,7 +52,7 @@
 	<div class="container">
 		<div class="center">
 			<a href="<c:url value='/schedule/monthly' />" style="padding: 5px;"> <span class="menu" style="background-color: #FDB3B1;">개인 일정</span></a>
-			<a href="<c:url value='' />" style="padding: 5px;"><span class="menu" style="background-color: #FED88C">실시간 랭킹</span></a>
+			<a href="<c:url value='/diary/list' />" style="padding: 5px;"><span class="menu" style="background-color: #FED88C">나의 일기</span></a>
 			<a href="<c:url value='/group/list' />" style="padding: 5px;"><span class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
 		</div>
 	</div>

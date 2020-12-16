@@ -271,7 +271,7 @@
 			headerToolbar: {
 			    left: 'prev,next today',
 				center: 'title',
-				right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+				right: 'dayGridMonth,listWeek'
 			},
 			locale: initialLocaleCode,
 			eventClick: function(info) {
