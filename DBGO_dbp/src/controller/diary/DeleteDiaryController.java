@@ -16,7 +16,7 @@ public class DeleteDiaryController implements Controller {
 		String d_id = request.getParameter("d_id");
 
 		Manager manager = Manager.getInstance();
-		manager.deleteGroupSchedule(d_id);
+		manager.deleteDiary(d_id);
 
 		return "redirect:/diary/list";
 	}

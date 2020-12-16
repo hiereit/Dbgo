@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="findDiary" parameterType="string" resultType="Diary">
-		SELECT d_date, content
+		SELECT d_id, d_date, content
 		FROM DIARY
 		WHERE d_id = #{d_id}
 	</select>

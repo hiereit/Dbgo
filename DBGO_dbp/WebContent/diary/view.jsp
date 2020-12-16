@@ -51,15 +51,22 @@
 	margin-bottom : 20px;
 }
 </style>
+<script>
+	function remove() {
+		return confirm("정말 삭제하시겠습니까?");
+	}
+</script>
 </head>
 <body>
 	<%@include file="/navbar.jsp"%>
 	<br>
 	<div class="centerElement diaryDetail">
 	<div class="btn">
-	<a href="<c:url value='/diary/list'/>"><button id="cancel" class="btn btn-warning">뒤로 가기</button></a>
+	<a class="btn btn-warning" href="<c:url value='/diary/list'/>">뒤로 가기</a>
 	&nbsp;
-	<a href="<c:url value='/diary/delete'/><c:param name='d_id' value='${d_id}'/>"><button id="delete" class="btn btn-secondary">삭제</button></a>
+	<a class="btn btn-secondary"
+				href="<c:url value='/diary/delete'> <c:param name='d_id' value='${d_id}'/></c:url>"
+				onclick="return remove();">삭제</a>
 	</div>
 		<div class="card border-success mb-3" style="max-width: 80rem;">
 			<div class="card-header">날짜: ${date}</div>
