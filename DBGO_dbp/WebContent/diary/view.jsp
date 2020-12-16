@@ -52,7 +52,7 @@
 	<br>
 	<div class="centerElement diaryDetail">
 		<div class="card border-success mb-3" style="max-width: 80rem;">
-			<div class="card-header">날짜: ${diary.diaryDate}</div>
+			<div class="card-header">날짜: ${diary.date}</div>
 			<div class="card-body">
 				<p class="card-text">${diary.content}</p>
 			</div>
