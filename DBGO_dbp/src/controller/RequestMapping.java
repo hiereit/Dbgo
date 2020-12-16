@@ -46,6 +46,7 @@ public class RequestMapping {
 		mappings.put("/user/update", new UpdateUserController());
 		mappings.put("/user/delete", new DeleteUserController());
 		
+		mappings.put("/diary/register", new ForwardController("/diary/registerDiaryForm.jsp"));
 		mappings.put("/diary/list", new MyDiaryListController());
 		mappings.put("/diary/view", new ViewDiaryController());
 		mappings.put("/diary/insert", new InsertDiaryController());

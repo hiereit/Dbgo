@@ -3,8 +3,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.dao.DiaryMapper">
 	<cache />
-	<insert id="insertDiary" parameterType="Diary">
-		<selectKey keyProperty="groupsch_id" resultType="string"
+	<insert id="insertDiary" parameterType="Diary" useGeneratedKeys="true" keyProperty="d_id">
+		<selectKey keyProperty="d_id" resultType="string"
 			order="BEFORE">
 			SELECT seq_did.nextval AS id FROM DUAL
 		</selectKey>

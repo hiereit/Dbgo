@@ -27,6 +27,6 @@ public class InsertDiaryController implements Controller {
 		Manager manager = Manager.getInstance();
 		manager.insertDiary(d);
 		
-		return "redirect:/diary/list?u_id=" + UserSessionUtils.getLoginUserId(request.getSession());
+		return "redirect:/diary/list";
 	}
 }

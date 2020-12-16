@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>일기 작성</title>
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
 <link rel="stylesheet"
@@ -105,7 +105,7 @@ function fnChkByte(obj, maxByte)
 	<div id="form-div">
       <form name="form" method="POST" action="<c:url value='/diary/insert'/>">
           <fieldset>
-           <button type="button" id="subBtn" class="btn btn-warning btn-rounded">등록</button>
+           <button type="submit" id="subBtn" class="btn btn-warning btn-rounded">등록</button>
            <div class="form-group">
 	      <label for="exampleTextarea" style="font-family: JSDongkang-Bold; font-size: 18px;">일기 작성</label>
               <div class="col-md-11">

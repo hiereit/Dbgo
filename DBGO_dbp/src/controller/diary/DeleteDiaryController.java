@@ -18,6 +18,6 @@ public class DeleteDiaryController implements Controller {
 		Manager manager = Manager.getInstance();
 		manager.deleteGroupSchedule(d_id);
 
-		return "redirect:/diary/list?u_id=" + UserSessionUtils.getLoginUserId(request.getSession());
+		return "redirect:/diary/list";
 	}
 }

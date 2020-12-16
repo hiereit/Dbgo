@@ -115,7 +115,7 @@ table{ /*테이블의 위치 */
 		<div class="titleBox">
 			<div>
 				<h3><b>${u_id}</b>님의 일기장</h3>
-				<a href="<c:url value='/diary/insert'/>"><button id="createDiary">일기 쓰기</button></a>
+				<a href="<c:url value='/diary/register'/>"><button id="createDiary">일기 쓰기</button></a>
 			</div>
 		</div>
 		<hr><!-- ------------------------------------------------------------ -->
@@ -128,7 +128,9 @@ table{ /*테이블의 위치 */
 					<c:forEach var="diary" items="${mDiaryList}" varStatus="status">
 						<tr>
 							<td style="text-align:center">${status.count}</td> 	
-							<td style="text-align:center"><a href="<c:url value='/diary/viewDetail'/>">${diary.d_date}</a></td>		
+							<td style="text-align:center"><a href="<c:url value='/diary/view'>
+		      <c:param name='d_id' value='${diary.d_id}'/>
+				   </c:url>">${diary.d_date}</a></td>		
 						</tr>
 					</c:forEach>
 			</table>	

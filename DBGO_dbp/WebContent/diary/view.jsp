@@ -16,7 +16,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-<title>Insert title here</title>
+<title>Selected Diary</title>
 <style>
 .centerElement {
 	width: fit-content;
@@ -52,9 +52,9 @@
 	<br>
 	<div class="centerElement diaryDetail">
 		<div class="card border-success mb-3" style="max-width: 80rem;">
-			<div class="card-header">날짜: ${diary.date}</div>
+			<div class="card-header">날짜: ${date}</div>
 			<div class="card-body">
-				<p class="card-text">${diary.content}</p>
+				<p class="card-text">${content}</p>
 			</div>
 		</div>
 	</div>
