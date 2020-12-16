@@ -17,7 +17,7 @@
 	rel='stylesheet'>
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-<title>My Diary View</title>
+<title>My Diary List View</title>
 <style>
 
 table.table-bordered {
@@ -62,24 +62,24 @@ body{
 	/* border: 1px solid black; */
 	box-shadow: 0px 3px 50px #CECECE;
 	border-radius: 25px;
-	width: 50%;
+	width: 40%;
 	height: 100%;
 	margin: 0px auto;
 	margin-top : 30px;
 	padding : 20px;
 }
 #col_index{ /*index 칼럼*/
-	width: 80px;
+	width: 180px;
 	text-align: center;
 	font-family: JSDongkang-Regular;
-	font-size: 15px;
+	font-size: 18px;
 	
 }
 #col_date{
-	width: 120px;
+	width: 200px;
 	text-align: center;
-	font-family: JSDongkang-Regular;
-	font-size: 15px;
+	font-family: JSDongkang-Bold;
+	font-size: 18px;
 }
 #col_content{
 	text-align: center;
@@ -114,8 +114,8 @@ table{ /*테이블의 위치 */
 	<div class="diaryBox">
 		<div class="titleBox">
 			<div>
-				<h3>${u_id}<b>세라</b>님의 일기장</h3>
-				<button id="createDiary" onClick="createDiary">일기 쓰기</button>
+				<h3><b>${u_id}</b>님의 일기장</h3>
+				<a href="<c:url value='/diary/insert'/>"><button id="createDiary">일기 쓰기</button></a>
 			</div>
 		</div>
 		<hr><!-- ------------------------------------------------------------ -->
@@ -123,30 +123,14 @@ table{ /*테이블의 위치 */
 				<table>
 					<tr>
 						<td id="col_index"><b>index</b></td> 	<!-- 갯수 counter '1'부터 시작 -->
-						<td id="col_date"><b>날짜</b></td>		<!--날짜-->
+						<td id="col_date">날짜</td>		<!--날짜-->
 					</tr>
 					<c:forEach var="diary" items="${mDiaryList}" varStatus="status">
 						<tr>
-							<td>${status.count}</td> 	
-							<td>${diary.d_date}</td>		
+							<td style="text-align:center">${status.count}</td> 	
+							<td style="text-align:center"><a href="<c:url value='/diary/viewDetail'/>">${diary.d_date}</a></td>		
 						</tr>
 					</c:forEach>
-				<%-- 	<tr>
-						<td id="col_index">01</td> 	<!-- 갯수 counter '1'부터 시작 -->
-						<td id="col_date"><a href="<c:url value='/diary/viewDetail'/>">2020-06-09</a></td>		<!--날짜-->
-					</tr>
-					<tr>
-						<td id="col_index">02</td> 	<!-- 갯수 counter '1'부터 시작 -->
-						<td id="col_date">2020-12-10</td>		<!--날짜-->
-					</tr>
-					<tr>
-						<td id="col_index">03</td> 	<!-- 갯수 counter '1'부터 시작 -->
-						<td id="col_date">2020-12-18</td>		<!--날짜-->
-					</tr>
-					<tr>
-						<td id="col_index">04</td> 	<!-- 갯수 counter '1'부터 시작 -->
-						<td id="col_date">2021-01-10</td>		<!--날짜-->
-					</tr> --%>	
 			</table>	
 		</div>	
 	</div>
