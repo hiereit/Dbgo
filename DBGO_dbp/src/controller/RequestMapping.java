@@ -52,13 +52,6 @@ public class RequestMapping {
 		mappings.put("/diary/insert", new InsertDiaryController());
 		mappings.put("/diary/delete", new DeleteDiaryController());
 
-		/*
-
-        mappings.put("/user/list", new ListUserController());
-
-        mappings.put("/community/update/form", new UpdateCommunityController());
-        mappings.put("/community/update", new UpdateCommunityController());
-		 */
 		logger.info("Initialized Request Mapping!");
 
 	}
