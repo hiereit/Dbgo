@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import controller.user.UserSessionUtils;
-import model.dao.DiaryDAO;
 import model.dto.Diary;
-import model.dto.GroupInfo;
-import model.dto.GroupSchedule;
 import model.service.Manager;
 
 public class MyDiaryListController implements Controller{
