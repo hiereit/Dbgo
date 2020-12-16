@@ -17,7 +17,7 @@
 	rel='stylesheet'>
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-<title>My Diary View</title>
+<title>My Diary List View</title>
 <style>
 
 table.table-bordered {

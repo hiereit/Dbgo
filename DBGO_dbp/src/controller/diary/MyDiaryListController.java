@@ -27,6 +27,6 @@ public class MyDiaryListController implements Controller{
 		
 		request.setAttribute("u_id", u_id);
 		request.setAttribute("mDiaryList", mDiaryList);
-		return "/diary/diary_view.jsp";
+		return "/diary/myDiaryList.jsp";
 	}
 }
