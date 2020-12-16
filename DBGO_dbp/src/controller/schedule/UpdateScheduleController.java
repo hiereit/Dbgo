@@ -22,18 +22,15 @@ public class UpdateScheduleController implements Controller{
 			Schedule s = new Schedule();
 			s.setSch_id(request.getParameter("sch_id"));
 			s.setTitle(request.getParameter("title"));
-			System.out.println("title " +request.getParameter("title"));
 			s.setCategory(request.getParameter("category"));
-			System.out.println("category " +request.getParameter("category"));
 			s.setStart_date(request.getParameter("startDate"));
-			System.out.println("startDate " +request.getParameter("startDate"));
 			if (request.getParameter("endDate") != null) {
-				s.setEnd_date(request.getParameter("endDate"));
-				System.out.println("endDate " +request.getParameter("endDate"));
+				if (!request.getParameter("endDate").equals(s.getStart_date())) {
+					s.setEnd_date(request.getParameter("endDate"));
+				}
 			}
 			if (request.getParameter("memo") != null) {
 				s.setMemo(request.getParameter("memo"));
-				System.out.println("memo " +request.getParameter("memo"));
 			}
 			
 			scheduleDAO.update(s);

@@ -23,6 +23,9 @@
 <script src="<c:url value='/js/fullcalendar.js' />"></script>
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <meta charset="UTF-8">
 <title>Monthly Calendar</title>
 <style>
@@ -212,7 +215,7 @@
 			initialView : 'dayGridMonth',
 			themeSystem : 'bootstrap',
 			dateClick: function(info) {
-				    $('#inputScheduleDate').val(info.dateStr);
+				    $('#newStartDate').val(info.dateStr);
 				   $('#myModal').show(); 
 			},
 			editable: true,
@@ -240,12 +243,25 @@
 				<%
 				for (int i = 0; i < schedules.size(); i++) {
 					Schedule s = schedules.get(i);
+					String color = null;
+					switch (s.getCategory()) {
+					case "학교":
+						color = "#56cc9d";
+						break;
+					case "친구":
+						color = "#ffce67";
+						break;
+					case "가족":
+						color = "#6cc3d5";
+						break; 
+					}
 				%>
 				{
 					id: '<%= s.getSch_id() %>',
 					title: '<%= s.getTitle() %>',
 					start: '<%= s.getStart_date() %>',
-					end: '<%= s.getEnd_date() %>'+" 23:59:59"
+					end: '<%= s.getEnd_date() %>'+" 23:59:59",
+					color: '<%= color %>'
 				},
 				<%
 				}
@@ -262,9 +278,9 @@
 			      var eventObj = info.event;
 			      $("#myModal2 option:contains(" + category.get(eventObj.id) +")").prop('selected', true);
 			      $('#myModal2 #inputScheduleTitle').val(eventObj.title); 
-			      $('#myModal2 #inputScheduleDate[name="startDate"]').val(getFormatDate(eventObj.start)); 
+			      $('#updateStartDate').val(getFormatDate(eventObj.start)); 
 			      if (eventObj.end != null) {
-			    	  $('#myModal2 #inputScheduleDate[name="endDate"]').val(getFormatDate(eventObj.end)); 
+			    	  $('#updateEndDate').val(getFormatDate(eventObj.end)); 
 			      }
 			      if (memo.containsKey(eventObj.id)) {
 	                  if (memo.get(eventObj.id) != "null") {
@@ -325,6 +341,45 @@
 		 $('#myModal2 form').append('<input type="hidden" name="btn" value="delete" >');
 		update.submit();
 	  }	
+	
+
+	function getval(sel)
+	{
+		switch (sel.value) {
+			case "기본":
+				document.getElementById("cateIcon").style.color = "#f3969a"
+				break;
+			case "학교":
+				document.getElementById("cateIcon").style.color = "#56cc9d"
+				break;
+			case "친구":
+				document.getElementById("cateIcon").style.color = "#ffce67"
+				break;
+			case "가족":
+				document.getElementById("cateIcon").style.color = "#6cc3d5"
+				break;
+		}
+	}
+	function reply_click(clicked_id)
+	{
+	    alert(clicked_id);
+	}
+
+	$( function(){
+	    $("#newStartDate, #newEndDate, #updateStartDate, #updateEndDate").datepicker({
+	    	dateFormat: 'yy-mm-dd' //Input Display Format 변경
+                ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+                ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+                ,changeYear: true //콤보박스에서 년 선택 가능
+                ,changeMonth: true //콤보박스에서 월 선택 가능
+                ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+                ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+                ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+                ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+	    });
+	  } );
 </script>
 
 
@@ -343,9 +398,9 @@
           <button type="button" id="subBtn" class="btn btn-warning btn-rounded" onClick="add()">등록</button>
           <a href="<c:url value='/schedule/monthly' />"><button type="button" class="btn btn-warning btn-rounded">취소</button></a>
           <div class="form-group row" >
-            <label for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder" aria-hidden="true"></i></label>
+            <label id="cateIcon" for="selectCategory" class="col-md-1 col-form-label"><i class="fa fa-folder" aria-hidden="true"></i></label>
         
-              <select name="category" class="selectCategory">
+              <select name="category" class="selectCategory" onchange="getval(this);">
                 <option selected>카테고리</option>
                 <option>기본</option>
                 <option>학교</option>
@@ -360,13 +415,13 @@
           <hr>
           <div class="inputContent">
             <div class="form-group row">
-              <label for="inputScheduleDate" class="col-md-1 col-form-label "><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-range" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <label class="col-md-1 col-form-label "><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-range" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
   <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/>
 </svg></label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="시작 날짜" name="startDate">
-                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="마지막 날짜" name="endDate">
+                <input type="text" class="form-control-plaintext" id="newStartDate" placeholder="시작 날짜" name="startDate" readonly>
+                <input type="text" class="form-control-plaintext" id="newEndDate" placeholder="마지막 날짜" name="endDate" readonly>
               </div>
             </div>
             <div class="form-group row">
@@ -410,13 +465,13 @@
           <hr>
           <div class="inputContent">
             <div class="form-group row">
-              <label for="inputScheduleDate" class="col-md-1 col-form-label "><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-range" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <label class="col-md-1 col-form-label "><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-range" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
   <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1zM1 9h4a1 1 0 0 1 0 2H1V9z"/>
 </svg></label>
               <div class="col-md-11">
-                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="시작 날짜" name="startDate">
-                <input type="text" class="form-control-plaintext" id="inputScheduleDate" placeholder="마지막 날짜" name="endDate">
+                <input type="text" class="form-control-plaintext" id="updateStartDate" placeholder="시작 날짜" name="startDate" readonly>
+                <input type="text" class="form-control-plaintext" id="updateEndDate" placeholder="마지막 날짜" name="endDate" readonly>
               </div>
             </div>
             <div class="form-group row">
