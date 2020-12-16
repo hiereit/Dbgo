@@ -14,6 +14,7 @@ public class ViewDiaryController implements Controller{
 		Manager manager = Manager.getInstance();
 		Diary diary = manager.findDiary(d_id);
 		
+		request.setAttribute("d_id", diary.getD_id());
 		request.setAttribute("date", diary.getD_date());
 		request.setAttribute("content", diary.getContent());
 		return "/diary/view.jsp";

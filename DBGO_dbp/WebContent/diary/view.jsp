@@ -48,10 +48,7 @@
 .btn-warning, .btn-secondary {
 	font-family: JSDongkang-Regular;
 	font-size: 18px;
-}
-#btn {
-	margin-left : 150px;
-	margin-bottom : 25px;
+	margin-bottom : 20px;
 }
 </style>
 </head>
@@ -60,8 +57,9 @@
 	<br>
 	<div class="centerElement diaryDetail">
 	<div class="btn">
-	<button id="cancel" class="btn btn-warning">뒤로 가기</button>
-	<button id="delete" class="btn btn-secondary">삭제</button>
+	<a href="<c:url value='/diary/list'/>"><button id="cancel" class="btn btn-warning">뒤로 가기</button></a>
+	&nbsp;
+	<a href="<c:url value='/diary/delete'/><c:param name='d_id' value='${d_id}'/>"><button id="delete" class="btn btn-secondary">삭제</button></a>
 	</div>
 		<div class="card border-success mb-3" style="max-width: 80rem;">
 			<div class="card-header">날짜: ${date}</div>
