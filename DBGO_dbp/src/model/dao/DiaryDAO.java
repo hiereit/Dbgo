@@ -76,4 +76,13 @@ public class DiaryDAO {
 			sqlSession.close();
 		}
 	}
+
+	public List<Diary> findAllDiariesByDate(String u_id, String d_date) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(DiaryMapper.class).findAllDiariesByDate(u_id, d_date);			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

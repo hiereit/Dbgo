@@ -141,4 +141,8 @@ public class Manager {//
 	public int deleteDiary(String d_id) throws SQLException {
 		return diaryDAO.deleteDiary(d_id);			
 	}
+
+	public List<Diary> findAllDiariesByDate(String u_id, String d_date) {
+		return diaryDAO.findAllDiariesByDate(u_id, d_date);
+	}
 }
