@@ -286,6 +286,20 @@ hr {
 			eventClick: function(info) {
 			      var eventObj = info.event;
 			      $("#myModal2 option:contains(" + category.get(eventObj.id) +")").prop('selected', true);
+			      switch (category.get(eventObj.id)) {
+					case "기본":
+						document.getElementById("upCateIcon").style.color = "#f3969a"
+						break;
+					case "학교":
+						document.getElementById("upCateIcon").style.color = "#56cc9d"
+						break;
+					case "친구":
+						document.getElementById("upCateIcon").style.color = "#ffce67"
+						break;
+					case "가족":
+						document.getElementById("upCateIcon").style.color = "#6cc3d5"
+						break;
+				}
 			      $('#myModal2 #inputScheduleTitle').val(eventObj.title); 
 			      $('#updateStartDate').val(getFormatDate(eventObj.start)); 
 			      if (eventObj.end != null) {
@@ -456,7 +470,7 @@ hr {
 					<a href="<c:url value='/schedule/monthly' />"><button
 							type="button" class="btn btn-warning btn-rounded">취소</button></a>
 					<div class="form-group row">
-						<label for="selectCategory" class="col-md-1 col-form-label"><i
+						<label id="upCateIcon" for="selectCategory" class="col-md-1 col-form-label"><i
 							class="fa fa-folder" aria-hidden="true"></i></label> <select
 							name="category" class="selectCategory">
 							<option selected>카테고리</option>
