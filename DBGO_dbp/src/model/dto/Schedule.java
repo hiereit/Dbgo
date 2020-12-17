@@ -5,11 +5,9 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Schedule implements Serializable {
 	private String memo, title, category, start_date, end_date, u_id, sch_id;
-	private int achievement;
 
 	public Schedule() {
 		super();
-		this.achievement = 0;
 	}
 
 	public Schedule(String start_date, String title) {
@@ -19,7 +17,7 @@ public class Schedule implements Serializable {
 	}	
 
 	public Schedule(String sch_id, String start_date, String end_date, String memo, 
-			String title, String category, String u_id, int achievement) {
+			String title, String category, String u_id) {
 		super();
 		this.sch_id = sch_id;
 		this.start_date = start_date;
@@ -28,7 +26,6 @@ public class Schedule implements Serializable {
 		this.title = title;
 		this.category = category;
 		this.u_id = u_id;
-		this.achievement = achievement;
 	}	
 
 	public String getSch_id() {
@@ -68,9 +65,6 @@ public class Schedule implements Serializable {
 	public void setTitle(String title) {		this.title = title;	}
 	public String getCategory() {		return category;	}
 	public void setCategory(String category) {		this.category = category;	}
-	public int getAchievement() {		return achievement;	}
-	public void setAchievement(int achievement) {		this.achievement = achievement;	}
-
 	public String toString() {
 		return "";
 	}

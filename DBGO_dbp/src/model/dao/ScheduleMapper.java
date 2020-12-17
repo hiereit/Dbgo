@@ -17,7 +17,5 @@ public interface ScheduleMapper {
 
 	public int updateScheduleSE(@Param("sch_id") String sch_id, @Param("start_date") String start_date, @Param("end_date") String end_date);
 
-	public void updateScheduleACH(int ach);
-
 	public List<Schedule> selectAllSchedule(String u_id);
 }

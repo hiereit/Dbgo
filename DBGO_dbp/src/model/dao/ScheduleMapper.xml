@@ -8,7 +8,7 @@
 			SELECT seq_schid.nextval AS id FROM DUAL
 		</selectKey>			
 		INSERT INTO SCHEDULE 
-		VALUES (#{sch_id}, #{memo, jdbcType=VARCHAR}, #{title}, #{category}, #{u_id}, #{achievement}, #{end_date, jdbcType=VARCHAR}, #{start_date})
+		VALUES (#{sch_id}, #{memo, jdbcType=VARCHAR}, #{title}, #{category}, #{u_id}, #{end_date, jdbcType=VARCHAR}, #{start_date})
 	 </insert>
 
 	<delete id="deleteSchedule" parameterType="string">
@@ -32,12 +32,6 @@
 	<update id="updateScheduleSE" parameterType="string">
 		UPDATE SCHEDULE
 		SET start_date = #{start_date}, end_date = #{end_date}
-		WHERE sch_id = #{sch_id}
-	</update>
-	
-	<update id="updateScheduleACH" parameterType="int">
-		UPDATE SCHEDULE
-		SET achievement = #{achievement},  
 		WHERE sch_id = #{sch_id}
 	</update>
 	
