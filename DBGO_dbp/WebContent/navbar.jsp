@@ -40,9 +40,6 @@
 							href="<c:url value='/diary/register'/>">일기 쓰기</a>
 					</div></li>
 			</ul>
-			<button class="btn">
-				<i class="fa fa-bell fa-2x" aria-hidden="true" style="color: white;"></i>
-			</button>
 			<a href="<c:url value='/user/view' />">
 				<button class="btn">
 					<i class="fa fa-address-book fa-2x" aria-hidden="true"
