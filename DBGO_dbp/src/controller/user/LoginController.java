@@ -18,9 +18,15 @@ public class LoginController implements Controller {
 			manager.login(userId, password);
 
 			HttpSession session = request.getSession();
+<<<<<<< HEAD
 			session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
 
 			return "redirect:/main.jsp";	
+=======
+            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            
+            return "redirect:/main.jsp";
+>>>>>>> branch 'master' of https://github.com/hiereit/Dbgo.git
 		} catch (Exception e) {
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("exception", e);
