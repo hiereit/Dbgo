@@ -21,7 +21,6 @@
 <link
 	href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css'
 	rel='stylesheet'>
-<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <style>
@@ -63,7 +62,7 @@
 </style>
 <script>
 	$(function() {
-		$("#diaryDate").datepicker(
+		$("#registerDate").datepicker(
 				{
 					dateFormat : 'yy-mm-dd',
 					showOtherMonths : true,
@@ -128,9 +127,9 @@
 								style="font-family: JSDongkang-Bold; font-size: 18px;">일기
 								작성</label>
 							<div class="col-md-11">
-								<input type="text" class="form-control-plaintext" id="diaryDate"
+								<input type="text" class="form-control-plaintext" id="registerDate"
 									placeholder="날짜" name="date"
-									style="font-family: JSDongkang-Regular; font-size: 18px; margin-top: 15px;">
+									style="font-family: JSDongkang-Regular; font-size: 18px; margin-top: 15px;" readonly>
 							</div>
 							<hr>
 							<textarea name="content" class="form-control"
