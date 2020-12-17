@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +16,12 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-<title>DBGO!-main</title>
-
+<title>DBGO!</title>
 <style>
 .center {
 	background-color: #fff;
 	text-align: center;
 	line-height: 80vh;
-	
 	margin-top: 50px;
 	margin-bottom: 40px;
 	margin-left: -100px;
@@ -51,9 +48,12 @@
 	<%@include file="/navbar.jsp"%>
 	<div class="container">
 		<div class="center">
-			<a href="<c:url value='/schedule/monthly' />" style="padding: 5px;"> <span class="menu" style="background-color: #FDB3B1;">개인 일정</span></a>
-			<a href="<c:url value='/diary/list' />" style="padding: 5px;"><span class="menu" style="background-color: #FED88C">나의 일기</span></a>
-			<a href="<c:url value='/group/list' />" style="padding: 5px;"><span class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
+			<a href="<c:url value='/schedule/monthly' />" style="padding: 5px;">
+				<span class="menu" style="background-color: #FDB3B1;">개인 일정</span>
+			</a> <a href="<c:url value='/diary/list' />" style="padding: 5px;"><span
+				class="menu" style="background-color: #FED88C">나의 일기</span></a> <a
+				href="<c:url value='/group/list' />" style="padding: 5px;"><span
+				class="menu" style="background-color: #7EE5D5;">그룹 일정</span></a>
 		</div>
 	</div>
 </body>

@@ -10,11 +10,11 @@ public class GroupInfo implements Serializable {
 	private String g_name;
 	private int numOfMembers;
 	private List<String> members;
-	
+
 	public GroupInfo() {
 		this.members = new ArrayList<>();
 	}
-	
+
 	public GroupInfo(String g_id, String g_name) {
 		super();
 		this.g_id = g_id;
@@ -61,6 +61,4 @@ public class GroupInfo implements Serializable {
 	public void setMembers(List<String> members) {
 		this.members = members;
 	}
-
-	
 }

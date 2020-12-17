@@ -6,19 +6,18 @@ import java.io.Serializable;
 public class Schedule implements Serializable {
 	private String memo, title, category, start_date, end_date, u_id, sch_id;
 	private int achievement;
-	
+
 	public Schedule() {
 		super();
 		this.achievement = 0;
 	}
-	
+
 	public Schedule(String start_date, String title) {
 		super();
 		this.start_date = start_date;
 		this.title = title;
-
 	}	
-	
+
 	public Schedule(String sch_id, String start_date, String end_date, String memo, 
 			String title, String category, String u_id, int achievement) {
 		super();
@@ -31,9 +30,7 @@ public class Schedule implements Serializable {
 		this.u_id = u_id;
 		this.achievement = achievement;
 	}	
-	
 
-	
 	public String getSch_id() {
 		return sch_id;
 	}
@@ -45,7 +42,6 @@ public class Schedule implements Serializable {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	
 
 	public String getU_id() {
 		return u_id;
@@ -72,14 +68,10 @@ public class Schedule implements Serializable {
 	public void setTitle(String title) {		this.title = title;	}
 	public String getCategory() {		return category;	}
 	public void setCategory(String category) {		this.category = category;	}
-
 	public int getAchievement() {		return achievement;	}
 	public void setAchievement(int achievement) {		this.achievement = achievement;	}
-	
+
 	public String toString() {
 		return "";
 	}
-
-
-
 }

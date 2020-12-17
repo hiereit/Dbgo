@@ -13,7 +13,7 @@ import model.dto.GroupInfo;
 
 public class GroupDAO {
 	private SqlSessionFactory sqlSessionFactory;
-	
+
 	public GroupDAO() {
 		String resource = "mybatis-config.xml";
 		InputStream inputStream;
@@ -24,7 +24,7 @@ public class GroupDAO {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
-	
+
 	public GroupInfo create(GroupInfo group) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -37,7 +37,7 @@ public class GroupDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int addMembers(String g_id, String u_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -50,7 +50,7 @@ public class GroupDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public List<GroupInfo> findGroupList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -59,7 +59,7 @@ public class GroupDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public List<GroupInfo> findMyGroupList(String u_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {

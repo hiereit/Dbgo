@@ -11,18 +11,16 @@ import model.dao.ScheduleDAO;
 import model.dto.Schedule;
 
 public class MonthlyController implements Controller {
-
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";
-        }
-		
+			return "redirect:/user/login/form";
+		}
+
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
 		List<Schedule> schedules = scheduleDAO.findAllSchedules(UserSessionUtils.getLoginUserId(request.getSession()));
-	
+
 		request.setAttribute("schedules", schedules);
 		return "/schedule/monthly.jsp";
 	}
-
 }

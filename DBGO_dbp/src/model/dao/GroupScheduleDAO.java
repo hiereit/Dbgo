@@ -24,7 +24,7 @@ public class GroupScheduleDAO {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
-	
+
 	public GroupSchedule insertGroupSchedule(GroupSchedule groupsch) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -37,7 +37,7 @@ public class GroupScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int deleteGroupSchedule(String groupsch_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -50,7 +50,7 @@ public class GroupScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int updateGroupSchedule(GroupSchedule groupsch) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {

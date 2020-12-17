@@ -3,43 +3,47 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.dao.ScheduleMapper">
 <cache />
-<insert id="insertSchedule" parameterType="Schedule">
-	<selectKey keyProperty="sch_id" resultType="string" order="BEFORE">
-		SELECT seq_schid.nextval AS id FROM DUAL
-	</selectKey>
-				
-	INSERT INTO SCHEDULE 
-	VALUES (#{sch_id}, #{memo, jdbcType=VARCHAR}, #{title}, #{category}, #{u_id}, #{achievement}, #{end_date, jdbcType=VARCHAR}, #{start_date})
- </insert>
+	<insert id="insertSchedule" parameterType="Schedule">
+		<selectKey keyProperty="sch_id" resultType="string" order="BEFORE">
+			SELECT seq_schid.nextval AS id FROM DUAL
+		</selectKey>			
+		INSERT INTO SCHEDULE 
+		VALUES (#{sch_id}, #{memo, jdbcType=VARCHAR}, #{title}, #{category}, #{u_id}, #{achievement}, #{end_date, jdbcType=VARCHAR}, #{start_date})
+	 </insert>
 
-<delete id="deleteSchedule" parameterType="string">
- 	DELETE FROM SCHEDULE
- 	WHERE sch_id = #{sch_id}
- </delete>
- <update id="updateSchedule" parameterType="Schedule">
-	UPDATE SCHEDULE
-	SET memo = #{memo, jdbcType=VARCHAR}, title = #{title}, category = #{category},
-		start_date = #{start_date}, end_date = #{end_date, jdbcType=VARCHAR}
-	WHERE sch_id = #{sch_id}
-</update>
- <update id="updateScheduleStart" parameterType="string">
-	UPDATE SCHEDULE
-	SET start_date = #{start_date}
-	WHERE sch_id = #{sch_id}
-</update>
- <update id="updateScheduleSE" parameterType="string">
-	UPDATE SCHEDULE
-	SET start_date = #{start_date}, end_date = #{end_date}
-	WHERE sch_id = #{sch_id}
-</update>
- <update id="updateScheduleACH" parameterType="int">
-	UPDATE SCHEDULE
-	SET achievement = #{achievement},  
-	WHERE sch_id = #{sch_id}
-</update>
-<select id="selectAllSchedule" parameterType="string" resultType="Schedule">
- 	SELECT sch_id, title, start_date, end_date, memo, category
- 	FROM Schedule
- 	WHERE u_id = #{u_id}
-</select>
+	<delete id="deleteSchedule" parameterType="string">
+	 	DELETE FROM SCHEDULE
+	 	WHERE sch_id = #{sch_id}
+	</delete>
+	 
+	<update id="updateSchedule" parameterType="Schedule">
+		UPDATE SCHEDULE
+		SET memo = #{memo, jdbcType=VARCHAR}, title = #{title}, category = #{category},
+			start_date = #{start_date}, end_date = #{end_date, jdbcType=VARCHAR}
+		WHERE sch_id = #{sch_id}
+	</update>
+	
+	<update id="updateScheduleStart" parameterType="string">
+		UPDATE SCHEDULE
+		SET start_date = #{start_date}
+		WHERE sch_id = #{sch_id}
+	</update>
+	
+	<update id="updateScheduleSE" parameterType="string">
+		UPDATE SCHEDULE
+		SET start_date = #{start_date}, end_date = #{end_date}
+		WHERE sch_id = #{sch_id}
+	</update>
+	
+	<update id="updateScheduleACH" parameterType="int">
+		UPDATE SCHEDULE
+		SET achievement = #{achievement},  
+		WHERE sch_id = #{sch_id}
+	</update>
+	
+	<select id="selectAllSchedule" parameterType="string" resultType="Schedule">
+	 	SELECT sch_id, title, start_date, end_date, memo, category
+	 	FROM Schedule
+	 	WHERE u_id = #{u_id}
+	</select>
 </mapper>

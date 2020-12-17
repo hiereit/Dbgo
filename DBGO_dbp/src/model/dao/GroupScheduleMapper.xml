@@ -3,41 +3,40 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.dao.GroupScheduleMapper">
 <cache />
+ 	<insert id="insertGroupSchedule" parameterType="GroupSchedule">
+		<selectKey keyProperty="groupsch_id" resultType="string" order="BEFORE">
+			SELECT seq_gschid.nextval AS id FROM DUAL
+		</selectKey>
+		INSERT INTO GROUP_SCHEDULE (homework, g_id, groupsch_id, memo, title, groupsch_date)
+		VALUES (#{homework}, #{g_id}, #{groupsch_id}, #{memo}, #{title}, #{groupsch_date})
+ 	</insert>
 
- <insert id="insertGroupSchedule" parameterType="GroupSchedule">
-	<selectKey keyProperty="groupsch_id" resultType="string" order="BEFORE">
-		SELECT seq_gschid.nextval AS id FROM DUAL
-	</selectKey>
-	INSERT INTO GROUP_SCHEDULE (homework, g_id, groupsch_id, memo, title, groupsch_date)
-	VALUES (#{homework}, #{g_id}, #{groupsch_id}, #{memo}, #{title}, #{groupsch_date})
- </insert>
+	<delete id="deleteGroupSchedule" parameterType="string">
+	 	DELETE FROM GROUP_SCHEDULE
+	 	WHERE groupsch_id = #{id}
+ 	</delete>
+ 
+	 <update id="updateGroupSchedule" parameterType="GroupSchedule">
+	 	UPDATE GROUP_SCHEDULE
+	 	SET title = #{title}, groupsch_date = #{groupsch_date}, homework = #{homework}, memo = #{memo}
+	 	WHERE groupsch_id = #{groupsch_id}
+	 </update>
 
- <delete id="deleteGroupSchedule" parameterType="string">
- 	DELETE FROM GROUP_SCHEDULE
- 	WHERE groupsch_id = #{id}
- </delete>
+	 <select id="findGroupSchedule" parameterType="string" resultType="GroupSchedule">
+	 	SELECT groupsch_id, title, groupsch_date, homework, memo, g_id
+		FROM GROUP_SCHEDULE
+		WHERE g_id = #{id}
+	 </select>
  
- <update id="updateGroupSchedule" parameterType="GroupSchedule">
- 	UPDATE GROUP_SCHEDULE
- 	SET title = #{title}, groupsch_date = #{groupsch_date}, homework = #{homework}, memo = #{memo}
- 	WHERE groupsch_id = #{groupsch_id}
- </update>
-
- <select id="findGroupSchedule" parameterType="string" resultType="GroupSchedule">
- 	SELECT groupsch_id, title, groupsch_date, homework, memo, g_id
-	FROM GROUP_SCHEDULE
-	WHERE g_id = #{id}
- </select>
+	 <select id="findGroupName" parameterType="string" resultType="string">
+	 	SELECT g_name
+		FROM GROUPINFO
+		WHERE g_id = #{id}
+	 </select>
  
- <select id="findGroupName" parameterType="string" resultType="string">
- 	SELECT g_name
-	FROM GROUPINFO
-	WHERE g_id = #{id}
- </select>
- 
- <select id="findGroupScheduleDetail" parameterType="string" resultType="GroupSchedule">
- 	SELECT *
-	FROM GROUP_SCHEDULE
-	WHERE groupsch_id = #{id}
- </select>
+	 <select id="findGroupScheduleDetail" parameterType="string" resultType="GroupSchedule">
+	 	SELECT *
+		FROM GROUP_SCHEDULE
+		WHERE groupsch_id = #{id}
+	 </select>
 </mapper>

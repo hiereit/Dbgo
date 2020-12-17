@@ -18,15 +18,14 @@ public class UpdateUserFormController implements Controller {//
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/user/login/form";
         }
-		//String updateId = request.getParameter("userId");
 		String updateId = UserSessionUtils.getLoginUserId(request.getSession());
 		
 		log.debug("UpdateForm Request : {}", updateId);
 
 		Manager manager = Manager.getInstance();
-		User user = manager.findUser(updateId);	// 사용자 정보 검색
+		User user = manager.findUser(updateId);
 		request.setAttribute("user", user);						
 		
-		return "/user/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
+		return "/user/updateForm.jsp"; 
 	}
 }

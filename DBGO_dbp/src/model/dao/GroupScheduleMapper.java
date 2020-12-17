@@ -6,9 +6,9 @@ import model.dto.GroupSchedule;
 
 public interface GroupScheduleMapper {
 	public int insertGroupSchedule(GroupSchedule groupsch);
-	
+
 	public int deleteGroupSchedule(String groupsch_id);
-	
+
 	public int updateGroupSchedule(GroupSchedule groupsch);
 
 	public List<GroupSchedule> findGroupSchedule(String g_id);

@@ -15,5 +15,5 @@ public interface DiaryMapper {
 
 	public int deleteDiary(String d_id);
 
-	public List<Diary> findAllDiariesByDate(@Param("u_id") String u_id, @Param("d_date") String d_date);
+	public List<Diary> findDiariesByDate(@Param("u_id") String u_id, @Param("d_date") String d_date);
 }

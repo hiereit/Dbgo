@@ -13,9 +13,9 @@ public class GroupSchedule implements Serializable {
 	private String groupsch_date;
 	private String memo;
 	private String title;
-	
+
 	public GroupSchedule() {}
-	
+
 	public GroupSchedule(String g_id, String title, String groupsch_date, String homework, String memo) {
 		super();
 		this.g_id = g_id;
@@ -24,7 +24,7 @@ public class GroupSchedule implements Serializable {
 		this.memo = memo;
 		this.title = title;
 	}
-	
+
 	public void UpdateGroupSchedule(String groupsch_id, String title, String groupsch_date, String homework, String memo) {
 		this.groupsch_id = groupsch_id;
 		this.homework = homework;
@@ -32,7 +32,7 @@ public class GroupSchedule implements Serializable {
 		this.memo = memo;
 		this.title = title;
 	}
-	
+
 	public String getG_name() {
 		return g_name;
 	}
@@ -88,13 +88,13 @@ public class GroupSchedule implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public static class SortByDate implements Comparator<GroupSchedule> {
-	    @Override
-	    public int compare(GroupSchedule s1, GroupSchedule s2) {
-	    	DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");  // 주의: 월을 나타내는 MM은 대문자
-	    	Date d1 = null, d2 = null;
-	    	try {
+		@Override
+		public int compare(GroupSchedule s1, GroupSchedule s2) {
+			DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");  // 주의: 월을 나타내는 MM은 대문자
+			Date d1 = null, d2 = null;
+			try {
 				d1 = df.parse(s1.getGroupsch_date());
 				d2 = df.parse(s2.getGroupsch_date());
 
@@ -102,7 +102,7 @@ public class GroupSchedule implements Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}   
-	    	return d2.compareTo(d1);
-	    }
+			return d2.compareTo(d1);
+		}
 	}
 }

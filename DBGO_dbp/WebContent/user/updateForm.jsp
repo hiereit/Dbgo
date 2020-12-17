@@ -32,10 +32,9 @@
 		form.submit();
 	}
 </script>
-
 <style>
 .signUp {
-	font-family: JSDongkang-Bold!important;
+	font-family: JSDongkang-Bold !important;
 	font-size: 15px;
 	top: 15%;
 	left: 50%;
@@ -49,9 +48,9 @@
 
 .centerElement {
 	width: fit-content;
-       padding-top: 30px;
-		margin: auto;
-		text-align: center;
+	padding-top: 30px;
+	margin: auto;
+	text-align: center;
 }
 
 table {
@@ -69,66 +68,61 @@ td {
 }
 
 h1 {
-	font-family: JSDongkang-Bold!important;
+	font-family: JSDongkang-Bold !important;
 }
 
 .btn-primary {
-font-family: JSDongkang-Regular!important;
+	font-family: JSDongkang-Regular !important;
 }
-
 </style>
 </head>
 <body style="overflow: scroll">
 	<%@include file="/navbar.jsp"%>
-
 	<div class="centerElement">
-		<form name="form" method="POST" action="<c:url value='/user/update' />">
+		<form name="form" method="POST"
+			action="<c:url value='/user/update' />">
 			<div class="signUp">
 				<h1 class="text-primary">회원정보 수정</h1>
 				<table>
 					<tr>
 						<th><label>ID</label></th>
-						<td>
-							<input class="form-control" id="readOnlyInput"  name="u_id" type="text" value="${user.u_id}" readonly
+						<td><input class="form-control" id="readOnlyInput"
+							name="u_id" type="text" value="${user.u_id}" readonly
 							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>
-
 					<tr>
 						<th><label for="name">이름</label></th>
-						<td>
-							<input class="form-control" id="readOnlyInput"  name="name" type="text" placeholder="${user.name}" readonly
+						<td><input class="form-control" id="readOnlyInput"
+							name="name" type="text" placeholder="${user.name}" readonly
 							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>
-
 					<tr>
 						<th><label for="email">이메일</label></th>
-						<td>
-							<input class="form-control" id="readOnlyInput"  name="email" type="text" placeholder="${user.email}" readonly
+						<td><input class="form-control" id="readOnlyInput"
+							name="email" type="text" placeholder="${user.email}" readonly
 							style="width: 300px; height: 40px; margin-bottom: 10px;">
 						</td>
 					</tr>
-
 					<tr>
 						<th><label for="password">비밀번호</label></th>
-						<td>
-							<input type="password" name="password" class="form-control" value="${user.password}"
-							style="width: 300px; height: 40px; margin-bottom: 10px; font-family:san-serif;">
+						<td><input type="password" name="password"
+							class="form-control" value="${user.password}"
+							style="width: 300px; height: 40px; margin-bottom: 10px; font-family: san-serif;">
 						</td>
 					</tr>
-
 					<tr>
 						<th><label for="passwordConfirm">비밀번호 확인</label></th>
-						<td>
-							<input type="password" name="passwordConfirm" class="form-control" value="${user.password}"
-							style="width: 300px; height: 40px; margin-bottom: 10px; font-family:san-serif;">
+						<td><input type="password" name="passwordConfirm"
+							class="form-control" value="${user.password}"
+							style="width: 300px; height: 40px; margin-bottom: 10px; font-family: san-serif;">
 						</td>
 					</tr>
 				</table>
 				<div class="form-group">
-					<input type="button" class="btn btn-primary" value="수정" onClick="userModify()" 
-					style="height: 40px;">
+					<input type="button" class="btn btn-primary" value="수정"
+						onClick="userModify()" style="height: 40px;">
 				</div>
 			</div>
 		</form>

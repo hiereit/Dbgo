@@ -19,27 +19,27 @@ public class AddMembersToGroupController implements Controller{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";
+			return "redirect:/user/login/form";
 		}
-		
+
 		String myId = UserSessionUtils.getLoginUserId(request.getSession());
-			
+
 		if (request.getMethod().equals("GET")) {	
-	    	// GET request: 회원정보 수정 form 요청	
-	    	// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
-	  
-	    	log.debug("AddMembersToGroup Request : {}", myId);
-	    		
-	    	Manager manager = Manager.getInstance();
-	    		
-			List<GroupInfo> myGroupList = manager.findMyGroupList(myId);	// 커뮤니티 리스트 검색
+			// GET request: 회원정보 수정 form 요청	
+			// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
+
+			log.debug("AddMembersToGroup Request : {}", myId);
+
+			Manager manager = Manager.getInstance();
+
+			List<GroupInfo> myGroupList = manager.findMyGroupList(myId);
 			request.setAttribute("mGroupList", myGroupList);	
-				
-			return "/group/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
+
+			return "/group/updateForm.jsp";
 		}
-		
+
 		try {
-	    	// POST request (회원정보가 parameter로 전송됨)
+			// POST request (회원정보가 parameter로 전송됨)
 			Manager manager = Manager.getInstance();
 			String[] membersParam = request.getParameterValues("members");
 			if (membersParam != null) {

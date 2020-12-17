@@ -11,13 +11,13 @@ import model.dto.GroupInfo;
 import model.service.Manager;
 
 public class MyGroupListController implements Controller {
-	
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";
-        }
-		
+			return "redirect:/user/login/form";
+		}
+
 		Manager manager = Manager.getInstance();
 		List<GroupInfo> mGroupList = manager.findMyGroupList(UserSessionUtils.getLoginUserId(request.getSession()));
 

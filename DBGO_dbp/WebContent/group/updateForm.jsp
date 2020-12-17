@@ -22,7 +22,6 @@
 	rel='stylesheet'>
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-
 <title>그룹 회원 추가</title>
 <style>
 .addGroupMember {
@@ -68,7 +67,6 @@ h6 {
 	margin-bottom: 50px;
 }
 
-
 #btn {
 	font-family: JSDongkang-Regular;
 	font-size: 18px;
@@ -96,7 +94,7 @@ span {
 	text-align: center;
 }
 
-.failMessage{
+.failMessage {
 	text-align: center;
 	margin-top: 3em;
 }
@@ -109,12 +107,10 @@ span {
 }
 
 input, select {
-font-family: JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
 	font-size: 15px;
 }
-
 </style>
-
 <script>
 	function add_btn_click() {
 		if (form.mem.value == "") {
@@ -142,21 +138,20 @@ font-family: JSDongkang-Regular;
 	}
 </script>
 </head>
-
 <body>
 	<%@include file="/navbar.jsp"%>
 	<div class="failMessage">
 		<c:if test="${addMemberFailed || creationFailed}">
-			<h6 class="text-danger"><c:out value="${exception.getMessage()}"/></h6>
+			<h6 class="text-danger">
+				<c:out value="${exception.getMessage()}" />
+			</h6>
 		</c:if>
 	</div>
-
 	<form name="form" method="POST" action="<c:url value='/group/update'/>">
 		<div class="centerElement">
 			<div class="addGroupMember">
 				<h1 class="text-primary">그룹원 추가</h1>
 				<div class="centerInput">
-
 					<div class="groupName">
 						<div class="form-group">
 							<h5>
@@ -165,24 +160,20 @@ font-family: JSDongkang-Regular;
 							<select id="groupSelect" name="g_id" class="form-control"
 								style="width: 80%; height: 50px;">
 								<c:forEach var="group" items="${mGroupList}">
-									<option value="${group.g_id}">
-										${group.g_name}</option>
+									<option value="${group.g_id}">${group.g_name}</option>
 								</c:forEach>
 							</select>
-
 						</div>
 					</div>
-
 					<div class="groupMem">
 						<h5>
-						<label for="exampleSelect1">추가할 회원의 ID</label>
+							<label for="exampleSelect1">추가할 회원의 ID</label>
 						</h5>
 						<input type="text" class="form-control" name="mem"
 							style="width: 70%; height: 50px;">
 						<button type="button" class="btn btn-warning" id="btn"
 							onClick="add_btn_click();">추가</button>
 					</div>
-
 					<div class="memList">
 						<c:if test="${!creationFailed}">
 							<c:forEach var="member" items="${group.members}">
@@ -191,7 +182,7 @@ font-family: JSDongkang-Regular;
 						</c:if>
 					</div>
 					<button class="btn btn-primary addMemBtn" id="btn"
-						onClick="update_group_btn_click()">그룹원 추가</button>	
+						onClick="update_group_btn_click()">그룹원 추가</button>
 				</div>
 			</div>
 		</div>

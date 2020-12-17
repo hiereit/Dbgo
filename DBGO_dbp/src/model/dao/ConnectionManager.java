@@ -11,11 +11,10 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class ConnectionManager {
 	private static DataSource ds = null;
-    
-	
-    public ConnectionManager() {
+
+	public ConnectionManager() {
 		InputStream input = null;
-    	Properties prop = new Properties();
+		Properties prop = new Properties();
 
 		try {
 			input = getClass().getResourceAsStream("/context.properties");
@@ -31,31 +30,31 @@ public class ConnectionManager {
 				}
 			}
 		} 
-		
+
 		try {
 			BasicDataSource bds = new BasicDataSource();
-	        bds.setDriverClassName(prop.getProperty("db.driver"));
-	        bds.setUrl(prop.getProperty("db.url"));
-	        bds.setUsername(prop.getProperty("db.username"));
-	        bds.setPassword(prop.getProperty("db.password"));     
+			bds.setDriverClassName(prop.getProperty("db.driver"));
+			bds.setUrl(prop.getProperty("db.url"));
+			bds.setUsername(prop.getProperty("db.username"));
+			bds.setPassword(prop.getProperty("db.password"));     
 			ds = bds;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} 	   
-    }
+	}
 
-    public Connection getConnection() {
-    	Connection conn = null;
-    	try {
+	public Connection getConnection() {
+		Connection conn = null;
+		try {
 			conn = ds.getConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return conn;
-    }
-    
-    public void close() {
+	}
+
+	public void close() {
 		BasicDataSource bds = (BasicDataSource) ds;
 		try {
 			bds.close();

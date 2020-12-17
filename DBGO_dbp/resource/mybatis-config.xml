@@ -4,12 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="cacheEnabled" value="false"/>
+		<setting name="cacheEnabled" value="false" />
 	</settings>
 	<typeAliases>
 		<typeAlias type="model.dto.GroupInfo" alias="GroupInfo" />
 		<typeAlias type="model.dto.Diary" alias="Diary" />
-		<typeAlias type="model.dto.GroupSchedule" alias="GroupSchedule" />
+		<typeAlias type="model.dto.GroupSchedule"
+			alias="GroupSchedule" />
 		<typeAlias type="model.dto.User" alias="User" />
 		<typeAlias type="model.dto.Schedule" alias="Schedule" />
 	</typeAliases>
@@ -17,8 +18,10 @@
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
-				<property name="driver" value="oracle.jdbc.driver.OracleDriver" />
-				<property name="url" value="jdbc:oracle:thin:@202.20.119.117:1521:orcl" />
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@202.20.119.117:1521:orcl" />
 				<property name="username" value="dbprog0208" />
 				<property name="password" value="qkrprh5" />
 			</dataSource>

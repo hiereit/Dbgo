@@ -22,7 +22,6 @@
 		return confirm("정말 삭제하시겠습니까?");
 	}
 </script>
-
 <style>
 table {
 	margin-left: 300px;
@@ -32,9 +31,7 @@ table {
 	text-align: center;
 }
 </style>
-
 </head>
-
 <body>
 	<%@include file="/navbar.jsp"%>
 	<br>
@@ -69,14 +66,10 @@ table {
 		</table>
 		<br>
 		<div class="centerElement">
-			<a class="btn btn-primary"
-				href="<c:url value='/user/update/form' />">수정</a>
-
+			<a class="btn btn-primary" href="<c:url value='/user/update/form' />">수정</a>
 			<a class="btn btn-warning"
 				href="<c:url value='/user/delete'> <c:param name='u_id' value='${user.u_id}'/></c:url>"
 				onclick="return userRemove();">탈퇴</a>
-
-			<!-- 수정 또는 삭제가  실패한 경우 exception 객체에 저장된 오류 메시지를 출력 -->
 			<c:if test="${updateFailed || deleteFailed}">
 				<h6 class="text-danger">
 					<c:out value="${exception.getMessage()}" />

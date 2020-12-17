@@ -11,28 +11,27 @@ import model.service.ExistingUserException;
 import model.service.Manager;
 
 public class RegisterUserController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
+	private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
 
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	System.out.println("RegisterUserController");
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		User user = new User(
-			request.getParameter("u_id"),
-			request.getParameter("name"),
-			request.getParameter("email"),
-			request.getParameter("password"));
-        log.debug("Create User : {}", user);
+				request.getParameter("u_id"),
+				request.getParameter("name"),
+				request.getParameter("email"),
+				request.getParameter("password"));
+		log.debug("Create User : {}", user);
 
 		try {
 			Manager manager = Manager.getInstance();
 			manager.create(user);
-	        return "redirect:/user/login/form";		// 성공 시 로그인 화면으로 redirect (추후 수정?)
-	        
+			return "redirect:/user/login/form";		// 성공 시 로그인 화면으로 redirect (추후 수정?)
+
 		} catch (ExistingUserException e) {		// 예외 발생 시 회원가입 form으로 forwarding
-            request.setAttribute("registerFailed", true);
+			request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);
 			return "/user/registerForm.jsp";
 		}
-    }
+	}
 }

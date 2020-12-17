@@ -4,9 +4,7 @@
 <%@ page import="model.dto.User"%>
 <%@ page import="model.dao.UserDAO"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%@ page import="controller.group.CreateGroupController" %>
-
+<%@ page import="controller.group.CreateGroupController"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +21,6 @@
 	rel='stylesheet'>
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-
 <title>그룹 생성</title>
 <style>
 .signIn {
@@ -83,7 +80,6 @@ h6 {
 	font-size: 18px;
 }
 
-
 .memList {
 	margin-left: 80px;
 	padding-top: 20px;
@@ -106,7 +102,7 @@ span {
 	text-align: center;
 }
 
-.failMessage{
+.failMessage {
 	text-align: center;
 	margin-top: 30px;
 }
@@ -116,20 +112,17 @@ form {
 }
 
 input {
-font-family: JSDongkang-Regular;
+	font-family: JSDongkang-Regular;
 	font-size: 15px;
 }
-
 </style>
 
 <script>
 	function add_btn_click() {
-		
 		if (form.mem.value == "") {
 			form.mem.focus();
 			return false;
 		}
-		
 		var $div = $('<span class="badge badge-pill badge-secondary">'
 				+ form.mem.value
 				+ '</span><input type="hidden" name ="members" value = "' + form.mem.value + '">');
@@ -146,16 +139,15 @@ font-family: JSDongkang-Regular;
 	}
 </script>
 </head>
-
 <body>
-	
 	<%@include file="/navbar.jsp"%>
 	<div class="failMessage">
 		<c:if test="${addMemberFailed || creationFailed}">
-			<h6 class="text-danger"><c:out value="${exception}"/></h6>
+			<h6 class="text-danger">
+				<c:out value="${exception}" />
+			</h6>
 		</c:if>
 	</div>
-
 	<form name="form" method="POST" id="f"
 		action="<c:url value='/group/create'/>">
 		<c:if test="${addMemberFailed}">
@@ -168,15 +160,16 @@ font-family: JSDongkang-Regular;
 				<div class="centerInput">
 					<div class="groupName">
 						<h5>그룹명</h5>
-						<input type="text" class="form-control" name="name" placeholder="" id="groupName"
-							style="width: 230px; height: 50px;"
+						<input type="text" class="form-control" name="name" placeholder=""
+							id="groupName" style="width: 230px; height: 50px;"
 							<c:if test="${creationFailed || addMemberFailed}">value="${group.g_name}" readonly</c:if>>
 					</div>
 					<div class="groupMem">
 						<h5>구성원</h5>
-							<input type="text" class="form-control" name="mem"
-								style="width: 160px; height: 50px;">
-							<button type="button"  class="btn btn-warning" id="btn" onClick="add_btn_click()">추가</button>
+						<input type="text" class="form-control" name="mem"
+							style="width: 160px; height: 50px;">
+						<button type="button" class="btn btn-warning" id="btn"
+							onClick="add_btn_click()">추가</button>
 					</div>
 					<div class="memList">
 						<c:if test="${!creationFailed}">
@@ -185,7 +178,8 @@ font-family: JSDongkang-Regular;
 							</c:forEach>
 						</c:if>
 					</div>
-					<button type="button"  class="btn btn-primary" id="btn" onClick="create_group_btn_click()">그룹 생성</button>
+					<button type="button" class="btn btn-primary" id="btn"
+						onClick="create_group_btn_click()">그룹 생성</button>
 				</div>
 			</div>
 		</div>

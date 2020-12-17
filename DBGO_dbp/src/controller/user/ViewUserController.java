@@ -12,27 +12,26 @@ import model.dto.GroupInfo;
 import model.dto.User;
 
 public class ViewUserController implements Controller {//
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
-    	// 로그인 여부 확인
-    	if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";		// login form 요청으로 redirect
-        }
-    	
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {			
+		if (!UserSessionUtils.hasLogined(request.getSession())) {
+			return "redirect:/user/login/form";
+		}
+
 		Manager manager = Manager.getInstance();
 		String userId = UserSessionUtils.getLoginUserId(request.getSession());
 		List<GroupInfo> mGroupList = manager.findMyGroupList(userId);
 
 		request.setAttribute("mGroupList", mGroupList);
-		
-    	User user = null;
+
+		User user = null;
 		try {
-			user = manager.findUser(userId);	// 사용자 정보 검색
+			user = manager.findUser(userId);
 		} catch (UserNotFoundException e) {				
 			request.setAttribute("exception", e);
 		}	
-		
-		request.setAttribute("user", user);		// 사용자 정보 저장				
-		return "/user/view.jsp";				// 사용자 보기 화면으로 이동
-    }
+
+		request.setAttribute("user", user);		
+		return "/user/view.jsp";
+	}
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.dao.DiaryMapper">
-	<cache />
+<cache />
 	<insert id="insertDiary" parameterType="Diary" useGeneratedKeys="true" keyProperty="d_id">
 		<selectKey keyProperty="d_id" resultType="string"
 			order="BEFORE">
@@ -17,7 +17,7 @@
 		WHERE d_id = #{d_id}
 	</delete>
 	
-	<select id="findAllDiariesByDate" parameterType="string" resultType="Diary">
+	<select id="findDiariesByDate" parameterType="string" resultType="Diary">
 		SELECT d_id, d_date, content
 		FROM DIARY
 		WHERE u_id = #{u_id} AND d_date = #{d_date}

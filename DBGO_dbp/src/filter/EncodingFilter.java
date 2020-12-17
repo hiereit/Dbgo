@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * ServletRequest °´Ã¼¿¡ ÀÎÄÚµùÀ» ¼³Á¤ÇÏ´Â Filter Å¬·¡½º.
+ * ServletRequest ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Filter Å¬ï¿½ï¿½ï¿½ï¿½.
  * 
  * @web.filter name="Encoding Filter" display-name="Encoding Filter"
  * @web.filter-init-param name="encoding" value="EUC-KR"		    
@@ -18,13 +18,13 @@ import javax.servlet.ServletResponse;
  */
 public class EncodingFilter implements Filter {
 	private String encoding = null;
-	
+
 	/**
-	 * ServletRequest°´Ã¼¿¡ web.xml¿¡¼­ Àü´ÞµÈ ÀÎÄÚµù ¹æ½ÄÀ» ¼³Á¤
+	 * ServletRequestï¿½ï¿½Ã¼ï¿½ï¿½ web.xmlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þµï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 */
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-		throws IOException, ServletException {
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		if (request.getCharacterEncoding() == null) {
 			if (encoding != null) {
 				request.setCharacterEncoding(encoding);
@@ -34,15 +34,15 @@ public class EncodingFilter implements Filter {
 	}
 
 	/**
-	 * web.xml¿¡¼­ Àü´ÞµÈ ÀÎÄÚµù ¹æ½ÄÀ» ÃÊ±âÈ­
+	 * web.xmlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þµï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	 */
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
 		this.encoding = filterConfig.getInitParameter("encoding");
 	}
-	
-    @Override
-    public void destroy() {
+
+	@Override
+	public void destroy() {
 		this.encoding = null;
 	}
 }

@@ -1,16 +1,20 @@
 @charset "UTF-8";
+
 .navbar-brand {
-              font: normal normal normal 28px/60px KOTRA_BOLD-Bold;
-              letter-spacing: 0px;
-              color: #FCC416;
-              opacity: 0.8;
-      }
-      .nav-link, .dropdown-item {
-            font: normal normal normal 18px JSDongkang-Regular;
-      }
-      .nav-item {
-        padding-left: 10px;
-      }
-      .btn {
-       padding-right: 10px;
-      }
+	font: normal normal normal 28px/60px KOTRA_BOLD-Bold;
+	letter-spacing: 0px;
+	color: #FCC416;
+	opacity: 0.8;
+}
+
+.nav-link, .dropdown-item {
+	font: normal normal normal 18px JSDongkang-Regular;
+}
+
+.nav-item {
+	padding-left: 10px;
+}
+
+.btn {
+	padding-right: 10px;
+}

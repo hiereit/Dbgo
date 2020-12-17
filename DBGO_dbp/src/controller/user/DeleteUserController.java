@@ -15,12 +15,12 @@ public class DeleteUserController implements Controller{//
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String deleteId = request.getParameter("u_id");
-    	log.debug("Delete User : {}", deleteId);
+		log.debug("Delete User : {}", deleteId);
 
-    	Manager manager = Manager.getInstance();
-		
+		Manager manager = Manager.getInstance();
+
 		manager.remove(deleteId);	
-		
-		return "redirect:/user/logout";		// logout 처리
+
+		return "redirect:/user/logout";
 	}
 }

@@ -29,37 +29,36 @@ public class Manager {//
 			e.printStackTrace();
 		}			
 	}
-	
+
 	public static Manager getInstance() {
 		return man;
 	}
-	
+
 	public int create(User user) throws SQLException, ExistingUserException {
 		if (userDAO.existingUser(user.getU_id()) == true) {
 			throw new ExistingUserException(user.getU_id() + "는 존재하는 아이디입니다.");
 		}
 		return userDAO.createUser(user.getU_id(), user.getName(), user.getEmail(), user.getPassword());
 	}
-	
 
 	public int update(User user) throws SQLException {
 		return userDAO.updateUser(user.getU_id(), user.getPassword());
 	}	
-	
+
 	public int remove(String userId) throws SQLException {
 		return userDAO.removeUser(userId);
 	}
 
 	public User findUser(String userId)
-		throws SQLException, UserNotFoundException {
+			throws SQLException, UserNotFoundException {
 		User user = userDAO.findUserInfo(userId);
-		
+
 		if (user == null) {
 			throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
 		}		
 		return user;
 	}
-	
+
 	public boolean existUser(String userId) {
 		User user = userDAO.findUserInfo(userId);
 		if (user == null) {
@@ -67,13 +66,13 @@ public class Manager {//
 		}	
 		return true;
 	}
-	
+
 	public List<User> findUserList() throws SQLException {
 		return userDAO.findUserList();
-}
+	}
 
 	public boolean login(String userId, String password)
-		throws SQLException, UserNotFoundException, PasswordMismatchException {
+			throws SQLException, UserNotFoundException, PasswordMismatchException {
 		User user = findUser(userId);
 
 		if (!user.matchPassword(password)) {
@@ -81,23 +80,22 @@ public class Manager {//
 		}
 		return true;
 	}
-	
 
 	public UserDAO getUserDAO() {
 		return this.userDAO;
 	}
-	
+
 	public GroupInfo createGroup(GroupInfo group) throws SQLException {
 		return groupDAO.create(group);		
 	}
-	
+
 	public int addMember(String g_id, String u_id) throws SQLException, UserNotFoundException {
 		if (userDAO.existingUser(u_id) == false) {
 			throw new UserNotFoundException(u_id + "는 존재하지 않는 아이디로 그룹에 추가할 수 없습니다.");
 		}	
 		return groupDAO.addMembers(g_id, u_id);
 	}
-	
+
 	public List<GroupInfo> findMyGroupList(String u_id) throws SQLException {
 		return groupDAO.findMyGroupList(u_id);
 	}
@@ -113,7 +111,7 @@ public class Manager {//
 	public String findGroupName(String g_id) {
 		return groupScheduleDAO.findGroupName(g_id);
 	}
-	
+
 	public GroupSchedule insertGroupSchedule(GroupSchedule sch) {
 		return groupScheduleDAO.insertGroupSchedule(sch);
 	}
@@ -121,11 +119,11 @@ public class Manager {//
 	public int updateGroupSchedule(GroupSchedule sch) throws SQLException {
 		return groupScheduleDAO.updateGroupSchedule(sch);			
 	}
-	
+
 	public int deleteGroupSchedule(String groupsch_id) throws SQLException {
 		return groupScheduleDAO.deleteGroupSchedule(groupsch_id);			
 	}
-	
+
 	public Diary insertDiary(Diary diary) {
 		return diaryDAO.insertDiary(diary);
 	}
@@ -133,16 +131,16 @@ public class Manager {//
 	public List<Diary> findAllDiaries(String u_id) throws SQLException {
 		return diaryDAO.findAllDiaries(u_id);			
 	}
-	
+
 	public Diary findDiary(String d_id) throws SQLException {
 		return diaryDAO.findDiary(d_id);			
 	}
-	
+
 	public int deleteDiary(String d_id) throws SQLException {
 		return diaryDAO.deleteDiary(d_id);			
 	}
 
-	public List<Diary> findAllDiariesByDate(String u_id, String d_date) {
-		return diaryDAO.findAllDiariesByDate(u_id, d_date);
+	public List<Diary> findDiariesByDate(String u_id, String d_date) {
+		return diaryDAO.findDiariesByDate(u_id, d_date);
 	}
 }

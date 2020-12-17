@@ -7,11 +7,10 @@ public class User implements Serializable{
 	private String name = null;
 	private String email = null;
 	private String password  = null;
-	
+
 	public User() {
-		
 	}
-	
+
 	public User(String u_id, String name, String email, String password) {
 		super();
 		this.u_id = u_id;
@@ -20,7 +19,6 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	
 	public String getU_id() {
 		return u_id;
 	}
@@ -52,16 +50,15 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	/* 비밀번호 검사 */
+
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;
 		}
 		return this.password.equals(password);
 	}
-	
+
 	public boolean isSameUser(String userid) {
-        return this.u_id.equals(userid);
-    }
+		return this.u_id.equals(userid);
+	}
 }

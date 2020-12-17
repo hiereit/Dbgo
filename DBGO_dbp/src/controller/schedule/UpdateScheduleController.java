@@ -9,15 +9,14 @@ import model.dao.ScheduleDAO;
 import model.dto.Schedule;
 
 public class UpdateScheduleController implements Controller{
-
-	
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		if (!UserSessionUtils.hasLogined(request.getSession())) {
-            return "redirect:/user/login/form";
-        }
-	
+			return "redirect:/user/login/form";
+		}
+
 		ScheduleDAO scheduleDAO = new ScheduleDAO();
+
 		if (request.getParameter("btn").equals("update")) {
 			Schedule s = new Schedule();
 			s.setSch_id(request.getParameter("sch_id"));
@@ -32,17 +31,12 @@ public class UpdateScheduleController implements Controller{
 			if (request.getParameter("memo") != null) {
 				s.setMemo(request.getParameter("memo"));
 			}
-			
+
 			scheduleDAO.update(s);
 		}
 		else {
 			scheduleDAO.delete(request.getParameter("sch_id"));
 		}
-		
-		
 		return "redirect:/schedule/monthly";
 	}
-	
-	
-
 }

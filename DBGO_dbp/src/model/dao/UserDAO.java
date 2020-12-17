@@ -13,7 +13,7 @@ import model.dto.User;
 
 public class UserDAO {
 	private SqlSessionFactory sqlSessionFactory;
-	
+
 	public UserDAO() {
 		String resource = "mybatis-config.xml";
 		InputStream inputStream;
@@ -25,10 +25,9 @@ public class UserDAO {
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 	}
 
-	
 	public User findUserInfo(String u_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		
+
 		try {
 			return sqlSession.getMapper(UserMapper.class).selectUserByUserId(u_id);
 		} finally {
@@ -36,7 +35,6 @@ public class UserDAO {
 		}
 	}
 
-	
 	public List<User> findUserList(){
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
@@ -45,7 +43,6 @@ public class UserDAO {
 			sqlSession.close();
 		}
 	}
-
 
 	public int createUser(String u_id, String name, String email, String password) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
@@ -64,8 +61,7 @@ public class UserDAO {
 			sqlSession.close();
 		}
 	}
-	
-	
+
 	public int removeUser (String u_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
@@ -75,7 +71,6 @@ public class UserDAO {
 		}
 	}
 
-
 	public boolean existingUser(String u_id){
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		try {
@@ -84,6 +79,4 @@ public class UserDAO {
 			sqlSession.close();
 		}
 	}
-	
-	
 }

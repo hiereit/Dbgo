@@ -13,7 +13,7 @@ import model.dto.Schedule;
 
 public class ScheduleDAO {
 	private SqlSessionFactory sqlSessionFactory;
-	
+
 	public ScheduleDAO() { 
 		String resource = "mybatis-config.xml";
 		InputStream inputStream;
@@ -24,7 +24,7 @@ public class ScheduleDAO {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
-    } 
+	} 
 
 	public Schedule create(Schedule sch) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -38,7 +38,7 @@ public class ScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int update(Schedule sch) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -51,7 +51,7 @@ public class ScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int updateByDrop(String sch_id, String start_date) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -64,7 +64,7 @@ public class ScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int updateByDrop(String sch_id, String start_date, String end_date) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -77,7 +77,7 @@ public class ScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
+
 	public int delete(String sch_id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
@@ -90,22 +90,13 @@ public class ScheduleDAO {
 			sqlSession.close();
 		}
 	}
-	
-//	public Schedule findSchedule(String sch_id) {
-//		SqlSession sqlSession = sqlSessionFactory.openSession();
-//		try {
-//			return sqlSession.getMapper(ScheduleMapper.class).findSchedule();			
-//		} finally {
-//			sqlSession.close();
-//		}
-//	}
-	
-	 public List<Schedule> findAllSchedules(String u_id) {
-		 SqlSession sqlSession = sqlSessionFactory.openSession();
-			try {
-				return sqlSession.getMapper(ScheduleMapper.class).selectAllSchedule(u_id);			
-			} finally {
-				sqlSession.close();
-			}
-	    }
+
+	public List<Schedule> findAllSchedules(String u_id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try {
+			return sqlSession.getMapper(ScheduleMapper.class).selectAllSchedule(u_id);			
+		} finally {
+			sqlSession.close();
+		}
+	}
 }

@@ -16,7 +16,7 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="<c:url value='/css/fonts.css' />" rel='stylesheet' />
 <link href="<c:url value='/css/navbar.css' />" rel='stylesheet' />
-<title>Selected Diary</title>
+<title>일기 내용</title>
 <style>
 .centerElement {
 	width: fit-content;
@@ -25,7 +25,7 @@
 }
 
 .diaryDetail {
-	font-family: JSDongkang-Bold!important;
+	font-family: JSDongkang-Bold !important;
 	font-size: 15px;
 	top: 15%;
 	left: 50%;
@@ -36,19 +36,21 @@
 	margin-bottom: 5em;
 	padding: 30px;
 }
- #form-div {
-      	padding: 61px 69px;
-        background: #FFFFFF 0% 0% no-repeat padding-box;
-        box-shadow: 0px 3px 50px #CECECE;
-        opacity: 1;
-        position:absolute;
-        -webkit-border-radius: 50px;
-        width: 50%;
-      }
+
+#form-div {
+	padding: 61px 69px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	box-shadow: 0px 3px 50px #CECECE;
+	opacity: 1;
+	position: absolute;
+	-webkit-border-radius: 50px;
+	width: 50%;
+}
+
 .btn-warning, .btn-secondary {
 	font-family: JSDongkang-Regular;
 	font-size: 18px;
-	margin-bottom : 20px;
+	margin-bottom: 20px;
 }
 </style>
 <script>
@@ -61,13 +63,11 @@
 	<%@include file="/navbar.jsp"%>
 	<br>
 	<div class="centerElement diaryDetail">
-	<div class="btn">
-	<a class="btn btn-warning" href="<c:url value='/diary/list'/>">뒤로 가기</a>
-	&nbsp;
-	<a class="btn btn-secondary"
-				href="<c:url value='/diary/delete'> <c:param name='d_id' value='${d_id}'/></c:url>"
-				onclick="return remove();">삭제</a>
-	</div>
+		<div class="btn">
+			<a class="btn btn-warning" href="<c:url value='/diary/list'/>">뒤로가기</a> &nbsp; 
+			<a class="btn btn-secondary" href="<c:url value='/diary/delete'> 
+			<c:param name='d_id' value='${d_id}'/></c:url>"onclick="return remove();">삭제</a>
+		</div>
 		<div class="card border-success mb-3" style="max-width: 80rem;">
 			<div class="card-header">날짜: ${date}</div>
 			<div class="card-body">

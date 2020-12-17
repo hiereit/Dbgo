@@ -1,26 +1,20 @@
 package model.dto;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Diary {
+@SuppressWarnings("serial")
+public class Diary implements Serializable {
 	private String d_id;
 	private String d_date;
 	private String content;
 	private String u_id;
-	
+
 	public Diary() {
 		super();
-	}
-	
-	public Diary(String d_id, String d_date, String content, String u_id) {
-		super();
-		this.d_id = d_id;
-		this.d_date = d_date;
-		this.content = content;
-		this.u_id = u_id;
 	}
 
 	public String getD_id() {
@@ -54,13 +48,13 @@ public class Diary {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	
+
 	public static class SortByDate implements Comparator<Diary> {
-	    @Override
-	    public int compare(Diary s1, Diary s2) {
-	    	DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");  // 주의: 월을 나타내는 MM은 대문자
-	    	Date d1 = null, d2 = null;
-	    	try {
+		@Override
+		public int compare(Diary s1, Diary s2) {
+			DateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");  // 주의: 월을 나타내는 MM은 대문자
+			Date d1 = null, d2 = null;
+			try {
 				d1 = df.parse(s1.getD_date());
 				d2 = df.parse(s2.getD_date());
 
@@ -68,7 +62,7 @@ public class Diary {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}   
-	    	return d2.compareTo(d1);
-	    }
+			return d2.compareTo(d1);
+		}
 	}
 }

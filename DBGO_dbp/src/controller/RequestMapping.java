@@ -25,11 +25,11 @@ public class RequestMapping {
 		mappings.put("/schedule/update", new UpdateScheduleController());
 		mappings.put("/schedule/updateDrop", new UpdateDropController());
 
-    	mappings.put("/group/view", new ViewGroupController());
-    	mappings.put("/group/schedule/view", new ViewGroupScheduleController());
-    	mappings.put("/group/schedule/add", new InsertGroupScheduleController());
-    	mappings.put("/group/schedule/update", new UpdateGroupScheduleController());
-    	mappings.put("/group/schedule/delete", new DeleteGroupScheduleController());
+		mappings.put("/group/view", new ViewGroupController());
+		mappings.put("/group/schedule/view", new ViewGroupScheduleController());
+		mappings.put("/group/schedule/add", new InsertGroupScheduleController());
+		mappings.put("/group/schedule/update", new UpdateGroupScheduleController());
+		mappings.put("/group/schedule/delete", new DeleteGroupScheduleController());
 		mappings.put("/group/list", new MyGroupListController());
 		mappings.put("/group/create/form", new ForwardController("/group/creationForm.jsp"));
 		mappings.put("/group/create", new CreateGroupController());
@@ -45,7 +45,7 @@ public class RequestMapping {
 		mappings.put("/user/update/form", new UpdateUserFormController());
 		mappings.put("/user/update", new UpdateUserController());
 		mappings.put("/user/delete", new DeleteUserController());
-		
+
 		mappings.put("/diary/register", new ForwardController("/diary/registerDiaryForm.jsp"));
 		mappings.put("/diary/list", new MyDiaryListController());
 		mappings.put("/diary/view", new ViewDiaryController());
@@ -53,7 +53,6 @@ public class RequestMapping {
 		mappings.put("/diary/delete", new DeleteDiaryController());
 
 		logger.info("Initialized Request Mapping!");
-
 	}
 
 	public Controller findController(String uri) {   
