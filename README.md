@@ -35,7 +35,7 @@
 + Bootstrap
 
 ### Developer's Git :octocat:  
-- @yyj424 (https://github.com/yyj424)
-- @hiereit (https://github.com/hiereit)
-- @winter28 (https://github.com/winter28)
-- @a-taeyeon (https://github.com/a-taeyeon)
+- [@yyj424](https://github.com/yyj424)
+- [@hiereit](https://github.com/hiereit)
+- [@winter28](https://github.com/winter28)
+- [@a-taeyeon](https://github.com/a-taeyeon)
